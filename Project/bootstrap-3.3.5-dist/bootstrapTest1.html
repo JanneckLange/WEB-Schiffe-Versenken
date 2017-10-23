@@ -2,7 +2,8 @@
 <html lang="de">
 
 <head>
-  <title></title>
+  <!-- TITLE-->
+  <title>Schiffe-Versenken</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,73 +13,131 @@
   <meta http-equiv=”language” content=”de” />
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
 </head>
 
 <body>
 
-  <!--class=“container“ legt Standardlayout (12 Spalten) von 940 Pixel Breite fest-->
+  <!-- HEADER -->
+  <div class="jumbotron">
+    <h1>Schiffe versenken</h1>
+  </div>
+
+  <!-- MAIN-PART -->
   <div class="container">
 
-    <!--class=“jumbotron“ legt große Box fest-->
-    <div class="jumbotron">
+    <div class="row">
 
-      <h1>Hello  World  mit  Bootstrap!</h1>
-      <p>Wie einfach ist das denn?<br>Die große Box könnte man ideal für eine Squeezepage verwenden.</p>
-      <!--class=“btn btn-danger btn-lg“ erzeugt aus einem normalen Link einen großen (btn-lg), roten (btn-danger) Button (btn)-->
-      <p><a class="btn  btn-danger  btn-lg" href="#">Großer  Call  to  Action  Button  »</a></p>
+      <!-- SIDEBAR -->
+      <div class="col-md-2">
 
-      <p>
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#meinModal"> Modal-Beispiel anzeigen
-</button>
-      </p>
-      <!-- Modal -->
-      <div class="modal fade" id="meinModal" tabindex="-1" role="dialog" aria-labelledby="meinModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Schließen"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="meinModalLabel">Modal-Überschrift</h4>
-            </div>
-            <div class="modal-body">
-              <form>
+        <div class="row">
+          <h3>Einstellungen</h3>
+        </div>
 
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-              <button type="button" class="btn btn-primary">Änderungen speichern</button>
-            </div>
-          </div>
+        <div class="row">
+          <p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Namen</button>
+          </p>
+        </div>
+
+        <div class="row">
+          <h3>Highscore</h3>
+        </div>
+
+      </div>
+
+      <!-- SPIELBEREICH -->
+      <div class="col-md-10">
+        <div class="row">
+          <p>
+            <center>
+              <h2 id="output">Spieler1 gegen Spieler2</h2></p>
+          </center>
+        </div>
+
+        <div class="row">
+          <!-- TODO:  zwei Spielfelder mit 10 x 10 Feldern   -->
         </div>
       </div>
 
     </div>
+  </div>
 
-    <!--class=“row“ erzeugt 1 Zeile innerhalb des Layouts-->
-    <div class="row">
 
-      <!--class=“col-md-2″ lässt das div-Element über 2 Spalten gehen (normale Desktop-Ansicht)-->
-      <div class="col-md-2">
+  <!-- FOOTER -->
+  <footer>
+    <!-- TODO: Mit Inhalt füllen -->
+  </footer>
 
-        <h2>Box  1</h2>
-        <p>Inhalt der 1. Box über 2 Spalten</p>
-        <!--Link (a-Element) wird als Button (class=“btn“) dargestellt, durch die zusätzliche Klasse „btn-primary“ wird der Button blau hervorgehoben-->
-        <p><a class="btn  btn-primary" href="#">Blauer  Button  »</a></p>
 
-      </div>
 
-      <!--class=“col-md-10″ lässt das div-Element über 10 Spalten gehen (normale Desktop-Ansicht)-->
-      <div class="col-md-10">
 
-        <h2>Box  2</h2>
-        <p>Inhalt der 2. Box über 10 Spalten. Alles einfach per zugewiesener CSS-Klasse möglich.</p>
-        <!--class=“btn btn-success“ erzeugt einen grünen (btn-success) Button-->
-        <p><a class="btn  btn-success" href="#">Grüner  Button  »</a></p>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="modal-1">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Spiel vorbereitung</h3>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+          <form method="get">
+            <div class="form-group" id="formGrpSpieler1">
+              <label for="spieler1">Spieler 1</label>
+              <input type="text" name="spieler1" id="input1" placeholder="1. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
+              <small class="form-text">3-15 Buchstaben</small>
+            </div>
+            <div class="form-group" id="formGrpSpieler2">
+              <label for="spieler2">Spieler 2</label>
+              <input type="text" name="spieler2" id="input2" placeholder="2. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
+              <small class="form-text">3-15 Buchstaben</small>
+            </div>
+            <div class="form-text text-right">
+              <!-- FIXME: Knopf für Formular bestätigen läd seite neu (Knopf entfernt)-->
+            </div>
+          </form>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+          <button type="button" onclick="setText()" class="btn btn-primary">Änderungen speichern</button>
+        </div>
 
       </div>
     </div>
   </div>
+  <!-- MODAL END-->
+
+  <!-- show modal on page load -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#modal-1').modal('show');
+    });
+  </script>
+
+  <!-- werte Formular aus und schreibe auf Seite -->
+  <script>
+    function setText() {
+      var spieler1 = document.getElementById("input1").value;
+      var spieler2 = document.getElementById("input2").value;
+      document.getElementById("output").innerHTML = spieler1 + " gegen " + spieler2;
+    }
+  </script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
