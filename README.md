@@ -6,48 +6,62 @@ Commit-Guidline:
 
 | Emoji | Raw Emoji Code | Description |
 |:---:|:---:|---|
-| :art: | `:art:` | when improving the **format**/structure of the code |
-| :newspaper: | `:newspaper:` | when creating a **new file** |
-| :pencil: | `:pencil:` | when **performing minor changes/fixing** the code or language |
-| :racehorse: | `:racehorse:` | when improving **performance** |
-| :books: | `:books:` | when writing **docs** |
-| :bug: | `:bug:` | when reporting a **bug**, with [`@FIXME`](https://github.com/slashsBin/styleguide-todo-grammar#bug-report)Comment Tag |
-| :ambulance: | `:ambulance:` | when fixing a **bug** |
-| :penguin: | `:penguin:` | when fixing something on **Linux** |
-| :apple: | `:apple:` | when fixing something on **Mac OS** |
-| :checkered_flag: | `:checkered_flag:` | when fixing something on **Windows** |
-| :fire: | `:fire:` | when **removing code** or files, _maybe_ with `@CHANGED` Comment Tag |
-| :tractor: | `:tractor:` | when **change file structure**. Usually together with :art: |
+| :art: | `:art:` | Verbesserung von **Format**/Struktur des Codes |
+| :newspaper: | `:newspaper:` | Erstellen einer **neue Datei** |
+| :pencil: | `:pencil:` | bei **kleinen Änderungen** am Code oder Text |
+| :racehorse: | `:racehorse:` | Verbesserung der **performance** |
+| :books: | `:books:` | Schreiben von **Kommentar** |
+| :bug: | `:bug:` | beim melden eines **bug**, with [`@FIXME`](https://github.com/slashsBin/styleguide-todo-grammar#bug-report)Comment Tag |
+| :ambulance: | `:ambulance:` | beim beheben eines **bug** |
+| :fire: | `:fire:` | beim **entfernen von Code** oder Datein |
+| :tractor: | `:tractor:` | beim **ändern der Dateistruktur**. Usually together with :art: |
 | :hammer: | `:hammer:` | when **refactoring** code |
-| :umbrella: | `:umbrella:` | when adding **tests** |
+| :umbrella: | `:umbrella:` | hinzufügen von **tests** |
 | :microscope: | `:microscope:` | when adding **code coverage** |
-| :green_heart: | `:green_heart:` | when fixing the **CI** build |
 | :lock: | `:lock:` | when dealing with **security** |
-| :arrow_up: | `:arrow_up:` | when upgrading **dependencies** |
-| :arrow_down: | `:arrow_down:` | when downgrading **dependencies** |
-| :fast_forward: | `:fast_forward:` | when **forward-porting features** from an older version/branch |
-| :rewind: | `:rewind:` | when **backporting features** from a newer version/branch |
-| :shirt: | `:shirt:` | when removing **linter**/strict/deprecation warnings |
 | :lipstick: | `:lipstick:` | when improving **UI**/Cosmetic |
-| :wheelchair: | `:wheelchair:` | when improving **accessibility** |
-| :globe_with_meridians: | `:globe_with_meridians:` | when dealing with **globalization**/internationalization/i18n/g11n |
 | :construction: | `:construction:` | **WIP**(Work In Progress) Commits, _maybe_ with `@REVIEW` Comment Tag |
 | :gem: | `:gem:` | New **Release** |
-| :egg: | `:egg:` | New **Release** with Python egg|
-| :ferris_wheel: | `:ferris_wheel:` | New **Release** with Python wheel package |
 | :bookmark: | `:bookmark:` | Version **Tags** |
 | :tada: | `:tada:` | **Initial** Commit |
 | :speaker: | `:speaker:` | when Adding **Logging** |
 | :mute: | `:mute:` | when Reducing **Logging** |
 | :sparkles: | `:sparkles:` | when introducing **New** Features |
-| :zap: | `:zap:` | when introducing **Backward-InCompatible** Features, _maybe_ with `@CHANGED` Comment Tag |
 | :bulb: | `:bulb:` | New **Idea**, with `@IDEA` Comment Tag |
+| :ribbon: | `:ribbon:`| Vom **Kunden** gewünschte anpassungen |
 | :snowflake: | `:snowflake:` | changing **Configuration**, Usually together with :penguin: or :ribbon: or :rocket: |
-| :ribbon: | `:ribbon:` | Customer requested application **Customization**, with `@HACK` Comment Tag |
-| :rocket: | `:rocket:` | Anything related to Deployments/**DevOps** |
-| :elephant: | `:elephant:` | **PostgreSQL** Database specific (Migrations, Scripts, Extensions, ...)  |
-| :dolphin: | `:dolphin:` | **MySQL** Database specific (Migrations, Scripts, Extensions, ...) |
-| :leaves: | `:leaves:` | **MongoDB** Database specific (Migrations, Scripts, Extensions, ...) |
 | :bank: | `:bank:` | **Generic Database** specific (Migrations, Scripts, Extensions, ...) |
-| :whale: | `:whale:` | **Docker** Configuration |
 | :handshake: | `:handshake:` | when **Merge files** |
+
+
+Available Grammar
+
+@TODO: Wenn etwas getan werden muss
+@FIXME: Fehler / Error, sollte behoben werden, markiert mit 🐛 Commit
+@XXX: Warne andere Programmierer vor problematischem oder irreführenden Code
+@IDEA: Eine neue Idee, markiert mit 💡 Commit
+@HACK: Kundenanpassung, markiert mit 🎀 Commit
+@NOTE: Ein Hinweis auf etwas wichtiges
+@REVIEW: Muss geprüft werden, normalerweise markiert mit 🚧 Commit
+
+Bug Report
+
+Add @FIXME Comment above SourceCode where Bug/Exception was Occurred.
+Write Additional Information:
+Steps to Reproduce the Error
+Exception Message and Code
+Expected Result
+Actual Result
+Environment Detail
+Mention the Task ID in Format {T###}.
+(optional) Add Screenshots in Format {F###}(Phabricator Specific).
+Commit the Comments(with 🐛 Emoji), also include Items 2.B, 3 & 4 in Commit Message too.
+Award that Task with Manufacturing Defect Token(Phabricator Specific).
+Notes
+
+Do NOT edit Contents of Vendor files(Composer, Bower, ...).
+Grammars Should Appear in a List/Window in Your IDE of Choice(PHPStorm).
+There Must be an Audit for this Bug(Commit) Appear in Phabricator.
+These Kind of Bug Reports Remain in History of VCS for future References of that Scope of Code.
+All Attached Files & Commit Reference HashTag will be Referenced in the Phabricator Task View.
+These Audits May become Tasks Later.
