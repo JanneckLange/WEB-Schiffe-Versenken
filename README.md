@@ -1,7 +1,7 @@
 ﻿# WEB-WS17-WebRangers
 Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max Stockbauer, Janneck Lange
 
-Commit-Guidline:
+
 ## Suggested Emojis
 
 | Emoji | Raw Emoji Code | Description |
@@ -35,26 +35,28 @@ Commit-Guidline:
 
 
 Available Grammar
+=================
 
-@TODO: Wenn etwas getan werden muss
-@FIXME: Fehler / Error, sollte behoben werden, markiert mit 🐛 Commit
-@XXX: Warne andere Programmierer vor problematischem oder irreführenden Code
-@IDEA: Eine neue Idee, markiert mit 💡 Commit
-@HACK: Kundenanpassung, markiert mit 🎀 Commit
-@NOTE: Ein Hinweis auf etwas wichtiges
-@REVIEW: Muss geprüft werden, normalerweise markiert mit 🚧 Commit
+- `@TODO`: Wenn etwas getan werden muss
+- `@FIXME`: Fehler / Error, sollte behoben werden, markiert mit 🐛 Commit
+- `@XXX`: Warne andere Programmierer vor problematischem oder irreführenden Code
+- `@IDEA`: Eine neue Idee, markiert mit 💡 Commit
+- `@HACK`: Kundenanpassung, markiert mit 🎀 Commit
+- `@NOTE`: Ein Hinweis auf etwas wichtiges
+- `@REVIEW`: Muss geprüft werden, normalerweise markiert mit 🚧 Commit
 
 Bug Report
+----------
 
-Add @FIXME Comment above SourceCode where Bug/Exception was Occurred.
+Add `@FIXME` Comment above SourceCode where Bug/Exception was Occurred.
 Write Additional Information:
 Steps to Reproduce the Error
 Exception Message and Code
 Expected Result
 Actual Result
 Environment Detail
-Mention the Task ID in Format {T###}.
-(optional) Add Screenshots in Format {F###}(Phabricator Specific).
+Mention the Task ID in Format `{T###}`.
+(optional) Add Screenshots in Format `{F###}`(Phabricator Specific).
 Commit the Comments(with 🐛 Emoji), also include Items 2.B, 3 & 4 in Commit Message too.
 Award that Task with Manufacturing Defect Token(Phabricator Specific).
 Notes
