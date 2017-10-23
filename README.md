@@ -2,7 +2,8 @@
 Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max Stockbauer, Janneck Lange
 
 
-## Suggested Emojis
+
+## Empfohlene Emojis
 
 | Emoji | Raw Emoji Code | Description |
 |:---:|:---:|---|
@@ -34,8 +35,8 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 | :handshake: | `:handshake:` | **Merge files** |
 
 
-## Available Grammar
-=================
+
+## Verfügbare Grammatik
 
 - `@TODO`: Wenn etwas getan werden muss
 - `@FIXME`: Fehler / Error, sollte behoben werden, markiert mit 🐛 Commit
