@@ -18,13 +18,34 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
+  <!-- Google-Font-->
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+  <!-- CSS-Style-->
+  <style>
+    #output {
+      font-family: 'Indie Flower', cursive;
+    }
+
+    #title-main {
+      font-family: 'Indie Flower', cursive;
+    }
+
+    #title-settings {
+      font-family: 'Indie Flower', cursive;
+    }
+
+    #title-highscore {
+      font-family: 'Indie Flower', cursive;
+    }
+  </style>
 </head>
 
 <body>
 
   <!-- HEADER -->
   <div class="jumbotron">
-    <h1>Schiffe versenken</h1>
+    <h1 id="title-main">Schiffe versenken</h1>
   </div>
 
   <!-- MAIN-PART -->
@@ -36,7 +57,7 @@
       <div class="col-md-2">
 
         <div class="row">
-          <h3>Einstellungen</h3>
+          <h3 id="title-settings">Einstellungen</h3>
         </div>
 
         <div class="row">
@@ -46,7 +67,7 @@
         </div>
 
         <div class="row">
-          <h3>Highscore</h3>
+          <h3 id="title-highscore">Highscore</h3>
         </div>
 
       </div>
@@ -119,6 +140,12 @@
   </div>
   <!-- MODAL END-->
 
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <!-- NOTE:  Beide Scripts müssen hinter dem obigen stehen!!!-->
   <!-- show modal on page load -->
   <script type="text/javascript">
     $(document).ready(function() {
@@ -135,9 +162,7 @@
     }
   </script>
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
