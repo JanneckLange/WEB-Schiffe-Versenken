@@ -33,14 +33,24 @@
       font-family: 'Indie Flower', cursive;
     }
 
+    #output {
+      font-size: 30px;
+    }
+
+    #table-highscore {
+      font-family: 'Indie Flower', sans-serif;
+      font-size: 16px;
+    }
+
     .tg {
       border-collapse: collapse;
       border-spacing: 0;
     }
 
     .tg td {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      font-family: 'Indie Flower', sans-serif;
+      font-weight: bold;
+      font-size: 16px;
       padding: 10px 10px;
       border-style: solid;
       border-width: 1px;
@@ -49,19 +59,14 @@
     }
 
     .tg th {
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      font-weight: normal;
-      padding: 10px 10px;
+      font-family: 'Indie Flower', sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 13px 13px;
       border-style: solid;
       border-width: 1px;
       overflow: hidden;
       word-break: normal;
-    }
-
-    .tg .tg-r2yw {
-      font-size: 10px;
-      color: #333333
     }
   </style>
 </head>
@@ -93,6 +98,52 @@
 
         <div class="row">
           <h3 id="title-highscore">Highscore</h3>
+          <table id="table-highscore" class="table  table-hover">
+            <tr>
+              <th> Name </th>
+              <th>Schüsse</th>
+            </tr>
+            <tr>
+              <td> 1. {Player 1}</td>
+              <td> {points}</td>
+            </tr>
+            <tr>
+              <td>2. {Player 2} </td>
+              <td> {points}</td>
+            </tr>
+            <tr>
+              <td> 3.</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>4. </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>5. </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>6. </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>7. </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td> 8.</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td> 9.</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td> 10.</td>
+              <td></td>
+            </tr>
+          </table>
         </div>
 
       </div>
@@ -100,16 +151,23 @@
       <!-- SPIELBEREICH -->
       <div class="col-md-10">
         <div class="row">
+
+
           <center>
-            <h2 id="output">Spieler1 gegen Spieler2</h2>
+            <p id="output">Spieler1 gegen Spieler2</p>
           </center>
-          <br>
+
+
         </div>
 
         <div class="row">
           <div class="col-md-5">
+            <!-- NOTE: Farben: Nichts: #ffffff; Treffer: #ff0000; Wasser: #0000ff; Eigenes Schiff: #000000 -->
             <!--Spielfeld 1-->
             <table class="tg">
+              <tr id="table2-top">
+                <td style="border-top:0px; border-right:0px; border-left:0px" colspan="11" ALIGN="Left"> Treffer 0/40</td>
+              </tr>
               <tr>
                 <th></th>
                 <th>01</th>
@@ -125,139 +183,142 @@
               </tr>
               <tr>
                 <td>A</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>B</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>C</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>D</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>E</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>F</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>G</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
               <tr>
                 <td>H</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td> bgcolor=#ffffff</td>
               </tr>
               <tr>
                 <td>I</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
                 <td></td>
               </tr>
               <tr>
                 <td>K</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
+                <td bgcolor=#ffffff></td>
               </tr>
             </table>
           </div>
-          <div class="col-md-5 col-md-offset-1">
+          <div class="col-md-4 col-md-offset-1">
             <!--Spielfeld 2-->
             <table class="tg">
+              <tr id="table2-top">
+                <td style="border-top:0px; border-right:0px; border-left:0px" colspan="11" ALIGN="RIGHT"> Treffer 0/40</td>
+              </tr>
               <tr>
                 <th></th>
                 <th>01</th>
@@ -407,12 +468,14 @@
       </div>
 
     </div>
+    <br> <br> <br> <br>
   </div>
 
 
   <!-- FOOTER -->
   <footer>
     <!-- TODO: Mit Inhalt füllen -->
+    Ich bin footer inhalt
   </footer>
 
 
