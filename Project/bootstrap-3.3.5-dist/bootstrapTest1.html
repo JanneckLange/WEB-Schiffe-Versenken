@@ -23,20 +23,45 @@
 
   <!-- CSS-Style-->
   <style>
-    #output {
+    #output,
+    #title-main,
+    #title-settings,
+    #title-highscore,
+    #title-modal,
+    #text-pl1,
+    #text-pl2 {
       font-family: 'Indie Flower', cursive;
     }
 
-    #title-main {
-      font-family: 'Indie Flower', cursive;
+    .tg {
+      border-collapse: collapse;
+      border-spacing: 0;
     }
 
-    #title-settings {
-      font-family: 'Indie Flower', cursive;
+    .tg td {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      padding: 10px 10px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
     }
 
-    #title-highscore {
-      font-family: 'Indie Flower', cursive;
+    .tg th {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 10px 10px;
+      border-style: solid;
+      border-width: 1px;
+      overflow: hidden;
+      word-break: normal;
+    }
+
+    .tg .tg-r2yw {
+      font-size: 10px;
+      color: #333333
     }
   </style>
 </head>
@@ -75,14 +100,309 @@
       <!-- SPIELBEREICH -->
       <div class="col-md-10">
         <div class="row">
-          <p>
-            <center>
-              <h2 id="output">Spieler1 gegen Spieler2</h2></p>
+          <center>
+            <h2 id="output">Spieler1 gegen Spieler2</h2>
           </center>
+          <br>
         </div>
 
         <div class="row">
-          <!-- TODO:  zwei Spielfelder mit 10 x 10 Feldern   -->
+          <div class="col-md-5">
+            <!--Spielfeld 1-->
+            <table class="tg">
+              <tr>
+                <th></th>
+                <th>01</th>
+                <th>02</th>
+                <th>03</th>
+                <th>04</th>
+                <th>05</th>
+                <th>06</th>
+                <th>07</th>
+                <th>08</th>
+                <th>09</th>
+                <th>10</th>
+              </tr>
+              <tr>
+                <td>A</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>E</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>F</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>G</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>H</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>I</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>K</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-5 col-md-offset-1">
+            <!--Spielfeld 2-->
+            <table class="tg">
+              <tr>
+                <th></th>
+                <th>01</th>
+                <th>02</th>
+                <th>03</th>
+                <th>04</th>
+                <th>05</th>
+                <th>06</th>
+                <th>07</th>
+                <th>08</th>
+                <th>09</th>
+                <th>10</th>
+              </tr>
+              <tr>
+                <td>A</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>E</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>F</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>G</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>H</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>I</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>K</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -107,19 +427,19 @@
         <!-- HEADER -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 class="modal-title">Spiel vorbereitung</h3>
+          <h3 id="title-modal" class="modal-title">Spiel vorbereitung</h3>
         </div>
 
         <!-- BODY -->
         <div class="modal-body">
           <form method="get">
             <div class="form-group" id="formGrpSpieler1">
-              <label for="spieler1">Spieler 1</label>
+              <label id="text-pl1" for="spieler1">Spieler 1</label>
               <input type="text" name="spieler1" id="input1" placeholder="1. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
               <small class="form-text">3-15 Buchstaben</small>
             </div>
             <div class="form-group" id="formGrpSpieler2">
-              <label for="spieler2">Spieler 2</label>
+              <label id="text-pl2" for="spieler2">Spieler 2</label>
               <input type="text" name="spieler2" id="input2" placeholder="2. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
               <small class="form-text">3-15 Buchstaben</small>
             </div>
@@ -145,7 +465,7 @@
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-  <!-- NOTE:  Beide Scripts müssen hinter dem obigen stehen!!!-->
+  <!-- NOTE: XXX:  Beide Scripts müssen hinter dem obigen stehen!!!-->
   <!-- show modal on page load -->
   <script type="text/javascript">
     $(document).ready(function() {
