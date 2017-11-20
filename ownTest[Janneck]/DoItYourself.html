@@ -5,6 +5,21 @@
 </head>
 
 <body>
+  <style media="screen">
+    tr:nth-child(2n) {
+      /* oder even*/
+      background-color: red;
+    }
+
+    tr:nth-child(2n+1) {
+      /* oder odd*/
+      background-color: blue;
+    }
+
+    table {
+      
+    }
+  </style>
 
   <table border="1">
     <tr>
@@ -13,25 +28,25 @@
         <center>Gruppe: WebRangers</center>
       </td>
     </tr>
-    <tr>
+    <tr id="tr1">
       <td>Vorname</td>
       <td>Name</td>
       <td>Studiengang</td>
       <td>Matrikelnummer</td>
     </tr>
-    <tr>
+    <tr id="tr2">
       <td>Ben</td>
       <td>Schönke</td>
       <td>Informatik</td>
       <td>*******</td>
     </tr>
-    <tr>
+    <tr id="tr3">
       <td>Max</td>
       <td>Stockbauer</td>
       <td>Informatik</td>
       <td>*******</td>
     </tr>
-    <tr>
+    <tr id="tr4">
       <td>Janneck</td>
       <td>Lange</td>
       <td>Informatik</td>
