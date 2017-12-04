@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('GET', 'http://52.166.12.116:3000/api/highscore', true);
+      xhttp.responseType = 'json';
+      xhttp.onload = () => {
+        var data = xhttp.response;
+        if (data !== null) {
+          console.log(data);
+        }
+      };
+      xhttp.send(null);
+    }
+
+    function sendDoc() {
+      var formData = new FormData();
+      formData.append('name', 'johndoe');
+      formData.append('points', 1);
+
+      var json = JSON.stringify(formData);
+
+
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.open('POST', 'http://52.166.12.116:3000/api/highscore', true);
+      xhttp.setRequestHeader('Content-type', 'application/json');
+      xhttp.onload = function() {
+        var data = xhttp.response;
+        if (data !== null) {
+          console.log(data);
+        }
+      };
+      xhttp.send(JSON.stringify({
+        "name": "BEN",
+        "points": 2
+      }));
+    }
+  </script>
+</head>
+
+<body>
+
+  <button type="button" onclick="loadDoc()">Request data</button>
+  <button type="button" onclick="sendDoc()">Send data</button>
+
+</body>
+
+</html>
