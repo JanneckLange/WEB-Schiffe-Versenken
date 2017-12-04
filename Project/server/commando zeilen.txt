@@ -1,0 +1,13 @@
+node -v
+zeigt die installierte Version an
+
+dann zur server.js navigieren
+
+dann node server.js eingeben und ausführen
+
+dann http://127.0.0.1:3000/ im browser öffnen
+
+dann npm init eingeben
+um den server anzulegen und zu initialisieren
+
+danach packages von npmjs.com installieren
