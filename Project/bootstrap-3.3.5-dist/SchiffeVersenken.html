@@ -21,54 +21,12 @@
   <!-- Google-Font-->
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
-  <!-- CSS-Style-->
-  <style>
-    #output,
-    #title-main,
-    #title-settings,
-    #title-highscore,
-    #title-modal,
-    #text-pl1,
-    #text-pl2,
-    #table-highscore {
-      font-family: 'Indie Flower', cursive;
-    }
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
 
-    #output {
-      font-size: 30px;
-    }
-
-    #table-highscore {
-      font-size: 16px;
-    }
-
-    .tg {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-
-    .tg td,
-    .tg th {
-      font-family: 'Indie Flower', sans-serif;
-      font-weight: bold;
-      font-size: 16px;
-      border-style: solid;
-      border-width: 1px;
-      overflow: hidden;
-      word-break: normal;
-    }
-
-    .tg td {
-      padding: 10px 10px;
-    }
-
-    .tg th {
-      padding: 13px 13px;
-    }
-  </style>
 </head>
 
-<body>
+<body onload="getScore()">
 
   <!-- HEADER -->
   <div class="jumbotron">
@@ -78,9 +36,9 @@
       </div>
       <!-- NOTE: Footer Inhalt -->
       <div class="col-md-2">
-        <h5>{Image} Impressum</h5>
-        <h5>{Image} About</h5>
-        <h5>{Image} GitHub</h5>
+        <h5>Impressum</h5>
+        <h5>About</h5>
+        <h5><a href="https://github.com/1628574/WEB-WS17-WebRangers">GitHub</a></h5>
       </div>
     </div>
 
@@ -113,44 +71,44 @@
               <th>Schüsse</th>
             </tr>
             <tr>
-              <td> 1. {Player 1}</td>
-              <td> {points}</td>
+              <td id="pl1"> 1. {Player 1}</td>
+              <td id="po1"> {points}</td>
             </tr>
             <tr>
-              <td>2. {Player 2} </td>
-              <td> {points}</td>
+              <td id="pl2">2. {Player 2} </td>
+              <td id="po2"> {points}</td>
             </tr>
             <tr>
-              <td> 3.</td>
-              <td></td>
+              <td id="pl3"> 3.</td>
+              <td id="po3"></td>
             </tr>
             <tr>
-              <td>4. </td>
-              <td></td>
+              <td id="pl4">4. </td>
+              <td id="po4"></td>
             </tr>
             <tr>
-              <td>5. </td>
-              <td></td>
+              <td id="pl5">5. </td>
+              <td id="po5"></td>
             </tr>
             <tr>
-              <td>6. </td>
-              <td></td>
+              <td id="pl6">6. </td>
+              <td id="po6"></td>
             </tr>
             <tr>
-              <td>7. </td>
-              <td></td>
+              <td id="pl7">7. </td>
+              <td id="po7"></td>
             </tr>
             <tr>
-              <td> 8.</td>
-              <td></td>
+              <td id="pl8"> 8.</td>
+              <td id="po8"></td>
             </tr>
             <tr>
-              <td> 9.</td>
-              <td></td>
+              <td id="pl9"> 9.</td>
+              <td id="po9"></td>
             </tr>
             <tr>
-              <td> 10.</td>
-              <td></td>
+              <td id="pl10"> 10.</td>
+              <td id="po10"></td>
             </tr>
           </table>
         </div>
@@ -534,6 +492,10 @@
     </div>
   </div>
   <!-- MODAL END-->
+
+
+
+
 
 
   <!-- Latest compiled and minified JavaScript -->
