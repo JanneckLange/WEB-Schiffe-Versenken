@@ -23,7 +23,7 @@
     function sendDoc() {
       var formData = new FormData();
       formData.append('name', 'johndoe');
-      formData.append('points', 1);
+      formData.append('points', 3);
 
       var json = JSON.stringify(formData);
 
@@ -40,7 +40,7 @@
       };
       xhttp.send(JSON.stringify({
         "name": "BEN",
-        "points": 2
+        "points": 3
       }));
     }
   </script>
