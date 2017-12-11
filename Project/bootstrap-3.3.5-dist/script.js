@@ -36,8 +36,8 @@ function getData(text) {
 }
 
 function printData(array) {
-  var textField = ['pl1', 'pl2', 'pl3', 'pl4', 'pl5', 'pl6', 'pl7', 'pl8', 'pl9', 'pl10', ]
-  var pointField = ['po1', 'po2', 'po3', 'po4', 'po5', 'po6', 'po7', 'po8', 'po9', 'po10', ]
+  var textField = ['pl1', 'pl2', 'pl3', 'pl4', 'pl5']
+  var pointField = ['po1', 'po2', 'po3', 'po4', 'po5']
   for (var i = 0; i < array.length && i < textField.length; i++) {
     document.getElementById(textField[i]).textContent = "" + (i + 1) + ". " + array[i].split(" ")[1];
     document.getElementById(pointField[i]).textContent = array[i].split(" ")[0];
