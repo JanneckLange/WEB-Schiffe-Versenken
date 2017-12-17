@@ -87,3 +87,95 @@ function printData(array) {
     document.getElementById(pointField[i]).textContent = array[i].split(" ")[0];
   }
 }
+
+function getShips( player ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('GET', 'http://52.166.12.116:3000/api/ships', true);
+  xhttp.responseType = 'json';
+  xhttp.onload = () => {
+    var data = xhttp.response;
+    if (data !== null) {
+
+      printShips(data, player);
+
+
+    }
+  };
+  xhttp.send(null);
+}
+
+function shootSquare ( id ){
+
+  alert("SHOOOOOOT´s fired on " + id + "!");
+
+}
+
+
+function printShips(data, player){
+
+  var row = 0;
+  var square = 0;
+
+if (player == 1){
+  for(var i = 100 ; i <= 199 ; i++ ){
+
+      document.getElementById(i).textContent = data[row][square];
+        square++;
+
+        if(square == 10){
+          row++;
+          square = 0;
+        }
+  }
+
+  for(var i = 100 ; i <= 199 ; i++ ){
+    if(document.getElementById(i).textContent == "1"){
+      document.getElementById(i).textContent = "";
+      document.getElementById(i).style.background ="#000000";
+    }
+    if(document.getElementById(i).textContent == "0"){
+      document.getElementById(i).textContent = "";
+      document.getElementById(i).style.background ="#0000ff";
+    }
+        square++;
+
+        if(square == 10){
+          row++;
+          square = 0;
+        }
+  }
+}
+
+if (player == 2){
+  for(var i = 200 ; i <= 299 ; i++ ){
+
+      document.getElementById(i).textContent = data[row][square];
+        square++;
+
+        if(square == 10){
+          row++;
+          square = 0;
+        }
+  }
+
+  for(var i = 200 ; i <= 299 ; i++ ){
+    if(document.getElementById(i).textContent == "1"){
+      document.getElementById(i).textContent = "";
+      document.getElementById(i).style.background ="#000000";
+    }
+    if(document.getElementById(i).textContent == "0"){
+      document.getElementById(i).textContent = "";
+      document.getElementById(i).style.background ="#0000ff";
+    }
+        square++;
+
+        if(square == 10){
+          row++;
+          square = 0;
+        }
+  }
+}
+
+row=0;
+square=0;
+}
