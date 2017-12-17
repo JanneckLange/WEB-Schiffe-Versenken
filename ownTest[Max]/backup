@@ -6,7 +6,7 @@ function getScore() {
     var data = xhttp.response;
     if (data !== null) {
       var array = getData(data);
-
+      array.sort();
       printData(array);
     }
   };
@@ -16,13 +16,7 @@ function getScore() {
 function getData(text) {
   var j = 0;
   var array = [];
-  var nameToInsert = 0;
-  var pointsA = [];
-  var pointsA2 = [];
-  var pointsASize = 0;
-  var nameInPA = false;
   var arrayPos = 0;
-  var arrayPos2 = 0;
 
   try {
     while (text.highscore[j].name != 'undefined') {
@@ -38,45 +32,7 @@ function getData(text) {
       arrayPos++;
     }
   }
-
-  for (var k = 0; k < j; k++) {
-    if (text.highscore[k].name != null) {
-      pointsA[arrayPos2] = parseInt ( text.highscore[k].points );
-      arrayPos2++;
-      pointsASize++;
-    }
-  }
-
-  pointsA.sort(function(a, b){return a-b});
-
-
-  for (var g = 0; g < j; g++) {
-    if (text.highscore[g].name != null) {
-
-      for (var m = 0; m < j; m++) {
-        if(pointsA[g] == text.highscore[m].points){
-
-          for(var n = 0; n < pointsASize; n++){
-            if(String(pointsA[n]).includes( text.highscore[m].name )){
-              nameInPA = true;
-            }
-          }
-            if(!nameInPA){
-              nameToInsert = m;
-              m = j;
-            }
-      }
-
-    }
-    if(!nameInPA){
-    pointsA2[arrayPos2] = pointsA[g] + " " + text.highscore[nameToInsert].name;
-    arrayPos2++;
-    }
-    nameInPa = false;
-  }}
-    pointsA2.splice(0, pointsASize);
-
-  return pointsA2;
+  return array;
 }
 
 function printData(array) {
