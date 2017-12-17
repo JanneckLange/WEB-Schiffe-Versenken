@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\ownTest[Ben]",
-    "\\ownTest[Ben]\\bootstrap-3.3.5-dist",
+    "\\ownTest[Ben]\\server",
+    "\\Project",
     "\\Uebung",
     "\\Uebung\\Aufgabe02",
     "\\Uebung\\Aufgabe03"
   ],
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
