@@ -10,6 +10,10 @@
   font-size: 16px;
 }
 
+table {
+  margin-top: 10px;
+}
+
 .tg {
   border-collapse: collapse;
   border-spacing: 0;
@@ -31,4 +35,18 @@
 
 .tg th {
   padding: 13px 13px;
+}
+
+div.hitShip, div.hitWater {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+div.hitShip {
+  background-color: #ff0000
+}
+
+div.hitWater {
+  background-color: #000
 }
