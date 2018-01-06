@@ -45,3 +45,4 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 - `@HACK`: Kundenanpassung, markiert mit 🎀 Commit
 - `@NOTE`: Ein Hinweis auf etwas wichtiges
 - `@REVIEW`: Muss geprüft werden, normalerweise markiert mit 🚧 Commit
+
