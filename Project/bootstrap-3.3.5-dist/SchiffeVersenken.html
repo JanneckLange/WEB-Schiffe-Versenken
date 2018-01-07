@@ -58,6 +58,7 @@
         <div class="row">
           <p>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Namen</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Schiffe</button>
           </p>
         </div>
 
@@ -118,20 +119,19 @@
   </div>
 
 
-  <!-- MODAL -->
+  <!-- MODAL Namen -->
   <div class="modal fade" id="modal-1">
     <div class="modal-dialog ">
       <div class="modal-content">
 
         <!-- HEADER -->
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">Spiel vorbereitung</h3>
+          <h3 id="title-modal" class="modal-title">Spielernamen</h3>
         </div>
 
         <!-- BODY -->
         <div class="modal-body">
-          <form>
+          <form id="players_form">
             <div class="form-group" id="formGrpSpieler1">
               <label id="text-pl1" for="spieler1">Spieler 1</label>
               <input type="text" name="spieler1" id="input1" placeholder="1. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
@@ -142,26 +142,17 @@
               <input type="text" name="spieler2" id="input2" placeholder="2. Spielername" required pattern="[A-Za-z0-9]{3,15}" />
               <small class="form-text">3-15 Buchstaben</small>
             </div>
-            <!--
+
             <div class="form-group" id="formGrpSpieler3">
-              <button type="submit" name="button" onclick="setText()">Änderungen speichern</button>
-              <button type="button" onclick="setText()" data-dismiss="modal" class="btn btn-primary">Änderungen speichern</button>
+              <button type="submit" class="btn btn-default" name="button" onclick="setText()">Änderungen speichern</button>
             </div>
-          -->
-            <!-- FIXME: Knopf für Formular bestätigen läd seite neu (Knopf entfernt)-->
           </form>
         </div>
-
-        <!-- FOOTER -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
-          <button type="button" onclick="setText()" data-dismiss="modal" class="btn btn-primary">Änderungen speichern</button>
-        </div>
-
       </div>
     </div>
   </div>
   <!-- MODAL END-->
+
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
