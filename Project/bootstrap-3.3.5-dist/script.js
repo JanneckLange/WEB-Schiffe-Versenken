@@ -1,3 +1,14 @@
+const HORIZONTAL = 0; //ist eigentlich VERTICAL
+const VERTICAL = 1; //ist eigentlich HORIZONTAL
+const SCHLACHTSCHIFF_LENGTH = 5;
+const KREUZER_LENGTH = 4;
+const ZERSTOERER_LENGTH = 3;
+const UBOOT_LENGTH = 2;
+const SCHLACHTSCHIFF_TYPE = 1;
+const KREUZER_TYPE = 2;
+const ZERSTOERER_TYPE = 3;
+const UBOOT_TYPE = 4;
+
 //Highscore
 var textField = ['pl1', 'pl2', 'pl3', 'pl4', 'pl5']
 var pointField = ['po1', 'po2', 'po3', 'po4', 'po5']
@@ -21,9 +32,22 @@ var shipsDefault = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 1, 1, 1, 0, 0, 0, 1, 1, 1]
+];
+
+var ships = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ]; //0 Wasser, 1 Schiff, 2 getroffenes Schiff, 3 beschossen
 var enemyShips = shipsDefault; //Gegnerisches Spielfeld
-var ownShips = shipsDefault; //eigenes Spielfeld
+var ownShips = ships; //eigenes Spielfeld
 
 
 function start() {
@@ -74,12 +98,19 @@ function createTable(table) {
   node.appendChild(myTable);
 }
 
+
+
 //Namen werden gesetzt, wird aus dem Modal aufgerufen
 function setText() {
   var spieler1 = document.getElementById("input1").value;
   var spieler2 = document.getElementById("input2").value;
-
   document.getElementById("output").innerHTML = spieler1 + " gegen " + spieler2;
+
+  $("#players_form").submit(function(e) {
+    e.preventDefault();
+    $('#modal-1').modal('hide')
+  });
+
 }
 
 //Laden den Highscore vom Server
@@ -312,5 +343,154 @@ function printShips(data, player) {
       square = 0;
     }
   }
+}
 
+
+function randomPlayGround() {
+  var allShips = [generateShip(SCHLACHTSCHIFF_TYPE), generateShip(KREUZER_TYPE), generateShip(KREUZER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE)];
+  for (var i = 0; i < allShips.length; i++) {
+    allShips[i] = placeShipRandom(allShips[i]);
+    if (checkShipPos(allShips[i])) {
+      alert("Place: DIR " + allShips[i].dir + ", X " + allShips[i].startX + ", Y " + allShips[i].startY + ", l " + allShips[i].length);
+      placeShip(allShips[i]);
+    } else {
+      i--;
+    }
+  }
+}
+
+function generateShip(type) {
+  var shipLength = 0;
+  switch (type) {
+    case 1:
+      shipLength = 5;
+      break;
+    case 2:
+      shipLength = 4;
+      break;
+    case 3:
+      shipLength = 3;
+      break;
+    case 4:
+      shipLength = 2;
+      break;
+    default:
+
+  }
+  var ship = {
+    startX: 0,
+    startY: 0,
+    length: shipLength,
+    dir: 0
+  };
+  return ship;
+}
+
+function placeShipRandom(ship) {
+  ship.dir = randomNumber(0, 1);
+  switch (ship.dir) {
+    case HORIZONTAL:
+      switch (ship.length) {
+        case SCHLACHTSCHIFF_LENGTH:
+          ship.startX = randomNumber(0, 9 - SCHLACHTSCHIFF_LENGTH);
+          ship.startY = randomNumber(0, 9);
+          break;
+        case KREUZER_LENGTH:
+          ship.startX = randomNumber(0, 9 - KREUZER_LENGTH);
+          ship.startY = randomNumber(0, 9);
+          break;
+        case ZERSTOERER_LENGTH:
+          ship.startX = randomNumber(0, 9 - ZERSTOERER_LENGTH);
+          ship.startY = randomNumber(0, 9);
+          break;
+        case UBOOT_LENGTH:
+          ship.startX = randomNumber(0, 9 - UBOOT_LENGTH);
+          ship.startY = randomNumber(0, 9);
+      }
+      break;
+    case VERTICAL:
+      switch (ship.length) {
+        case SCHLACHTSCHIFF_LENGTH:
+          ship.startX = randomNumber(0, 9);
+          ship.startY = randomNumber(0, 9 - SCHLACHTSCHIFF_LENGTH);
+          break;
+        case KREUZER_LENGTH:
+          ship.startX = randomNumber(0, 9);
+          ship.startY = randomNumber(0, 9 - KREUZER_LENGTH);
+          break;
+        case ZERSTOERER_LENGTH:
+          ship.startX = randomNumber(0, 9);
+          ship.startY = randomNumber(0, 9 - ZERSTOERER_LENGTH);
+          break;
+        case UBOOT_LENGTH:
+          ship.startX = randomNumber(0, 9);
+          ship.startY = randomNumber(0, 9 - UBOOT_LENGTH);
+      }
+  }
+  return ship;
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function checkShipPos(ship) {
+  switch (ship.dir) {
+    case HORIZONTAL:
+      //vor dem Schiff
+      if (ship.startX - 1 >= 0) {
+        if (ships[ship.startX - 1][ship.startY] == 1) {
+          return false;
+        }
+      }
+      //hinter dem Schiff
+      if (ship.startX + ship.length + 1 <= 9) {
+        if (ships[ship.startX + ship.length + 1][ship.startY] == 1) {
+          return false;
+        }
+      }
+      //auf dem Schiff
+      for (var i = 0; i < ship.length; i++) {
+        if (ships[ship.startX + i][ship.startY] == 1) {
+          return false;
+        }
+      }
+      break;
+    case VERTICAL:
+      //vor dem Schiff
+      if (ship.startY - 1 >= 0) {
+        if (ships[ship.startX][ship.startY - 1] == 1) {
+          return false;
+        }
+      }
+      //hinter dem Schiff
+      if (ship.startY + ship.length + 1 <= 9) {
+        if (ships[ship.startX][ship.startY + ship.length + 1] == 1) {
+          return false;
+        }
+      }
+      //auf dem Schiff
+      for (var i = 0; i < ship.length; i++) {
+        if (ships[ship.startX][ship.startY + i] == 1) {
+          return false;
+        }
+      }
+  }
+  return true;
+}
+
+function placeShip(ship) {
+  switch (ship.dir) {
+    case HORIZONTAL:
+      for (var i = 0; i < ship.length; i++) {
+        ships[ship.startX + i][ship.startY] = 1;
+        document.getElementById("" + 1 + "" + (ship.startX + i) + "" + ship.startY).style.background = backgroundColorShip;
+      }
+      break;
+    case VERTICAL:
+      for (var i = 0; i < ship.length; i++) {
+        ships[ship.startX][ship.startY + i] = 1;
+        document.getElementById("" + 1 + "" + ship.startX + "" + (ship.startY + i)).style.background = backgroundColorShip;
+      }
+  }
 }
