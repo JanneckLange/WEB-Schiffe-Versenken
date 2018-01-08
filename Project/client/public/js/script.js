@@ -455,6 +455,19 @@ function checkShipPos(ship) {
           return false;
         }
       }
+      //neben dem Schiff
+      for (var i = 0; i < ship.length; i++) {
+        if (ship.startY - 1 >= 0) {
+          if (ships[ship.startX + i][ship.startY] == 1) {
+            return false;
+          }
+        }
+        if (ship.startY + ship.length + 1 <= 9) {
+          if (ships[ship.startX + i][ship.startY] == 1) {
+            return false;
+          }
+        }
+      }
       break;
     case VERTICAL:
       //vor dem Schiff
@@ -473,6 +486,19 @@ function checkShipPos(ship) {
       for (var i = 0; i < ship.length; i++) {
         if (ships[ship.startX][ship.startY + i] == 1) {
           return false;
+        }
+      }
+      //neben dem Schiff
+      for (var i = 0; i < ship.length; i++) {
+        if (ship.startX - 1 >= 0) {
+          if (ships[ship.startX][ship.startY + i] == 1) {
+            return false;
+          }
+        }
+        if (ship.startX + ship.length + 1 <= 9) {
+          if (ships[ship.startX][ship.startY + i] == 1) {
+            return false;
+          }
         }
       }
   }
