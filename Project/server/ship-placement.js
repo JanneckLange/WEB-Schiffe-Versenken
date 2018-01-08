@@ -1,5 +1,5 @@
 function randomPlayGround() {
-  var ships = [generateShip(SCHLACHTSCHIFF_TYPE), generateShip(KREUZER_TYPE), generateShip(KREUZER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(ZERSTOERER_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE), generateShip(UBOOT_TYPE)];
+  var ships = [generateShip(SCHLACHTSCHIFF_LENGTH), generateShip(KREUZER_LENGTH), generateShip(KREUZER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH)];
   var playground = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -16,6 +16,7 @@ function randomPlayGround() {
   for (var i = 0; i < ships.length; i++) {
     ships[i] = placeShipRandom(ships[i]);
     if (checkShipPos(playground, ships[i])) {
+      console.log("Schiff platziert: X:" + ships[i].startX + ", Y:" + ships[i].startY + ", l:" + ships[i].length + ", d:" + ships[i].dir);
       playground = placeShip(playground, ships[i]);
     } else {
       i--;
@@ -78,8 +79,8 @@ function checkShipPos(playground, ship) {
         }
       }
       //hinter dem Schiff
-      if (ship.startX + ship.length + 1 <= 9) {
-        if (playground[ship.startX + ship.length + 1][ship.startY] == 1) {
+      if (ship.startX + ship.length <= 9) {
+        if (playground[ship.startX + ship.length][ship.startY] == 1) {
           return false;
         }
       }
@@ -91,15 +92,17 @@ function checkShipPos(playground, ship) {
       }
       //neben dem Schiff
       for (var i = 0; i < ship.length; i++) {
-        if (ship.startY - 1 >= 0) {
-          if (playground[ship.startX + i][ship.startY] == 1) {
-            return false;
-          }
+        if (ship.startY - 1 >= 0 && playground[ship.startX + i][ship.startY - 1] == 1) {
+          return false;
+        } else {
+          console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY - 1) + " SHIP X:" +
+            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
-        if (ship.startY + ship.length + 1 <= 9) {
-          if (playground[ship.startX + i][ship.startY] == 1) {
-            return false;
-          }
+        if (ship.startY + 1 <= 9 && playground[ship.startX + i][ship.startY + 1] == 1) {
+          return false;
+        } else {
+          console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY + 1) + " SHIP X:" +
+            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
       }
       break;
@@ -111,8 +114,8 @@ function checkShipPos(playground, ship) {
         }
       }
       //hinter dem Schiff
-      if (ship.startY + ship.length + 1 <= 9) {
-        if (playground[ship.startX][ship.startY + ship.length + 1] == 1) {
+      if (ship.startY + ship.length <= 9) {
+        if (playground[ship.startX][ship.startY + ship.length] == 1) {
           return false;
         }
       }
@@ -124,33 +127,41 @@ function checkShipPos(playground, ship) {
       }
       //neben dem Schiff
       for (var i = 0; i < ship.length; i++) {
-        if (ship.startX - 1 >= 0) {
-          if (playground[ship.startX][ship.startY + i] == 1) {
-            return false;
-          }
+        if (ship.startX - 1 >= 0 && playground[ship.startX - 1][ship.startY + i] == 1) {
+          return false;
+        } else {
+          console.log("CHECK: X:" + (ship.startX - 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +
+            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir);
         }
-        if (ship.startX + ship.length + 1 <= 9) {
-          if (playground[ship.startX][ship.startY + i] == 1) {
-            return false;
-          }
+
+        if (ship.startX + 1 <= 9 && playground[ship.startX + 1][ship.startY + i] == 1) {
+          return false;
+        } else {
+          console.log("CHECK: X:" + (ship.startX + 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +
+            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
       }
   }
   return true;
 }
 
-function placeShip(ship) {
+
+
+function placeShip(playground, ship) {
   switch (ship.dir) {
     case HORIZONTAL:
       for (var i = 0; i < ship.length; i++) {
         playground[ship.startX + i][ship.startY] = 1;
+        document.getElementById("" + 1 + "" + ship.startY + "" + (ship.startX + i)).style.background = backgroundColorShip;
       }
       break;
     case VERTICAL:
       for (var i = 0; i < ship.length; i++) {
         playground[ship.startX][ship.startY + i] = 1;
+        document.getElementById("" + 1 + "" + (ship.startY + i) + "" + ship.startX).style.background = backgroundColorShip;
       }
   }
+  return playground;
 }
 
 function randomNumber(min, max) {

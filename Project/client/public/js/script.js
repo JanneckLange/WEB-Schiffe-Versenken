@@ -1,26 +1,21 @@
 const HORIZONTAL = 0;
 const VERTICAL = 1;
-const SCHLACHTSCHIFF_LENGTH = 5;
-const KREUZER_LENGTH = 4;
-const ZERSTOERER_LENGTH = 3;
-const UBOOT_LENGTH = 2;
-const SCHLACHTSCHIFF_TYPE = 1;
-const KREUZER_TYPE = 2;
-const ZERSTOERER_TYPE = 3;
-const UBOOT_TYPE = 4;
 
 //Highscore
 var textField = ['pl1', 'pl2', 'pl3', 'pl4', 'pl5']
 var pointField = ['po1', 'po2', 'po3', 'po4', 'po5']
 
+//URL´s
 var scoreUrl = 'http://52.166.12.116:3000/api/highscore';
 var shipsUrl = 'http://52.166.12.116:3000/api/ships';
 
 var tableHorizontalIndex = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
 var tableVerticalIndex = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K"];
+
 var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
 var backgroundColorHit = "#ff0000";
+
 var shipsDefault = [
   [1, 1, 0, 0, 0, 0, 0, 1, 1, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -62,6 +57,8 @@ function start() {
   });
 }
 
+
+//Erstelle Spielfeld
 function createTable(table) {
   var myTable = document.createElement("table");
   myTable.setAttribute("class", "tg");
@@ -97,8 +94,6 @@ function createTable(table) {
   node = document.getElementById("hierTabelle" + table);
   node.appendChild(myTable);
 }
-
-
 
 //Namen werden gesetzt, wird aus dem Modal aufgerufen
 function setText() {
