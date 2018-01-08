@@ -22,6 +22,7 @@ function randomPlayGround() {
       i--;
     }
   }
+  return playground;
 }
 
 function placeShipRandom(ship) {
