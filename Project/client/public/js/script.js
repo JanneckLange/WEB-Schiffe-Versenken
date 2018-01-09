@@ -1,6 +1,3 @@
-const HORIZONTAL = 0;
-const VERTICAL = 1;
-
 //URL´s
 var scoreUrl = 'http://52.166.12.116:3000/api/highscore';
 var shipsUrl = 'http://52.166.12.116:3000/api/ships';

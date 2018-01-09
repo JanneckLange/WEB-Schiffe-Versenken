@@ -34,8 +34,8 @@ module.exports = class Player {
   }
 
   init() {
-    this.score = 0;
-    this.field = ship - placement.randomPlayGround();
+    this._score = 0;
+    this._field = shipPlacement.randomPlayGround();
   }
 
 }
