@@ -20,6 +20,7 @@ module.exports = class Game {
     console.log('user connected');
     //erster Spieler verbindet
     if (!this.player1Socket) {
+      console.log('Player 1 connected');
       this.player1Socket = socket;
       this.player1Socket.on('disconnect', function() {
         console.log('Player1 hat das Spiel verlassen');
@@ -33,6 +34,7 @@ module.exports = class Game {
       });
       //zweiter Spieler verbindet
     } else if (!this.player2Socket) {
+      console.log('Player 2 connected');
       this.player2Socket = socket;
 
       this._makeGamePlayable();
@@ -52,7 +54,7 @@ module.exports = class Game {
     }
   }
 
-  //Lege aktuellen Spieler fest
+  //Tausche aktuellen Spieler
   _emitTurn() {
     if (this.turn == this.player1.id) {
       this.player1Socket.emit('playerTurn', true);
@@ -64,10 +66,79 @@ module.exports = class Game {
   }
 
   _makeFirePossible(currentPlayer) {
+    let playerSocket;
+    let opponentSocket;
+    let opponent;
+    let nextTurn;
 
+    if (currentPlayer.id === this.player1.id) {
+      playerSocket = this.player1Socket;
+      opponentSocket = this.player2Socket;
+      opponent = this.player2;
+      nextTurn = this.player2.id;
+    } else {
+      playerSocket = this.player2Socket;
+      opponentSocket = this.player1Socket;
+      opponent = this.player1;
+      nextTurn = this.player1.id;
+    }
     playerSocket.on('fire', (x, y) => {
-      // TODO:
+      console.log("Fire detected: x:" + x + " y:" + y);
+      if (currentPlayer.id === this.turn) {
+        if (opponent.field[y][x] == 1) { //Treffer
+          playerSocket.emit('fireResult', true);
+          opponentSocket.emit('fireResultEnemy', x, y, true);
+          opponent.field[y][x] = 2;
+
+          //#####################
+          controllLog();
+          //#####################
+
+          // TODO: Check ob Schiff versenkt wurde
+          if (_checkShipDown(opponet, x, y)) {
+            playerSocket.emit('shipDown', x, y);
+            if (_checkGameOver(opponet)) { // TODO: prüfe ob noch '1' auf dem Spielfeld ist
+              opponentSocket.emit('lost', player.score);
+              playerSocket.emit('won', player.score);
+              _setHighscore(player.name, player.score);
+            }
+          }
+
+        } else { //verfehlt
+          playerSocket.emit('fireResult', false);
+          opponentSocket.emit('fireResultEnemy', x, y, false);
+          opponent.field[y][x] = 3;
+
+          //#####################
+          controllLog();
+          //#####################
+
+          this.turn = nextTurn;
+          this._emitTurn();
+        }
+        if (currentPlayer.id === this.player1.id) {
+          this.player1.increaseScore();
+        } else {
+          this.player2.increaseScore();
+        }
+      }
     });
+  }
+
+  //Test / Controlling
+  controllLog() {
+    var string1 = "Player1: \n";
+    var string2 = "Player2: \n";
+    for (var i = 0; i < 10; i++) {
+      for (var j = 0; j < 10; j++) {
+        string1 += this.player1.field[j][i] + " ";
+        string2 += this.player2.field[j][i] + " ";
+      }
+      string1 += "\n";
+      string2 += "\n";
+    }
+    console.log(string1);
+    console.log(string2);
   }
 
   _makeGamePlayable() {
@@ -76,60 +147,6 @@ module.exports = class Game {
     this._emitTurn();
   }
 
-  _gameOver() {
-    if (!this.player1.ships || !this.player2.ships) {
-      return true;
-    }
-    return (this.player1.allShipsDestroyed() || this.player2.allShipsDestroyed());
-  }
-
-  //Benachrichtige Gewinner und Verlierer | aktuallisiere Highscore
-  _emitWinnerAndLoser() {
-    let winner;
-    if (this.player1.allShipsDestroyed()) {
-      winner = this.player2;
-      this.player2Socket.emit('won', winner.score);
-      this.player1Socket.emit('lost', winner.score);
-    } else {
-      winner = this.player1;
-      this.player2Socket.emit('lost', winner.score);
-      this.player1Socket.emit('won', winner.score);
-    }
-
-    let highscore = new Highscore();
-    if (!highscore.readHighscore(highscorePath)) {
-      console.log("Error reading from " + highscorePath);
-    }
-    highscore.addScore(new Score(winner.name, winner.score));
-    if (!highscore.writeHighscore(highscorePath)) {
-      console.log("Error writing in " + highscorePath);
-    }
-  }
-
-  _addHit(opponentShips, possibleHit) {
-    opponentShips.forEach(ship => {
-      ship.addHitCoordinate(possibleHit);
-    });
-  }
-
-  _markDestroyedShips() {
-    this.player1.ships.forEach(ship => {
-      if (ship.isDestroyed()) {
-        ship.allCoordinates.forEach(coordinate => {
-          this.player1Socket.emit('myDestroyedShips', coordinate.xCoordinate, coordinate.yCoordinate);
-          this.player2Socket.emit('opponentDestroyedShips', coordinate.xCoordinate, coordinate.yCoordinate);
-        });
-      }
-    });
-    this.player2.ships.forEach(ship => {
-      if (ship.isDestroyed()) {
-        ship.allCoordinates.forEach(coordinate => {
-          this.player2Socket.emit('myDestroyedShips', coordinate.xCoordinate, coordinate.yCoordinate);
-          this.player1Socket.emit('opponentDestroyedShips', coordinate.xCoordinate, coordinate.yCoordinate);
-        });
-      }
-    });
-  }
 
   //prüfe ob Spiel bereit ist (Spieler sind da und haben einen Namen, Spiel ist nicht vorbei)
   _isAbleToPlay() {

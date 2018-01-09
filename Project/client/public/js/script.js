@@ -2,6 +2,9 @@
 var scoreUrl = 'http://52.166.12.116:3000/api/highscore';
 var shipsUrl = 'http://52.166.12.116:3000/api/ships';
 
+const HIT = true;
+const MISS = false;
+
 var tableHorizontalIndex = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
 var tableVerticalIndex = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K"];
 
@@ -9,20 +12,8 @@ var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
 var backgroundColorHit = "#ff0000";
 
-var shipsDefault = [
-  [1, 1, 0, 0, 0, 0, 0, 1, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 0, 0, 0, 1, 1, 1]
-];
-
-var ships = [
+var ownField;
+var enemyField = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -33,22 +24,60 @@ var ships = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-]; //0 Wasser, 1 Schiff, 2 getroffenes Schiff, 3 beschossen
-var enemyShips = shipsDefault; //Gegnerisches Spielfeld
-var ownShips = ships; //eigenes Spielfeld
+];;
 
+//0 Wasser, 1 Schiff, 2 getroffenes Schiff, 3 beschossen
 
-function start() {
+let socket;
+let lastFireX;
+let lastFireY;
+$(document).ready(function() {
+  socket = io();
   createTable(1);
   createTable(2);
-  getShips(1);
-  getShips(2);
-  getScore();
 
-  $(document).ready(function() {
-    $('#modal-1').modal('show');
+  socket.on('fireResult', result => {
+    markHit(result, 2, lastFireX, lastFireY);
   });
-}
+  socket.on('fireResultEnemy', (x, y, result) => {
+    markHit(result, 1, x, y);
+  });
+  socket.on('myShips', playground => {
+    ownField = playground;
+    printShips(playground);
+  });
+  socket.on('playerTurn', isYourTurn => {
+    if (isYourTurn) {
+      $('#2Label').css('color', 'red');
+      $('#1Label').css('color', 'black');
+    } else {
+      $('#2Label').css('color', 'black');
+      $('#1Label').css('color', 'red');
+    }
+  });
+  socket.on('won', highscore => {
+    document.getElementById('myBody').style.backgroundColor = 'green';
+    $('#highscore').html('YOUR HIGHSCORE: ' + highscore);
+    $('#resetGame').css('visibility', 'visible');
+  });
+  socket.on('lost', highscore => {
+    document.getElementById('myBody').style.backgroundColor = 'red';
+    $('#highscore').html('OPPONENTS HIGHSCORE: ' + highscore);
+    $('#resetGame').css('visibility', 'visible');
+  });
+  socket.on('myDestroyedShips', (x, y) => {
+    document.getElementById('myField' + x + y).style.backgroundColor = '#008eb7';
+  });
+  socket.on('opponentDestroyedShips', (x, y) => {
+    document.getElementById('enemField' + x + y).style.backgroundColor = '#008eb7';
+  });
+  socket.on('refreshName', name => {
+    $("#opponentLabel").html(name);
+  });
+  $('#modal-1').modal('show');
+});
+
+
 
 //Erstelle Spielfeld
 function createTable(table) {
@@ -60,6 +89,7 @@ function createTable(table) {
       currentCell = document.createElement("td");
       if (i == 0 && j == 0) {
         currentText = document.createTextNode("P" + table);
+        currentCell.id = table + "Label";
       } else if (i == 0) {
         currentText = document.createTextNode(tableHorizontalIndex[j - 1]);
       } else if (j == 0) {
@@ -100,40 +130,16 @@ function setText() {
 
 }
 
-function getShips(player) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open('GET', shipsUrl, true);
-  xhttp.responseType = 'json';
-  xhttp.onload = () => {
-    var data = xhttp.response;
-    if (data !== null) {
-      printShips(data, player);
-    }
-  };
-  xhttp.onerror = () => {
-    console.log("Verbindung zum Server gescheitert, Schiffe konnten nicht geladen werden.");
-    printShips(ownShips, 1);
-  }
-  xhttp.send(null);
-}
-
 //Schieße auf ein Feld
 function shootSquare(id) {
   var x = id.split("", 3)[1];
   var y = id.split("", 3)[2];
-  // TODO: logik hinzufügen
-  node = document.getElementById('d' + id);
 
-  if (enemyShips[x][y] == 1) { //Schiff
-    node.setAttribute('class', 'hitShip');
-    enemyShips[x][y] = 2;
-    if (isShipDown(x, y)) {
-      alert("Versenkt");
-      markShipAsDown(x, y);
-    }
-  } else if (enemyShips[x][y] == 0) { //Wasser
-    node.setAttribute('class', 'hitWater');
-    enemyShips[x][y] = 3;
+  if (enemyField[y][x] == 0) { //Schiff
+    console.log("Fire: x:" + x + " y:" + y);
+    lastFireX = x;
+    lastFireY = y;
+    socket.emit('fire', x, y);
   } else { //Bereits getroffen
     alert("Hier hast du schon geschossen");
   }
@@ -146,32 +152,40 @@ function markShipAsDown(x, y) { // TODO:
 
 //#####################Eigenes Spielfeld#########################
 //Setze eigene Schiffe (nur grafisch) auf dem Spielfeld
-function printShips(data, player) {
-  var row = 0;
-  var square = 0;
-
-  for (var i = 100; i <= 199; i++) {
-    if (data[row][square++] == "1") {
-      document.getElementById(i).style.background = backgroundColorShip;
-    }
-    if (square == 10) {
-      row++;
-      square = 0;
+function printShips(playground) {
+  for (y = 0; y < 10; y++) {
+    for (x = 0; x < 10; x++) {
+      if (playground[y][x]) {
+        document.getElementById('1' + x + y).style.backgroundColor = '#000000';
+      }
     }
   }
 }
 
 //"id" markiert tabelle,zeile und spalte (z.B. 145) | "hit" ist ein String 'hitShip' oder 'hitWater'
-function markHit(hit, id) {
-  node = document.getElementById('d' + id);
-  switch (hit) {
-    case 'hitShip':
+function markHit(fireResult, player, x, y) {
+  console.log("Schuss markiert: " + player + "" + x + "" + y)
+  node = document.getElementById('d' + player + "" + x + "" + y);
+  switch (fireResult) {
+    case HIT:
       node.setAttribute('class', 'hitShip');
+      if (player == 1) {
+        ownField[y][x] = 2;
+      } else {
+        enemyField[y][x] = 2;
+      }
       break;
-    case 'hitWater':
+    case MISS:
       node.setAttribute('class', 'hitWater');
+      if (player == 1) {
+        ownField[y][x] = 3;
+      } else {
+        enemyField[y][x] = 3;
+      }
       break;
     default:
       console.error("Fascher hit wurde übergeben.");
   }
+
+
 }
