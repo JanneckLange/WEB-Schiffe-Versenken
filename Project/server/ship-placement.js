@@ -25,7 +25,7 @@ function randomPlayGround() {
   for (var i = 0; i < ships.length; i++) {
     ships[i] = placeShipRandom(ships[i]);
     if (checkShipPos(playground, ships[i])) {
-      console.log("Schiff platziert: X:" + ships[i].startX + ", Y:" + ships[i].startY + ", l:" + ships[i].length + ", d:" + ships[i].dir);
+      //console.log("Schiff platziert: X:" + ships[i].startX + ", Y:" + ships[i].startY + ", l:" + ships[i].length + ", d:" + ships[i].dir);
       playground = placeShip(playground, ships[i]);
     } else {
       i--;
