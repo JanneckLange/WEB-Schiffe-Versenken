@@ -61,7 +61,6 @@
         <div class="row">
           <p>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Namen</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">Schiffe</button>
           </p>
         </div>
 
@@ -100,6 +99,7 @@
       <!-- SPIELBEREICH -->
       <div class="col-md-10">
         <div class="row">
+          <!-- TODO: Anpassen -->
           <center>
             <p id="output">{Spieler1} gegen {Spieler2}</p>
           </center>
@@ -135,6 +135,7 @@
         <!-- BODY -->
         <div class="modal-body">
           <form id="players_form">
+            <!-- TODO: anpassen, hier gibt es nur 1 player -->
             <div class="form-group" id="formGrpSpieler1">
               <label id="text-pl1" for="spieler1">Spieler 1</label>
               <input type="text" name="spieler1" id="input1" placeholder="1. Spielername" required pattern="[A-Za-z0-9]{3,15}" />

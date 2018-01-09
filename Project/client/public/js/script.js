@@ -66,6 +66,7 @@ $(document).ready(function() {
     $('#resetGame').css('visibility', 'visible');
   });
   socket.on('refreshName', name => {
+    // TODO: muss angepasst werden
     $("#opponentLabel").html(name);
   });
   $('#modal-1').modal('show');
@@ -140,8 +141,11 @@ function shootSquare(id) {
 }
 
 //markiere gegnerisches Schiff wenn es versenkt wurde
-function markShipAsDown(x, y) { // TODO:
-  document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
+function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
+  //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
+  //                        /\
+  //                        |
+  //                 rechtes Spielfeld
 }
 
 //#####################Eigenes Spielfeld#########################

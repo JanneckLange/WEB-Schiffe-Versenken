@@ -94,15 +94,16 @@ module.exports = class Game {
           controllLog();
           //#####################
 
-          // TODO: Check ob Schiff versenkt wurde
-          if (_checkShipDown(opponet, x, y)) {
-            playerSocket.emit('shipDown', x, y);
-            if (_checkGameOver(opponet)) { // TODO: prüfe ob noch '1' auf dem Spielfeld ist
-              opponentSocket.emit('lost', player.score);
-              playerSocket.emit('won', player.score);
-              _setHighscore(player.name, player.score);
+          // TODO: ANFANG (MAX)
+          if (_checkShipDown(opponet, x, y)) { //TODO: noch nicht implementiert -> Prüfe ob Schiff an x,y versenkt wurde
+            playerSocket.emit('shipDown', x, y); // TODO: noch nicht implementiert -> Muss in "script.js" implementier werden (möglicherweise auch ähnlich implemtieren), Schiff an Stelle x,y wurde versenkt(natürlich auch der rest vom Schiff)
+            if (_checkGameOver(opponet)) { // TODO: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
+              opponentSocket.emit('lost', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
+              playerSocket.emit('won', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
+              _setHighscore(player.name, player.score); // TODO: (BEN) noch nicht implementiert -> Lade Highscore auf den Server
             }
           }
+          // TODO: ENDE (MAX)
 
         } else { //verfehlt
           playerSocket.emit('fireResult', false);
