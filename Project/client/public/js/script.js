@@ -65,12 +65,6 @@ $(document).ready(function() {
     $('#highscore').html('OPPONENTS HIGHSCORE: ' + highscore);
     $('#resetGame').css('visibility', 'visible');
   });
-  socket.on('myDestroyedShips', (x, y) => {
-    document.getElementById('myField' + x + y).style.backgroundColor = '#008eb7';
-  });
-  socket.on('opponentDestroyedShips', (x, y) => {
-    document.getElementById('enemField' + x + y).style.backgroundColor = '#008eb7';
-  });
   socket.on('refreshName', name => {
     $("#opponentLabel").html(name);
   });
