@@ -1,3 +1,12 @@
+const SCHLACHTSCHIFF_LENGTH = 5;
+const KREUZER_LENGTH = 4;
+const ZERSTOERER_LENGTH = 3;
+const UBOOT_LENGTH = 2;
+
+const HORIZONTAL = 0;
+const VERTICAL = 1;
+
+
 function randomPlayGround() {
   var ships = [generateShip(SCHLACHTSCHIFF_LENGTH), generateShip(KREUZER_LENGTH), generateShip(KREUZER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH)];
   var playground = [
@@ -23,6 +32,16 @@ function randomPlayGround() {
     }
   }
   return playground;
+}
+
+function generateShip(shipLength) {
+  var ship = {
+    startX: 0,
+    startY: 0,
+    length: shipLength,
+    dir: 0
+  };
+  return ship;
 }
 
 function placeShipRandom(ship) {
@@ -96,14 +115,12 @@ function checkShipPos(playground, ship) {
         if (ship.startY - 1 >= 0 && playground[ship.startX + i][ship.startY - 1] == 1) {
           return false;
         } else {
-          console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY - 1) + " SHIP X:" +
-            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
+          //  console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY - 1) + " SHIP X:" +  ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
         if (ship.startY + 1 <= 9 && playground[ship.startX + i][ship.startY + 1] == 1) {
           return false;
         } else {
-          console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY + 1) + " SHIP X:" +
-            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
+          //  console.log("CHECK: X:" + (ship.startX + i) + ", Y:" + (ship.startY + 1) + " SHIP X:" +  ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
       }
       break;
@@ -131,15 +148,13 @@ function checkShipPos(playground, ship) {
         if (ship.startX - 1 >= 0 && playground[ship.startX - 1][ship.startY + i] == 1) {
           return false;
         } else {
-          console.log("CHECK: X:" + (ship.startX - 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +
-            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir);
+          //console.log("CHECK: X:" + (ship.startX - 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir);
         }
 
         if (ship.startX + 1 <= 9 && playground[ship.startX + 1][ship.startY + i] == 1) {
           return false;
         } else {
-          console.log("CHECK: X:" + (ship.startX + 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +
-            ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
+          //console.log("CHECK: X:" + (ship.startX + 1) + ", Y:" + (ship.startY + i) + " SHIP X:" +ship.startX + ", Y:" + ship.startY + ", l:" + ship.length + ", d:" + ship.dir)
         }
       }
   }
@@ -153,13 +168,11 @@ function placeShip(playground, ship) {
     case HORIZONTAL:
       for (var i = 0; i < ship.length; i++) {
         playground[ship.startX + i][ship.startY] = 1;
-        document.getElementById("" + 1 + "" + ship.startY + "" + (ship.startX + i)).style.background = backgroundColorShip;
       }
       break;
     case VERTICAL:
       for (var i = 0; i < ship.length; i++) {
         playground[ship.startX][ship.startY + i] = 1;
-        document.getElementById("" + 1 + "" + (ship.startY + i) + "" + ship.startX).style.background = backgroundColorShip;
       }
   }
   return playground;
@@ -168,3 +181,7 @@ function placeShip(playground, ship) {
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+module.exports = {
+  randomPlayGround: randomPlayGround
+};
