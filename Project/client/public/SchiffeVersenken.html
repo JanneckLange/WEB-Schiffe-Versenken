@@ -90,31 +90,31 @@
       <div class="col-md-10">
         <div class="row">
           <!-- FIXME: Bei einigen Fenstergrößen werden die Namen nicht vernünftig angezeigt -->
-          <div class="col-md-4">
-            <center>
-              <p style="float:right" id="outputp1">{Spieler1}</p>
-            </center>
-          </div>
-          <div class="col-md-3">
-            <center>
-              <p> gegen </p>
-            </center>
-          </div>
-          <div class="col-md-3">
-            <center>
-              <p style="float:left" id="outputp2">{Spieler2}</p>
-            </center>
-          </div>
+          <center>
+            <table>
+              <tr>
+                <td>
+                  <p style="float:right" id="outputp1">{Spieler1}</p>
+                </td>
+                <td>
+                  <p>&nbsp; gegen &nbsp;</p>
+                </td>
+                <td>
+                  <p style="float:left" id="outputp2">{Spieler2}</p>
+                </td>
+              </tr>
+            </table>
+          </center>
 
         </div>
 
 
         <div class="row">
           <!-- NOTE: id´s : [1 | 2 : Spielerseite 1 oder 2 ; 00 = A01 | 01 = A02 ; ... ; 55 = F06 ; ... ; 99 = K10 -->
-          <div class="col-md-5" id="hierTabelle1">
+          <div class="col-md-6" id="hierTabelle1">
             <!--Spielfeld 1-->
           </div>
-          <div class="col-md-4 col-md-offset-1" id="hierTabelle2">
+          <div class="col-md-6" id="hierTabelle2">
             <!--Spielfeld 2-->
           </div>
         </div>
