@@ -50,3 +50,14 @@ div.hitShip {
 div.hitWater {
   background-color: #3a3a3a
 }
+
+#log {
+  border: 2px;
+  border-color: black;
+  border-style: solid;
+  margin: 15px;
+  text-align: center;
+  font-size: 1.4em;
+  height: 100px;
+  overflow-y: scroll;
+}

@@ -32,25 +32,32 @@ var enemyField = [
 
 
 $(document).ready(function() {
+
   socket = io();
   createTable(1);
   createTable(2);
-  document.getElementById("log").innerHTML = "Warte auf Gegenspieler";
+
+  newLog("Warte auf Gegenspieler.");
+  //document.getElementById("log").innerHTML = "Warte auf Gegenspieler";
 
   socket.on('fireResult', result => {
     markHit(result, 2, lastFireX, lastFireY);
     if (result) {
-      document.getElementById('log').innerHTML = "Dein Schuss hat getroffen, du bist nocheinmal dran.";
+      //document.getElementById('log').innerHTML = "Dein Schuss hat getroffen, du bist nocheinmal dran.";
+      newLog("Dein Schuss hat getroffen, du bist nocheinmal dran.");
     } else {
-      document.getElementById('log').innerHTML = "Dein Schuss hat verfehlt.";
+      newLog("Dein Schuss hat verfehlt.");
+      //document.getElementById('log').innerHTML = "Dein Schuss hat verfehlt.";
     }
   });
   socket.on('fireResultEnemy', (x, y, result) => {
     markHit(result, 1, x, y);
     if (result) {
-      document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat dich getroffen.";
+      //document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat dich getroffen.";
+      newLog("Der Schuss deines Gegners hat dich getroffen.");
     } else {
-      document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat verfehlt.";
+      //document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat verfehlt.";
+      newLog("Der Schuss deines Gegners hat verfehlt.");
     }
   });
   socket.on('myShips', playground => {
@@ -61,43 +68,67 @@ $(document).ready(function() {
     if (isYourTurn) {
       $('#2Label').css('color', 'red');
       $('#1Label').css('color', 'black');
-      document.getElementById('log').innerHTML = "Du bist am Zug";
+
+      newLog("Du bist am Zug.");
+
+      //document.getElementById('log').innerHTML = "Du bist am Zug";
+
     } else {
       $('#2Label').css('color', 'black');
       $('#1Label').css('color', 'red');
-      document.getElementById('log').innerHTML = "Der Gegner ist am Zug";
+      newLog("Der Gegner ist am Zug.\n");
+      //document.getElementById('log').innerHTML = "Der Gegner ist am Zug";
     }
   });
   socket.on('won', highscore => {
     $('#tg').css('border-color', 'green');
     document.getElementById('body').style.backgroundColor = 'green';
-    document.getElementById('log').innerHTML = "Du hast gewonnen! Dein Score: " + highscore;
+    //  document.getElementById('log').innerHTML = "Du hast gewonnen! Dein Score: " + highscore;
+    newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
     alert("Game Over!\n" + "Du hast gewonnen! Dein Score: " + highscore);
   });
   socket.on('lost', highscore => {
     $('#tg').css('border-color', 'red');
     document.getElementById('body').style.backgroundColor = 'red';
-    document.getElementById('log').innerHTML = "Du hast verloren! Der Score deines Gegners: " + highscore;
+    newLog("Du hast verloren! Der Score deines Gegners: " + highscore + "\n");
+    //  document.getElementById('log').innerHTML = "Du hast verloren! Der Score deines Gegners: " + highscore;
     alert("Game Over!\n" + "Du hast verloren! Der Score deines Gegners: " + highscore);
   });
   socket.on('refreshName', name => {
-    document.getElementById('log').innerHTML = "Dein Gegnder hat seinen Namen gewählt, er heißt: " + name;
+    newLog("Dein Gegnder hat seinen Namen gewählt, er heißt: " + name + "\n");
+    //document.getElementById('log').innerHTML = "Dein Gegnder hat seinen Namen gewählt, er heißt: " + name;
     document.getElementById("outputp2").innerHTML = name;
   });
   socket.on('enemyDisconnect', () => {
     $('tg').css('border-color', 'grey');
     document.getElementById('body').style.backgroundColor = 'grey';
-    document.getElementById('log').innerHTML = "Dein Gegner hat das Spiel verlassen.";
+    newLog("Dein Gegner hat das Spiel verlassen.\n");
+    //document.getElementById('log').innerHTML = "Dein Gegner hat das Spiel verlassen.";
     alert("Game Over!\n" + "Dein Gegner hat das Spiel verlassen.");
   });
   socket.on('shipDown', (x, y) => {
-    ocument.getElementById('log').innerHTML = "Du hast ein Schiff versenkt.";
+    newLog("Du hast ein Schiff versenkt.\n");
+    //document.getElementById('log').innerHTML = "Du hast ein Schiff versenkt.";
     // TODO:
   });
   $('#modal-1').modal('show');
 });
 
+//Scrollfesnter nach unten scrollen
+function nachunten() {
+  var textarea = document.getElementById('log');
+  textarea.scrollTop = textarea.scrollHeight;
+}
 
+//trage neue nachricht in Fesnter ein
+function newLog(message) {
+  var log = document.getElementById("log");
+  var br = document.createElement("br");
+  newNode = document.createTextNode(message);
+  log.appendChild(newNode);
+  log.appendChild(br);
+  nachunten();
+}
 //Erstelle Spielfeld
 function createTable(table) {
   var myTable = document.createElement("table");
@@ -173,7 +204,8 @@ function shootSquare(id) {
       lastFireY = y;
       socket.emit('fire', x, y);
     } else { //Bereits getroffen
-      document.getElementById("outputp1").innerHTML = "Hier hast du schon geschossen";
+      //document.getElementById("outputp1").innerHTML = "Hier hast du schon geschossen";
+      newLog("Hier hast du schon geschossen.\n");
     }
   } else {
     $('#modal-1').modal('show');
