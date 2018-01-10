@@ -1,7 +1,3 @@
-//URL´s
-var scoreUrl = 'http://52.166.12.116:3000/api/highscore';
-var shipsUrl = 'http://52.166.12.116:3000/api/ships';
-
 const HIT = true;
 const MISS = false;
 
@@ -13,7 +9,10 @@ var tableVerticalIndex = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K"];
 
 var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
-var backgroundColorHit = "#ff0000";
+
+var socket;
+var lastFireX;
+var lastFireY;
 
 var ownField;
 var enemyField = [
@@ -31,9 +30,7 @@ var enemyField = [
 
 //0 Wasser, 1 Schiff, 2 getroffenes Schiff, 3 beschossen
 
-let socket;
-let lastFireX;
-let lastFireY;
+
 $(document).ready(function() {
   socket = io();
   createTable(1);
@@ -98,7 +95,6 @@ $(document).ready(function() {
 });
 
 
-
 //Erstelle Spielfeld
 function createTable(table) {
   var myTable = document.createElement("table");
@@ -107,7 +103,8 @@ function createTable(table) {
     currentRow = document.createElement("tr");
     for (var j = 0; j < 11; j++) {
       currentCell = document.createElement("td");
-      if (i == 0 && j == 0) {
+
+      if (i == 0 && j == 0) { //oben-linke Ecke
         if (table == 1) {
           currentText = document.createTextNode(" YOU ");
         } else {
@@ -115,13 +112,13 @@ function createTable(table) {
         }
 
         currentCell.id = table + "Label";
-      } else if (i == 0) {
+      } else if (i == 0) { //oberer Index
         currentText = document.createTextNode(tableHorizontalIndex[j - 1]);
-      } else if (j == 0) {
+      } else if (j == 0) { //linker Index
         currentText = document.createTextNode(tableVerticalIndex[i - 1]);
       } else {
         currentCell.id = table + "" + (i - 1) + "" + (j - 1);
-        if (table == 2) {
+        if (table == 2) { //schießen ist nur auf rechte Tabelle möglich
           currentCell.setAttribute('onclick', "shootSquare((this.id))");
         }
         currentCell.setAttribute('bgcolor', backgroundColorWater);
@@ -149,6 +146,7 @@ function setText() {
   socket.emit('setPlayerName', name);
   nameGesetzt = true;
 
+  //schließe Modal
   $("#players_form").submit(function(e) {
     e.preventDefault();
     $('#modal-1').modal('hide')
@@ -158,7 +156,7 @@ function setText() {
 
 //Schieße auf ein Feld
 function shootSquare(id) {
-  if (nameGesetzt) {
+  if (nameGesetzt) { //Prüfe erst ob der Name gesetzt wurde
     var x = id.split("", 3)[1];
     var y = id.split("", 3)[2];
 

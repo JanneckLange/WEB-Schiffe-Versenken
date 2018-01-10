@@ -1,8 +1,10 @@
+var scoreUrl = 'http://52.166.12.116:3000/api/highscore';
+
 //Highscore
 var textField = ['pl1', 'pl2', 'pl3', 'pl4', 'pl5']
 var pointField = ['po1', 'po2', 'po3', 'po4', 'po5']
 
-//Laden den Highscore vom Server
+//Lade den Highscore vom Server
 function getScore() {
   var xhttp = new XMLHttpRequest();
   xhttp.open('GET', scoreUrl, true);
