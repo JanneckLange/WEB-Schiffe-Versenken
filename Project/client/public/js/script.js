@@ -67,7 +67,7 @@ $(document).ready(function() {
   });
   socket.on('refreshName', name => {
     // TODO: muss angepasst werden
-    $("#opponentLabel").html(name);
+    document.getElementById("outputp2").innerHTML = name;
   });
   $('#modal-1').modal('show');
 });
@@ -119,9 +119,9 @@ function createTable(table) {
 
 //Namen werden gesetzt, wird aus dem Modal aufgerufen
 function setText() {
-  var spieler1 = document.getElementById("input1").value;
-  var spieler2 = document.getElementById("input2").value;
-  document.getElementById("output").innerHTML = spieler1 + " gegen " + spieler2;
+  var name = document.getElementById("input1").value;
+  document.getElementById("outputp1").innerHTML = name;
+  socket.emit('setPlayerName', name);
 
   $("#players_form").submit(function(e) {
     e.preventDefault();

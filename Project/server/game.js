@@ -173,13 +173,13 @@ module.exports = class Game {
   _isAbleToPlay() {
     return this.player1Socket &&
       this.player2Socket &&
-      !this._gameOver() &&
       this.player1.name &&
       this.player2.name;
   }
 
   //übermittle namen des gegenspielers
   _refreshNames() {
+    console.log("Namen wurden übermittelt: Player1: " + this.player1.name + ", Player2: " + this.player2.name);
     this.player1Socket.emit('refreshName', this.player2.name);
     this.player2Socket.emit('refreshName', this.player1.name);
   }
