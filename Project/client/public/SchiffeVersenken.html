@@ -39,9 +39,8 @@
       </div>
       <!-- NOTE: Footer Inhalt -->
       <div class="col-md-2">
-        <h5>Impressum</h5>
-        <h5>About</h5>
-        <h5><a href="https://github.com/1628574/WEB-WS17-WebRangers">GitHub</a></h5>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
       </div>
     </div>
   </div>
@@ -153,6 +152,62 @@
               <button type="submit" class="btn btn-default" name="button" onclick="setText()">Änderungen speichern</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL END-->
+
+  <!-- MODAL About -->
+  <div class="modal fade" id="modal-2">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <h3 id="title-modal" class="modal-title">ABOUT</h3>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+          <h2>Schiffe versenken</h2>
+          <h3>Entwickler</h3>
+          <ul>
+            <li>
+              Benjamin Schönke
+            </li>
+            <li>
+              Maximilian Stockbauer
+            </li>
+            <li>
+              Janneck Lange
+            </li>
+          </ul>
+          <p>Dieses Projekt wurde im Rahmen der Vorlesung WEB (2017/2018) im Studiengang 3IB entwickelt.</p>
+          <p>Alle Rechte am Quellcode liegen bei den Entwicklern, eine vervielfältigung ist ohne Erlaubnis nicht gestattet.</p>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL END-->
+
+  <!-- MODAL GitHub -->
+  <div class="modal fade" id="modal-3">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <h3 id="title-modal" class="modal-title">GitGub</h3>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+          <p>Dieses Projekt liegt im vollen Umfang auf GitHub:</p>
+          <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers">WebRanger-Repo</a> </p>
+
         </div>
       </div>
     </div>
