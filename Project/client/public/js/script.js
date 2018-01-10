@@ -83,7 +83,12 @@ function createTable(table) {
     for (var j = 0; j < 11; j++) {
       currentCell = document.createElement("td");
       if (i == 0 && j == 0) {
-        currentText = document.createTextNode("P" + table);
+        if (table == 1) {
+          currentText = document.createTextNode("ENEMY");
+        } else {
+          currentText = document.createTextNode("YOU");
+        }
+
         currentCell.id = table + "Label";
       } else if (i == 0) {
         currentText = document.createTextNode(tableHorizontalIndex[j - 1]);
