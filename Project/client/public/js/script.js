@@ -69,11 +69,13 @@ $(document).ready(function() {
     }
   });
   socket.on('won', highscore => {
+    $('#tg').css('border-color', 'green');
     document.getElementById('body').style.backgroundColor = 'green';
     document.getElementById('log').innerHTML = "Du hast gewonnen! Dein Score: " + highscore;
     alert("Game Over!\n" + "Du hast gewonnen! Dein Score: " + highscore);
   });
   socket.on('lost', highscore => {
+    $('#tg').css('border-color', 'red');
     document.getElementById('body').style.backgroundColor = 'red';
     document.getElementById('log').innerHTML = "Du hast verloren! Der Score deines Gegners: " + highscore;
     alert("Game Over!\n" + "Du hast verloren! Der Score deines Gegners: " + highscore);
@@ -83,6 +85,7 @@ $(document).ready(function() {
     document.getElementById("outputp2").innerHTML = name;
   });
   socket.on('enemyDisconnect', () => {
+    $('tg').css('border-color', 'grey');
     document.getElementById('body').style.backgroundColor = 'grey';
     document.getElementById('log').innerHTML = "Dein Gegner hat das Spiel verlassen.";
     alert("Game Over!\n" + "Dein Gegner hat das Spiel verlassen.");
@@ -101,23 +104,27 @@ function createTable(table) {
   myTable.setAttribute("class", "tg");
   for (var i = 0; i < 11; i++) {
     currentRow = document.createElement("tr");
-    for (var j = 0; j < 11; j++) {
-      currentCell = document.createElement("td");
 
-      if (i == 0 && j == 0) { //oben-linke Ecke
+    for (var j = 0; j < 10; j++) {
+
+      if (i == 0 && j == 0) { //oben
+        currentCell = document.createElement("td");
+        currentCell.setAttribute("colspan", 10);
         if (table == 1) {
-          currentText = document.createTextNode(" YOU ");
+          currentText = document.createTextNode("Dein Spielfeld");
         } else {
-          currentText = document.createTextNode("ENEMY");
+          currentText = document.createTextNode("Gegnerisches Spielfeld");
         }
 
         currentCell.id = table + "Label";
-      } else if (i == 0) { //oberer Index
-        currentText = document.createTextNode(tableHorizontalIndex[j - 1]);
-      } else if (j == 0) { //linker Index
-        currentText = document.createTextNode(tableVerticalIndex[i - 1]);
+      } else if (i == 0) {
+
+        //durch colspan bereits fertig -> nichts machen
       } else {
-        currentCell.id = table + "" + (i - 1) + "" + (j - 1);
+        currentCell = document.createElement("td");
+        currentCell.id = table + "" + (i - 1) + "" + j;
+        currentCell.setAttribute("height", 40);
+        currentCell.setAttribute("width", 40);
         if (table == 2) { //schießen ist nur auf rechte Tabelle möglich
           currentCell.setAttribute('onclick', "shootSquare((this.id))");
         }
@@ -125,7 +132,7 @@ function createTable(table) {
         currentText = document.createTextNode("");
 
         div = document.createElement('div');
-        div.id = "d" + table + "" + (i - 1) + "" + (j - 1)
+        div.id = "d" + table + "" + (i - 1) + "" + j;
         currentCell.appendChild(div);
       }
       currentCell.appendChild(currentText);
@@ -161,7 +168,7 @@ function shootSquare(id) {
     var y = id.split("", 3)[2];
 
     if (enemyField[y][x] == 0) { //Schiff
-      console.log("Fire: x:" + x + " y:" + y);
+      //console.log("Fire: x:" + x + " y:" + y);
       lastFireX = x;
       lastFireY = y;
       socket.emit('fire', x, y);
@@ -196,7 +203,7 @@ function printShips(playground) {
 
 //"id" markiert tabelle,zeile und spalte (z.B. 145) | "hit" ist ein String 'hitShip' oder 'hitWater'
 function markHit(fireResult, player, x, y) {
-  console.log("Schuss markiert: " + player + "" + x + "" + y)
+  //console.log("Schuss markiert: " + player + "" + x + "" + y)
   node = document.getElementById('d' + player + "" + x + "" + y);
   switch (fireResult) {
     case HIT:
@@ -214,9 +221,6 @@ function markHit(fireResult, player, x, y) {
       } else {
         enemyField[y][x] = 3;
       }
-      break;
-    default:
-      console.error("Falscher hit wurde übergeben.");
   }
 
 

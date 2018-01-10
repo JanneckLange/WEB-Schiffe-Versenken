@@ -24,17 +24,17 @@ table {
   font-weight: bold;
   font-size: 16px;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
+  border-color: white;
   overflow: hidden;
-  word-break: normal;
 }
 
 .tg td {
-  padding: 10px 10px;
+  padding-left: 15px;
 }
 
 .tg th {
-  padding: 13px 13px;
+  padding-left: 15px;
 }
 
 div.hitShip, div.hitWater {
