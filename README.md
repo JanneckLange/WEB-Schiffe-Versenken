@@ -7,27 +7,27 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 
 | Emoji | Raw Emoji Code | Description |
 |:---:|:---:|---|
-| :art: | `:art:` | Verbesserung von **Format/Struktur** des Codes |
-| :newspaper: | `:newspaper:` | Erstellen einer **neuen Datei** |
-| :pencil: | `:pencil:` | **kleine Änderungen** am Code oder Text |
+| 🎨 | `:art:` | Verbesserung von **Format/Struktur** des Codes |
+| 📰 | `:newspaper:` | Erstellen einer **neuen Datei** |
+| 📝 | `:pencil:` | **kleine Änderungen** am Code oder Text |
 | :racehorse: | `:racehorse:` | Verbesserung der **performance** |
-| :books: | `:books:` | Schreiben von **Kommentar** |
-| :bug: | `:bug:` | Melden eines **bug**, with `@FIXME` Comment Tag |
-| :ambulance: | `:ambulance:` | Beheben eines **bug** |
-| :fire: | `:fire:` | **Entfernen von Code** oder Datein |
-| :tractor: | `:tractor:` | **Ändern der Dateistruktur**. Normalerweise zusammen mit `:art:` |
+| 📚 | `:books:` | Schreiben von **Kommentar** |
+| 🐛 | `:bug:` | Melden eines **bug**, with `@FIXME` Comment Tag |
+| 🚑 | `:ambulance:` | Beheben eines **bug** |
+| 🔥 | `:fire:` | **Entfernen von Code** oder Datein |
+| 🚜 | `:tractor:` | **Ändern der Dateistruktur**. Normalerweise zusammen mit `:art:` |
 | :hammer: | `:hammer:` | when **refactoring** code |
 | :umbrella: | `:umbrella:` | Hinzufügen von **tests** |
 | :microscope: | `:microscope:` | when adding **code coverage** |
 | :lock: | `:lock:` | when dealing with **security** |
-| :lipstick: | `:lipstick:` | when improving **UI**/Cosmetic |
+| 💄 | `:lipstick:` | when improving **UI**/Cosmetic |
 | :construction: | `:construction:` | **WIP**(Work In Progress) Commits, _maybe_ with `@REVIEW` Comment Tag |
 | :gem: | `:gem:` | New **Release** |
 | :bookmark: | `:bookmark:` | Version **Tags** |
-| :tada: | `:tada:` | **Initial** Commit |
+| 🎉 | `:tada:` | **Initial** Commit |
 | :speaker: | `:speaker:` | when Adding **Logging** |
 | :mute: | `:mute:` | when Reducing **Logging** |
-| :sparkles: | `:sparkles:` | **Neue Funktion** |
+| 💡 | `:sparkles:` | **Neue Funktion** |
 | :bulb: | `:bulb:` | Neue **Idea**, mit `@IDEA` Comment Tag |
 | :ribbon: | `:ribbon:`| Vom **Kunden** gewünschte Anpassungen |
 | :snowflake: | `:snowflake:` | changing **Configuration**, Usually together with :penguin: or :ribbon: or :rocket: |
