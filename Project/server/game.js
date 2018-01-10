@@ -139,7 +139,7 @@ module.exports = class Game {
     });
   }
 
-  //Test / Controlling
+  //Test / Controlling (gebe Spielfeld auf die Konsole)
   controllLog() {
     var string1 = "Player1: \n";
     var string2 = "Player2: \n";
@@ -155,6 +155,7 @@ module.exports = class Game {
     console.log(string2);
   }
 
+  //benachrichtige Spieler(Zug,Schiffe) und wähle Startspieler aus
   _makeGamePlayable() {
     this.player1Socket.emit('myShips', this.player1.field);
     this.player2Socket.emit('myShips', this.player2.field);
