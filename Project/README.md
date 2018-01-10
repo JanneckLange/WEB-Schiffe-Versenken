@@ -1,11 +1,11 @@
-##How to start the Server
+# How to start the Server
 
-#Was du brauchst:
+## Was du brauchst:
 - node.js command promp
 - repo
 - node modules ("npm install body-parser -s")
 
-#Los gehts
+## Los gehts
 1. navigiere mit "cd XXX" in das Verzeichniss mit der server.js (/server/server.js)
 2. starte die server.js mit "node server.js"
   gegebenfalls müssen nun noch datein installiert werden "npm install XXX" entnehme XXX aus der console
