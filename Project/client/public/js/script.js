@@ -5,6 +5,9 @@ var shipsUrl = 'http://52.166.12.116:3000/api/ships';
 const HIT = true;
 const MISS = false;
 
+//bereit zu Spielen
+var nameGesetzt = false;
+
 var tableHorizontalIndex = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
 var tableVerticalIndex = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K"];
 
@@ -35,12 +38,23 @@ $(document).ready(function() {
   socket = io();
   createTable(1);
   createTable(2);
+  document.getElementById("log").innerHTML = "Warte auf Gegenspieler";
 
   socket.on('fireResult', result => {
     markHit(result, 2, lastFireX, lastFireY);
+    if (result) {
+      document.getElementById('log').innerHTML = "Dein Schuss hat getroffen, du bist nocheinmal dran.";
+    } else {
+      document.getElementById('log').innerHTML = "Dein Schuss hat verfehlt.";
+    }
   });
   socket.on('fireResultEnemy', (x, y, result) => {
     markHit(result, 1, x, y);
+    if (result) {
+      document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat dich getroffen.";
+    } else {
+      document.getElementById('log').innerHTML = "Der Schuss deines Gegners hat verfehlt.";
+    }
   });
   socket.on('myShips', playground => {
     ownField = playground;
@@ -50,24 +64,35 @@ $(document).ready(function() {
     if (isYourTurn) {
       $('#2Label').css('color', 'red');
       $('#1Label').css('color', 'black');
+      document.getElementById('log').innerHTML = "Du bist am Zug";
     } else {
       $('#2Label').css('color', 'black');
       $('#1Label').css('color', 'red');
+      document.getElementById('log').innerHTML = "Der Gegner ist am Zug";
     }
   });
   socket.on('won', highscore => {
-    document.getElementById('myBody').style.backgroundColor = 'green';
-    $('#highscore').html('YOUR HIGHSCORE: ' + highscore);
-    $('#resetGame').css('visibility', 'visible');
+    document.getElementById('body').style.backgroundColor = 'green';
+    document.getElementById('log').innerHTML = "Du hast gewonnen! Dein Score: " + highscore;
+    alert("Game Over!\n" + "Du hast gewonnen! Dein Score: " + highscore);
   });
   socket.on('lost', highscore => {
-    document.getElementById('myBody').style.backgroundColor = 'red';
-    $('#highscore').html('OPPONENTS HIGHSCORE: ' + highscore);
-    $('#resetGame').css('visibility', 'visible');
+    document.getElementById('body').style.backgroundColor = 'red';
+    document.getElementById('log').innerHTML = "Du hast verloren! Der Score deines Gegners: " + highscore;
+    alert("Game Over!\n" + "Du hast verloren! Der Score deines Gegners: " + highscore);
   });
   socket.on('refreshName', name => {
-    // TODO: muss angepasst werden
+    document.getElementById('log').innerHTML = "Dein Gegnder hat seinen Namen gewählt, er heißt: " + name;
     document.getElementById("outputp2").innerHTML = name;
+  });
+  socket.on('enemyDisconnect', () => {
+    document.getElementById('body').style.backgroundColor = 'grey';
+    document.getElementById('log').innerHTML = "Dein Gegner hat das Spiel verlassen.";
+    alert("Game Over!\n" + "Dein Gegner hat das Spiel verlassen.");
+  });
+  socket.on('shipDown', (x, y) => {
+    ocument.getElementById('log').innerHTML = "Du hast ein Schiff versenkt.";
+    // TODO:
   });
   $('#modal-1').modal('show');
 });
@@ -84,9 +109,9 @@ function createTable(table) {
       currentCell = document.createElement("td");
       if (i == 0 && j == 0) {
         if (table == 1) {
-          currentText = document.createTextNode("ENEMY");
+          currentText = document.createTextNode(" YOU ");
         } else {
-          currentText = document.createTextNode("YOU");
+          currentText = document.createTextNode("ENEMY");
         }
 
         currentCell.id = table + "Label";
@@ -122,6 +147,7 @@ function setText() {
   var name = document.getElementById("input1").value;
   document.getElementById("outputp1").innerHTML = name;
   socket.emit('setPlayerName', name);
+  nameGesetzt = true;
 
   $("#players_form").submit(function(e) {
     e.preventDefault();
@@ -132,17 +158,22 @@ function setText() {
 
 //Schieße auf ein Feld
 function shootSquare(id) {
-  var x = id.split("", 3)[1];
-  var y = id.split("", 3)[2];
+  if (nameGesetzt) {
+    var x = id.split("", 3)[1];
+    var y = id.split("", 3)[2];
 
-  if (enemyField[y][x] == 0) { //Schiff
-    console.log("Fire: x:" + x + " y:" + y);
-    lastFireX = x;
-    lastFireY = y;
-    socket.emit('fire', x, y);
-  } else { //Bereits getroffen
-    alert("Hier hast du schon geschossen");
+    if (enemyField[y][x] == 0) { //Schiff
+      console.log("Fire: x:" + x + " y:" + y);
+      lastFireX = x;
+      lastFireY = y;
+      socket.emit('fire', x, y);
+    } else { //Bereits getroffen
+      document.getElementById("outputp1").innerHTML = "Hier hast du schon geschossen";
+    }
+  } else {
+    $('#modal-1').modal('show');
   }
+
 }
 
 //markiere gegnerisches Schiff wenn es versenkt wurde
@@ -187,7 +218,7 @@ function markHit(fireResult, player, x, y) {
       }
       break;
     default:
-      console.error("Fascher hit wurde übergeben.");
+      console.error("Falscher hit wurde übergeben.");
   }
 
 
