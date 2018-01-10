@@ -108,8 +108,7 @@ $(document).ready(function() {
   });
   socket.on('shipDown', (x, y) => {
     newLog("Du hast ein Schiff versenkt.\n");
-    //document.getElementById('log').innerHTML = "Du hast ein Schiff versenkt.";
-    // TODO:
+    markShipAsDown(x,y);
   });
   $('#modal-1').modal('show');
 });
@@ -216,9 +215,45 @@ function shootSquare(id) {
 //markiere gegnerisches Schiff wenn es versenkt wurde
 function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
   //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
-  //                        /\
-  //                        |
-  //                 rechtes Spielfeld
+  var ind = x;
+
+  if(opponet.field[y][x] == 2){
+
+    while (true){
+    if(opponet.field[y][ind] == 2){
+    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+    }
+  }
+  var ind = x;
+  while (true){
+  if(opponet.field[y][ind] == 2){
+    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+    ind++;
+  }else {
+      break;
+  }
+}
+var ind = y;
+  while (true){
+    if(opponet.field[y][ind] == 2){
+      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+}
+}
+var ind = y;
+  while (true){
+    if(opponet.field[y][ind] == 2){
+      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+    }
+  }
 }
 
 //#####################Eigenes Spielfeld#########################
