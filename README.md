@@ -20,7 +20,7 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 | :umbrella: | `:umbrella:` | Hinzufügen von **tests** |
 | :microscope: | `:microscope:` | when adding **code coverage** |
 | :lock: | `:lock:` | when dealing with **security** |
-| :lipstick: | `:lipstick:` | when improving **UI**/Cosmetic |
+| 💄 | `:lipstick:` | when improving **UI**/Cosmetic |
 | :construction: | `:construction:` | **WIP**(Work In Progress) Commits, _maybe_ with `@REVIEW` Comment Tag |
 | :gem: | `:gem:` | New **Release** |
 | :bookmark: | `:bookmark:` | Version **Tags** |
