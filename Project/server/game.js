@@ -5,37 +5,43 @@ module.exports = class Game {
     this.player1Socket;
     this.player2Socket;
 
-    this.player1 = new Player('player 1');
-    this.player2 = new Player('player 2');
+    this.p1C = false;
+    this.p2C = false;
 
-    switch (Math.floor(Math.random() * (1 - 0 + 1)) + 0) {
-      case 0:
-        this.turn = this.player1.id;
-        break;
-      case 1:
-        this.turn = this.player2.id;
-    }
+    this.player1;
+    this.player2;
   }
+
   startGame(socket) {
     console.log('user connected');
-    //erster Spieler verbindet
-    if (!this.player1Socket) {
+
+    if (!this.p1C) { //erster Spieler verbindet
       console.log('Player 1 connected');
       this.player1Socket = socket;
-      this.player1Socket.on('disconnect', function() {
+      this.p1C = true;
+      this.player1 = new Player('player 1');
+
+      this.player1Socket.on('disconnect', () => {
         console.log('Player1 hat das Spiel verlassen');
         this.player1Socket = undefined;
+        this.p1C = false;
+        if (this.p2C) {
+          this.player2Socket.emit('enemyDisconnect');
+        }
       });
+
       this.player1Socket.on('setPlayerName', playerName => {
         this.player1.name = playerName;
         if (this._isAbleToPlay()) {
           this._refreshNames();
         }
       });
-      //zweiter Spieler verbindet
-    } else if (!this.player2Socket) {
+
+    } else if (!this.p2C) { //zweiter Spieler verbindet
       console.log('Player 2 connected');
       this.player2Socket = socket;
+      this.p2C = true;
+      this.player2 = new Player('player 2');
 
       this._makeGamePlayable();
       this._makeFirePossible(this.player1);
@@ -44,17 +50,24 @@ module.exports = class Game {
       this.player2Socket.on('disconnect', () => {
         console.log('Player2 hat das Spiel verlassen');
         this.player2Socket = undefined;
+        this.p2C = false;
+        if (this.p1C) {
+          this.player1Socket.emit('enemyDisconnect');
+        }
       });
+
       this.player2Socket.on('setPlayerName', playerName => {
         this.player2.name = playerName;
         if (this._isAbleToPlay()) {
           this._refreshNames();
         }
       });
+    } else {
+      console.log("p1C: " + this.p1C + ", p2C: " + this.p2C);
     }
   }
 
-  //Tausche aktuellen Spieler
+  //Benachrichtige aktuellen Spieler
   _emitTurn() {
     if (this.turn == this.player1.id) {
       this.player1Socket.emit('playerTurn', true);
@@ -91,7 +104,7 @@ module.exports = class Game {
           opponent.field[y][x] = 2;
 
           //#####################
-          controllLog();
+          //controllLog();
           //#####################
 
           // TODO: ANFANG (MAX)
@@ -111,7 +124,7 @@ module.exports = class Game {
           opponent.field[y][x] = 3;
 
           //#####################
-          controllLog();
+          //controllLog();
           //#####################
 
           this.turn = nextTurn;
@@ -145,6 +158,13 @@ module.exports = class Game {
   _makeGamePlayable() {
     this.player1Socket.emit('myShips', this.player1.field);
     this.player2Socket.emit('myShips', this.player2.field);
+    switch (Math.floor(Math.random() * (1 - 0 + 1)) + 0) {
+      case 0:
+        this.turn = this.player1.id;
+        break;
+      case 1:
+        this.turn = this.player2.id;
+    }
     this._emitTurn();
   }
 
