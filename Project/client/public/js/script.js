@@ -45,11 +45,13 @@ $(document).ready(function() {
     if (result) {
       //document.getElementById('log').innerHTML = "Dein Schuss hat getroffen, du bist nocheinmal dran.";
       newLog("Dein Schuss hat getroffen, du bist nocheinmal dran.");
+      socket.emit('checkDown', lastFireX, lastFireY);
     } else {
       newLog("Dein Schuss hat verfehlt.");
       //document.getElementById('log').innerHTML = "Dein Schuss hat verfehlt.";
     }
   });
+
   socket.on('fireResultEnemy', (x, y, result) => {
     markHit(result, 1, x, y);
     if (result) {
@@ -60,10 +62,22 @@ $(document).ready(function() {
       newLog("Der Schuss deines Gegners hat verfehlt.");
     }
   });
+
+  socket.on('shipDown', (shipDownResult, x, y) => {
+    if (shipDownResult) {
+      newLog("Du hast ein Schiff versenkt.\n");
+      markShipAsDown(x, y);
+      socket.emit('checkWin');
+    } else {
+      newLog("Schiff noch nicht versenkt.\n");
+    }
+  });
+
   socket.on('myShips', playground => {
     ownField = playground;
     printShips(playground);
   });
+
   socket.on('playerTurn', isYourTurn => {
     if (isYourTurn) {
       $('#2Label').css('color', 'red');
@@ -87,6 +101,7 @@ $(document).ready(function() {
     newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
     alert("Game Over!\n" + "Du hast gewonnen! Dein Score: " + highscore);
   });
+
   socket.on('lost', highscore => {
     $('#tg').css('border-color', 'red');
     document.getElementById('body').style.backgroundColor = 'red';
@@ -94,11 +109,13 @@ $(document).ready(function() {
     //  document.getElementById('log').innerHTML = "Du hast verloren! Der Score deines Gegners: " + highscore;
     alert("Game Over!\n" + "Du hast verloren! Der Score deines Gegners: " + highscore);
   });
+
   socket.on('refreshName', name => {
     newLog("Dein Gegnder hat seinen Namen gewählt, er heißt: " + name + "\n");
     //document.getElementById('log').innerHTML = "Dein Gegnder hat seinen Namen gewählt, er heißt: " + name;
     document.getElementById("outputp2").innerHTML = name;
   });
+
   socket.on('enemyDisconnect', () => {
     $('tg').css('border-color', 'grey');
     document.getElementById('body').style.backgroundColor = 'grey';
@@ -106,14 +123,7 @@ $(document).ready(function() {
     //document.getElementById('log').innerHTML = "Dein Gegner hat das Spiel verlassen.";
     alert("Game Over!\n" + "Dein Gegner hat das Spiel verlassen.");
   });
-  socket.on('shipDown', (x, y) => {
-    newLog("Du hast ein Schiff versenkt.\n");
-<<<<<<< HEAD
-    markShipAsDown(x, y);
-=======
-    markShipAsDown(x,y);
->>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
-  });
+
   $('#modal-1').modal('show');
 });
 
@@ -221,7 +231,6 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
   //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
   var ind = x;
 
-<<<<<<< HEAD
   if (opponet.field[y][x] == 2) {
 
     while (true) {
@@ -258,43 +267,6 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
       } else {
         break;
       }
-=======
-  if(opponet.field[y][x] == 2){
-
-    while (true){
-    if(opponet.field[y][ind] == 2){
-    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
-      ind++;
-    }else {
-        break;
-    }
-  }
-  var ind = x;
-  while (true){
-  if(opponet.field[y][ind] == 2){
-    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
-    ind++;
-  }else {
-      break;
-  }
-}
-var ind = y;
-  while (true){
-    if(opponet.field[y][ind] == 2){
-      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
-      ind++;
-    }else {
-        break;
-}
-}
-var ind = y;
-  while (true){
-    if(opponet.field[y][ind] == 2){
-      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
-      ind++;
-    }else {
-        break;
->>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
     }
   }
 }
@@ -332,6 +304,4 @@ function markHit(fireResult, player, x, y) {
         enemyField[y][x] = 3;
       }
   }
-
-
 }

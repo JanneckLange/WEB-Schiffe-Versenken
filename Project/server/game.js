@@ -1,4 +1,5 @@
 const Player = require(__dirname + '/player');
+const Game = require(__dirname + '/game');
 
 module.exports = class Game {
   constructor() {
@@ -46,6 +47,8 @@ module.exports = class Game {
       this._makeGamePlayable();
       this._makeFirePossible(this.player1);
       this._makeFirePossible(this.player2);
+      this._makeHitPossible(this.player1);
+      this._makeHitPossible(this.player2);
 
       this.player2Socket.on('disconnect', () => {
         console.log('Player2 hat das Spiel verlassen');
@@ -79,10 +82,10 @@ module.exports = class Game {
   }
 
   _makeFirePossible(currentPlayer) {
-    let playerSocket;
-    let opponentSocket;
-    let opponent;
-    let nextTurn;
+    var playerSocket;
+    var opponentSocket;
+    var opponent;
+    var nextTurn;
 
     if (currentPlayer.id === this.player1.id) {
       playerSocket = this.player1Socket;
@@ -107,21 +110,6 @@ module.exports = class Game {
           //controllLog();
           //#####################
 
-          // TODO: ANFANG (MAX)
-          if (_checkShipDown(opponet, x, y)) { //DONE: noch nicht implementiert -> Prüfe ob Schiff an x,y versenkt wurde
-            playerSocket.emit('shipDown', x, y); // DONE: noch nicht implementiert -> Muss in "script.js" implementier werden (möglicherweise auch ähnlich implemtieren), Schiff an Stelle x,y wurde versenkt(natürlich auch der rest vom Schiff)
-<<<<<<< HEAD
-            if (_checkGameOver(opponet)) { // DONE: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
-=======
-            if (_checkGameOver(opponet)) { // TODO: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
->>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
-              opponentSocket.emit('lost', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
-              playerSocket.emit('won', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
-              _setHighscore(player.name, player.score); // TODO: (BEN) noch nicht implementiert -> Lade Highscore auf den Server
-            }
-          }
-          // TODO: ENDE (MAX)
-
         } else { //verfehlt
           playerSocket.emit('fireResult', false);
           opponentSocket.emit('fireResultEnemy', x, y, false);
@@ -140,6 +128,90 @@ module.exports = class Game {
           this.player2.increaseScore();
         }
       }
+    });
+  }
+
+  _makeHitPossible(currentPlayer) {
+    var playerSocket;
+    var opponentSocket;
+    var opponent;
+    var nextTurn;
+
+    if (currentPlayer.id === this.player1.id) {
+      playerSocket = this.player1Socket;
+      opponentSocket = this.player2Socket;
+      opponent = this.player2;
+      nextTurn = this.player2.id;
+    } else {
+      playerSocket = this.player2Socket;
+      opponentSocket = this.player1Socket;
+      opponent = this.player1;
+      nextTurn = this.player1.id;
+    }
+
+    playerSocket.on('checkDown', (x, y) => {
+      console.log("checkDown");
+      var ind = x;
+      var shipDownResult = true;
+
+      if (opponent.field[y][x] == 2) {
+
+        while (true) {
+          if (opponent.field[y][ind] == 1) {
+            shipDownResult = false;
+            break;
+          } else {
+            ind++;
+          }
+        }
+        var ind = x;
+        while (true) {
+          if (opponent.field[y][ind] == 1) {
+            shipDownResult = false;
+            break;
+          } else {
+            ind--;
+          }
+        }
+        var ind = y;
+        while (true) {
+          if (opponent.field[y][ind] == 1) {
+            shipDownResult = false;
+            break;
+          } else {
+            ind++;
+          }
+        }
+        var ind = y;
+        while (true) {
+          if (opponent.field[y][ind] == 1) {
+            shipDownResult = false;
+            break;
+          } else {
+            ind--;
+          }
+        }
+      }
+      console.log("down?: " + shipDownResult);
+      playerSocket.emit('shipDown', shipDownResult, x, y);
+    });
+    playerSocket.on('checkWin', () => {
+      var result = true;
+
+      for (var i = 0; i < 10; i++) {
+        for (var k = 0; k < 10; k++) {
+
+          if (opponent.field[k][i] == 1) {
+            result = false;
+          }
+        }
+      }
+
+      if (result) {
+        opponentSocket.emit('lost', player.score);
+        playerSocket.emit('won', player.score);
+      }
+
     });
   }
 
@@ -182,116 +254,11 @@ module.exports = class Game {
       this.player2.name;
   }
 
-<<<<<<< HEAD
-  _checkGameOver(opponet) {
-    var result = true;
-
-    for (int i = 0, i < 10, i++) {
-      for (int k = 0; k < 10, k++) {
-
-        if (opponent.field[k][i] == 1 = ) {
-          result = false;
-        }
-      }
-    }
-    return result;
-  }
-
-  _checkShipDown(opponet, x, y) {
-    var ind = x;
-    var shipDownResult = true;
-
-    if (opponet.field[y][x] == 2) {
-
-      while (true) {
-        if (opponet.field[y][ind] == 1) {
-          shipDownResult = false;
-          break;
-        } else {
-          ind++;
-        }
-      }
-      var ind = x;
-      while (true) {
-        if (opponet.field[y][ind] == 1) {
-          shipDownResult = false;
-          break;
-        } else {
-          ind--;
-        }
-      }
-      var ind = y;
-      while (true) {
-        if (opponet.field[y][ind] == 1) {
-          shipDownResult = false;
-          break;
-        } else {
-          ind++;
-        }
-      }
-      var ind = y;
-      while (true) {
-        if (opponet.field[y][ind] == 1) {
-          shipDownResult = false;
-          break;
-        } else {
-          ind--;
-        }
-      }
-    }
-    return shipDownResult;
-  }
-
-=======
-  _checkShipDown(opponet, x, y){
-    var ind = x;
-    var shipDownResult = true;
-
-    if(opponet.field[y][x] == 2){
-
-      while (true){
-      if(opponet.field[y][ind] == 1){
-        shipDownResult = false;
-        break;
-      }else {
-        ind++;
-      }
-    }
-    var ind = x;
-    while (true){
-    if(opponet.field[y][ind] == 1){
-      shipDownResult = false;
-      break;
-    }else {
-      ind--;
-    }
-  }
-  var ind = y;
-  while (true){
-  if(opponet.field[y][ind] == 1){
-    shipDownResult = false;
-    break;
-  }else {
-    ind++;
-  }
-}
-var ind = y;
-while (true){
-if(opponet.field[y][ind] == 1){
-  shipDownResult = false;
-  break;
-}else {
-  ind--;
-}
-}
-
-    return shipDownResult;
-  }
->>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
   //übermittle namen des gegenspielers
   _refreshNames() {
     console.log("Namen wurden übermittelt: Player1: " + this.player1.name + ", Player2: " + this.player2.name);
     this.player1Socket.emit('refreshName', this.player2.name);
     this.player2Socket.emit('refreshName', this.player1.name);
   }
+
 }
