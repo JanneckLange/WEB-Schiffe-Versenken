@@ -108,7 +108,11 @@ $(document).ready(function() {
   });
   socket.on('shipDown', (x, y) => {
     newLog("Du hast ein Schiff versenkt.\n");
+<<<<<<< HEAD
     markShipAsDown(x, y);
+=======
+    markShipAsDown(x,y);
+>>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
   });
   $('#modal-1').modal('show');
 });
@@ -217,6 +221,7 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
   //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
   var ind = x;
 
+<<<<<<< HEAD
   if (opponet.field[y][x] == 2) {
 
     while (true) {
@@ -253,6 +258,43 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
       } else {
         break;
       }
+=======
+  if(opponet.field[y][x] == 2){
+
+    while (true){
+    if(opponet.field[y][ind] == 2){
+    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+    }
+  }
+  var ind = x;
+  while (true){
+  if(opponet.field[y][ind] == 2){
+    document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+    ind++;
+  }else {
+      break;
+  }
+}
+var ind = y;
+  while (true){
+    if(opponet.field[y][ind] == 2){
+      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+}
+}
+var ind = y;
+  while (true){
+    if(opponet.field[y][ind] == 2){
+      document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+      ind++;
+    }else {
+        break;
+>>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
     }
   }
 }

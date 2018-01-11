@@ -110,7 +110,11 @@ module.exports = class Game {
           // TODO: ANFANG (MAX)
           if (_checkShipDown(opponet, x, y)) { //DONE: noch nicht implementiert -> Prüfe ob Schiff an x,y versenkt wurde
             playerSocket.emit('shipDown', x, y); // DONE: noch nicht implementiert -> Muss in "script.js" implementier werden (möglicherweise auch ähnlich implemtieren), Schiff an Stelle x,y wurde versenkt(natürlich auch der rest vom Schiff)
+<<<<<<< HEAD
             if (_checkGameOver(opponet)) { // DONE: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
+=======
+            if (_checkGameOver(opponet)) { // TODO: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
+>>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
               opponentSocket.emit('lost', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
               playerSocket.emit('won', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
               _setHighscore(player.name, player.score); // TODO: (BEN) noch nicht implementiert -> Lade Highscore auf den Server
@@ -178,6 +182,7 @@ module.exports = class Game {
       this.player2.name;
   }
 
+<<<<<<< HEAD
   _checkGameOver(opponet) {
     var result = true;
 
@@ -237,6 +242,52 @@ module.exports = class Game {
     return shipDownResult;
   }
 
+=======
+  _checkShipDown(opponet, x, y){
+    var ind = x;
+    var shipDownResult = true;
+
+    if(opponet.field[y][x] == 2){
+
+      while (true){
+      if(opponet.field[y][ind] == 1){
+        shipDownResult = false;
+        break;
+      }else {
+        ind++;
+      }
+    }
+    var ind = x;
+    while (true){
+    if(opponet.field[y][ind] == 1){
+      shipDownResult = false;
+      break;
+    }else {
+      ind--;
+    }
+  }
+  var ind = y;
+  while (true){
+  if(opponet.field[y][ind] == 1){
+    shipDownResult = false;
+    break;
+  }else {
+    ind++;
+  }
+}
+var ind = y;
+while (true){
+if(opponet.field[y][ind] == 1){
+  shipDownResult = false;
+  break;
+}else {
+  ind--;
+}
+}
+
+    return shipDownResult;
+  }
+>>>>>>> b15ccf6bdbf2c550fbacf0088b749e7cdc573f4b
   //übermittle namen des gegenspielers
   _refreshNames() {
     console.log("Namen wurden übermittelt: Player1: " + this.player1.name + ", Player2: " + this.player2.name);
