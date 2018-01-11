@@ -90,7 +90,7 @@
         <div class="row">
           <!-- FIXME: Bei einigen Fenstergrößen werden die Namen nicht vernünftig angezeigt -->
           <center>
-            <table>
+            <table id="playerNames">
               <tr>
                 <td>
                   <p style="float:right" id="outputp1">{Spieler1}</p>
@@ -200,7 +200,7 @@
 
         <!-- HEADER -->
         <div class="modal-header">
-          <h3 id="title-modal" class="modal-title">GitGub</h3>
+          <h3 id="title-modal" class="modal-title">GitHub</h3>
         </div>
 
         <!-- BODY -->
@@ -208,6 +208,25 @@
           <p>Dieses Projekt liegt im vollen Umfang auf GitHub:</p>
           <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers">WebRanger-Repo</a> </p>
 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL END-->
+  <!-- MODAL Verbindung  -->
+  <div class="modal fade" id="modal-4">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <h3 id="title-modal" class="modal-title">Verbindung verloren</h3>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+          <p>Die Verbindung zum Server ist unterbrochen.</p>
+          <button type="button" onclick="connect_error_button()" name="button">Verstanden</button>
         </div>
       </div>
     </div>

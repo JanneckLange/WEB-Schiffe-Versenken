@@ -1,4 +1,4 @@
-#output, #title-main, #title-settings, #title-highscore, #title-modal, #text-pl1, #text-pl2, #table-highscore {
+#output, #title-main, #title-settings, #title-highscore, #title-modal, #text-pl1, #text-pl2, #table-highscore, #playerNames {
   font-family: 'Indie Flower', cursive;
 }
 
@@ -8,6 +8,10 @@
 
 #table-highscore {
   font-size: 16px;
+}
+
+#playerNames {
+  font-size: 2em;
 }
 
 table {
@@ -31,6 +35,10 @@ table {
 
 .tg td {
   padding-left: 15px;
+}
+
+td.ownTableToShotAt:hover {
+  background-color: #00537a;
 }
 
 .tg th {
@@ -57,7 +65,7 @@ div.hitWater {
   border-style: solid;
   margin: 15px;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.2em;
   height: 100px;
   overflow-y: scroll;
 }
