@@ -110,7 +110,7 @@ module.exports = class Game {
           // TODO: ANFANG (MAX)
           if (_checkShipDown(opponet, x, y)) { //DONE: noch nicht implementiert -> Prüfe ob Schiff an x,y versenkt wurde
             playerSocket.emit('shipDown', x, y); // DONE: noch nicht implementiert -> Muss in "script.js" implementier werden (möglicherweise auch ähnlich implemtieren), Schiff an Stelle x,y wurde versenkt(natürlich auch der rest vom Schiff)
-            if (_checkGameOver(opponet)) { // TODO: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
+            if (_checkGameOver(opponet)) { // DONE: noch nicht implementiert -> prüfe ob noch '1' auf dem Spielfeld ist
               opponentSocket.emit('lost', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
               playerSocket.emit('won', player.score); // TODO: noch nicht implementiert -> Muss in "SchiffeVersenken.html"/"script.js" implementier werden
               _setHighscore(player.name, player.score); // TODO: (BEN) noch nicht implementiert -> Lade Highscore auf den Server
@@ -178,50 +178,65 @@ module.exports = class Game {
       this.player2.name;
   }
 
-  _checkShipDown(opponet, x, y){
+  _checkGameOver(opponet) {
+    var result = true;
+
+    for (int i = 0, i < 10, i++) {
+      for (int k = 0; k < 10, k++) {
+
+        if (opponent.field[k][i] == 1 = ) {
+          result = false;
+        }
+      }
+    }
+    return result;
+  }
+
+  _checkShipDown(opponet, x, y) {
     var ind = x;
     var shipDownResult = true;
 
-    if(opponet.field[y][x] == 2){
+    if (opponet.field[y][x] == 2) {
 
-      while (true){
-      if(opponet.field[y][ind] == 1){
-        shipDownResult = false;
-        break;
-      }else {
-        ind++;
+      while (true) {
+        if (opponet.field[y][ind] == 1) {
+          shipDownResult = false;
+          break;
+        } else {
+          ind++;
+        }
+      }
+      var ind = x;
+      while (true) {
+        if (opponet.field[y][ind] == 1) {
+          shipDownResult = false;
+          break;
+        } else {
+          ind--;
+        }
+      }
+      var ind = y;
+      while (true) {
+        if (opponet.field[y][ind] == 1) {
+          shipDownResult = false;
+          break;
+        } else {
+          ind++;
+        }
+      }
+      var ind = y;
+      while (true) {
+        if (opponet.field[y][ind] == 1) {
+          shipDownResult = false;
+          break;
+        } else {
+          ind--;
+        }
       }
     }
-    var ind = x;
-    while (true){
-    if(opponet.field[y][ind] == 1){
-      shipDownResult = false;
-      break;
-    }else {
-      ind--;
-    }
-  }
-  var ind = y;
-  while (true){
-  if(opponet.field[y][ind] == 1){
-    shipDownResult = false;
-    break;
-  }else {
-    ind++;
-  }
-}
-var ind = y;
-while (true){
-if(opponet.field[y][ind] == 1){
-  shipDownResult = false;
-  break;
-}else {
-  ind--;
-}
-}
-
     return shipDownResult;
   }
+
   //übermittle namen des gegenspielers
   _refreshNames() {
     console.log("Namen wurden übermittelt: Player1: " + this.player1.name + ", Player2: " + this.player2.name);
