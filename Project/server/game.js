@@ -240,6 +240,7 @@ module.exports = class Game {
     var opponentSocket;
     var opponent;
     var nextTurn;
+    var highscore; //TODO: highscore implementierung
 
     if (currentPlayer.id === this.player1.id) {
       playerSocket = this.player1Socket;
@@ -265,7 +266,8 @@ module.exports = class Game {
             console.log("Schiff down");
             playerSocket.emit('shipDown', true, x, y);
             if (_checkWin(opponent.field)) {
-
+              playerSocket.emit('won', highscore); //TODO: highscore implementierung
+              opponentSocket.emit('lost', highscore); //TODO: highscore implementierung
             }
           }
 
