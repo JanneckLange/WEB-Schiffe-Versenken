@@ -13,3 +13,6 @@
 4. Öffne "http://127.0.0.1:3000/" im Browser
 5. Öffne "http://127.0.0.1:3000/" im Browser
 6. Spiel!
+
+## Tipps
+- STRG + C beendet den Server
