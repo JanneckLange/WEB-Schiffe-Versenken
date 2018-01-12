@@ -104,46 +104,7 @@ module.exports = class Game {
           }
         }
       }
-      /*console.log("r =" + result);
-            while (field[y][ind] == 2 || field[y][ind] == 1) {
-              console.log("wh1");
-              if (field[y][ind] == 1) {
-                console.log("if1");
-                result = false;
-              } else {
-                ind++;
-              }
-            }
-            var ind = x - 1;
-            while (field[y][ind] == 2 || field[y][ind] == 1) {
-              console.log("wh2");
-              if (field[y][ind] == 1) {
-                console.log("if2");
-                result = false;
-              } else {
-                ind--;
-              }
-            }
-            var ind = y + 1;
-            while (field[ind][x] == 2 || field[ind][x] == 1) {
-              console.log("wh3");
-              if (field[ind][x] == 1) {
-                console.log("id3");
-                result = false;
-              } else {
-                ind++;
-              }
-            }
-            var ind = y - 1;
-            while (field[ind][x] == 2 || field[ind][x] == 1) {
-              console.log("wh4");
-              if (field[ind][x] == 1) {
-                console.log("if4");
-                result = false;
-              } else {
-                ind--;
-              }
-            }*/
+
       console.log("_checkDown return " + result);
       return result;
     }; //_checkDown Ende

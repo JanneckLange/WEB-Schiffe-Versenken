@@ -218,45 +218,75 @@ function shootSquare(id) {
 }
 
 //markiere gegnerisches Schiff wenn es versenkt wurde
-function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
-  //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
-  var ind = x;
+function markShipAsDown(x, y) {
+
+
+  var ind = Number(x) + 1;
 
   if (enemyField[y][x] == 2) {
+    document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
+    var ind = Number(x) + 1;
 
-    while (true) {
-      if (enemyField[y][ind] == 2) {
-        document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
-        ind++;
-      } else {
-        break;
+    for (var i = 0; i < 5; i++) {
+      if (ind >= 0 && ind <= 9) {
+        if (enemyField[y][ind] == 0) {
+          i = 5;
+        }
+        if (enemyField[y][ind] == 3) {
+          i = 5;
+        }
+        if (enemyField[y][ind] == 2) {
+          document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+          ind++;
+        }
       }
     }
-    var ind = x;
-    while (true) {
-      if (enemyField[y][ind] == 2) {
-        document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
-        ind++;
-      } else {
-        break;
+
+    var ind = Number(x) - 1;
+    for (var i = 0; i < 5; i++) {
+      if (ind >= 0 && ind <= 9) {
+        if (enemyField[y][ind] == 0) {
+          i = 5;
+        }
+        if (enemyField[y][ind] == 3) {
+          i = 5;
+        }
+        if (enemyField[y][ind] == 2) {
+          document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
+          ind--;
+        }
       }
     }
-    var ind = y;
-    while (true) {
-      if (enemyField[y][ind] == 2) {
-        document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
-        ind++;
-      } else {
-        break;
+
+    var ind = Number(y) + 1;
+    for (var i = 0; i < 5; i++) {
+      if (ind >= 0 && ind <= 9) {
+        if (enemyField[ind][x] == 0) {
+          i = 5;
+        }
+        if (enemyField[ind][x] == 3) {
+          i = 5;
+        }
+        if (enemyField[ind][x] == 2) {
+          document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+          ind++;
+        }
       }
     }
-    var ind = y;
-    while (true) {
-      if (enemyField[y][ind] == 2) {
-        document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
-        ind++;
-      } else {
-        break;
+
+    var ind = Number(y) - 1;
+    for (var i = 0; i < 5; i++) {
+      if (ind >= 0 && ind <= 9) {
+        if (enemyField[ind][x] == 0) {
+          i = 5;
+        }
+        if (enemyField[ind][x] == 3) {
+          i = 5;
+        }
+        if (enemyField[ind][x] == 2) {
+          document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
+          ind--;
+        }
       }
     }
   }
