@@ -218,8 +218,13 @@ function shootSquare(id) {
       newLog("Hier hast du schon geschossen.\n");
     }
   } else {
-    $('#modal-1').modal('show');
-    newLog("Wähle einen Namen bevor du einen Schuss abgibst");
+    if (gameOver) {
+      newLog("Das Spiel ist vorbei. Schießen ist nicht mehr möglich.");
+    } else {
+      $('#modal-1').modal('show');
+      newLog("Wähle einen Namen bevor du einen Schuss abgibst");
+    }
+
   }
 }
 
