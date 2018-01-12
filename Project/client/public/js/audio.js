@@ -57,9 +57,11 @@ document.getElementById("sound_controll_range").addEventListener("keyup", functi
 var sound_hit_water = document.getElementById('audiofile_sound_hit_water');
 var sound_hit_ship = document.getElementById('audiofile_sound_hit_ship');
 var sound_ship_down = document.getElementById('audiofile_sound_ship_down');
+var sound_your_turn = document.getElementById('audiofile_sound_your_turn');
 sound_hit_water.volume = 0.3;
 sound_hit_ship.volume = 0.3;
 sound_ship_down.volume = 0.3;
+sound_your_turn.volume = 0.3;
 
 var mute = false;
 
@@ -88,6 +90,7 @@ function sound_controll_play() {
   sound_hit_water.mute = false;
   sound_hit_ship.mute = false;
   sound_ship_down.mute = false;
+  sound_your_turn.mute = false;
 }
 
 function sound_controll_pause() {
@@ -95,6 +98,7 @@ function sound_controll_pause() {
   sound_hit_water.mute = true;
   sound_hit_ship.mute = true;
   sound_ship_down.mute = true;
+  sound_your_turn.mute = true;
 }
 
 function sound_controll_volume(value) {
@@ -102,22 +106,21 @@ function sound_controll_volume(value) {
   sound_hit_water.volume = value;
   sound_hit_ship.volume = value;
   sound_ship_down.volume = value;
+  sound_your_turn.volume = value;
 }
 
 function trigger_sound_hit_water() {
-  var oAudio = sound_hit_water;
   sound_hit_water.play();
-  oAudio.currentTime = 0;
 }
 
 function trigger_sound_hit_ship() {
-  var oAudio = sound_hit_ship;
   sound_hit_ship.play();
-  oAudio.currentTime = 0;
 }
 
 function trigger_sound_ship_down() {
-  var oAudio = sound_ship_down;
   sound_ship_down.play();
-  oAudio.currentTime = 0;
+}
+
+function trigger_sound_your_turn() {
+  sound_your_turn.play();
 }

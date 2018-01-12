@@ -61,37 +61,39 @@ $(document).ready(function () {
         }
     });
 
-    socket.on('shipDown', (shipDownResult, x, y) => {
-        if (shipDownResult) {
-            newLog("Du hast ein Schiff versenkt.\n");
-            markShipAsDown(x, y);
-        } else {
-            //newLog("Schiff noch nicht versenkt.");
-        }
-    });
+  socket.on('shipDown', (shipDownResult, x, y) => {
+    if (shipDownResult) {
+      newLog("Du hast ein Schiff versenkt.\n");
+      trigger_sound_ship_down();
+      markShipAsDown(x, y);
+    } else {
+      //newLog("Schiff noch nicht versenkt.");
+    }
+  });
 
     socket.on('myShips', playground => {
         ownField = playground;
         printShips(playground);
     });
 
-    socket.on('playerTurn', isYourTurn => {
-        if (isYourTurn) {
-            $('#2Label').css('color', 'red');
-            $('#1Label').css('color', 'black');
-            newLog("Du bist am Zug.");
-        } else {
-            $('#2Label').css('color', 'black');
-            $('#1Label').css('color', 'red');
-            newLog("Der Gegner ist am Zug.");
-        }
-    });
-    socket.on('won', highscore => {
-        $('#tg').css('border-color', 'green');
-        document.getElementById('body').style.backgroundColor = 'green';
-        newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
-        gameOver = true;
-    });
+  socket.on('playerTurn', isYourTurn => {
+    if (isYourTurn) {
+      trigger_sound_your_turn();
+      $('#2Label').css('color', 'red');
+      $('#1Label').css('color', 'black');
+      newLog("Du bist am Zug.");
+    } else {
+      $('#2Label').css('color', 'black');
+      $('#1Label').css('color', 'red');
+      newLog("Der Gegner ist am Zug.");
+    }
+  });
+  socket.on('won', highscore => {
+    $('#tg').css('border-color', 'green');
+    document.getElementById('body').style.backgroundColor = 'green';
+    newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
+    gameOver = true;
+  });
 
     socket.on('lost', highscore => {
         $('#tg').css('border-color', 'red');
