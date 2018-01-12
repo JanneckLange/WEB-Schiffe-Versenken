@@ -122,9 +122,6 @@ module.exports = class Game {
       }
       console.log("_checkWin return " + result);
       return result;
-
-
-
     }; //_checkDown
 
     console.log('user connected');
@@ -201,7 +198,6 @@ module.exports = class Game {
     var opponentSocket;
     var opponent;
     var nextTurn;
-    var highscore; //TODO: highscore implementierung
 
     if (currentPlayer.id === this.player1.id) {
       playerSocket = this.player1Socket;
@@ -217,18 +213,23 @@ module.exports = class Game {
     playerSocket.on('fire', (x, y) => {
       console.log("Fire detected: x:" + x + " y:" + y);
       if (currentPlayer.id === this.turn) {
+        if (currentPlayer.id === this.player1.id) {
+          this.player1.increaseScore();
+        } else {
+          this.player2.increaseScore();
+        }
         if (opponent.field[y][x] == 1) { //Treffer
           playerSocket.emit('fireResult', true);
           opponentSocket.emit('fireResultEnemy', x, y, true);
           opponent.field[y][x] = 2;
 
-          // TODO: Ausführlicher
+
           if (_checkDown(x, y, opponent.field)) {
             console.log("Schiff down");
             playerSocket.emit('shipDown', true, x, y);
             if (_checkWin(opponent.field)) {
-              playerSocket.emit('won', highscore); //TODO: highscore implementierung
-              opponentSocket.emit('lost', highscore); //TODO: highscore implementierung
+              playerSocket.emit('won', currentPlayer.score);
+              opponentSocket.emit('lost', currentPlayer.score);
             }
           }
 
@@ -240,11 +241,7 @@ module.exports = class Game {
           this.turn = nextTurn;
           this._emitTurn();
         }
-        if (currentPlayer.id === this.player1.id) {
-          this.player1.increaseScore();
-        } else {
-          this.player2.increaseScore();
-        }
+
       }
     });
   }
