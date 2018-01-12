@@ -106,15 +106,18 @@ function sound_controll_volume(value) {
 
 function trigger_sound_hit_water() {
   var oAudio = sound_hit_water;
+  sound_hit_water.play();
   oAudio.currentTime = 0;
 }
 
 function trigger_sound_hit_ship() {
   var oAudio = sound_hit_ship;
+  sound_hit_ship.play();
   oAudio.currentTime = 0;
 }
 
 function trigger_sound_ship_down() {
   var oAudio = sound_ship_down;
+  sound_ship_down.play();
   oAudio.currentTime = 0;
 }

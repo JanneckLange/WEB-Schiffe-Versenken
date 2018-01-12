@@ -42,8 +42,10 @@ $(document).ready(function() {
     markHit(result, 2, lastFireX, lastFireY);
     if (result) {
       newLog("Dein Schuss hat getroffen, du bist nocheinmal dran.");
+      trigger_sound_hit_ship();
     } else {
       newLog("Dein Schuss hat verfehlt.");
+      trigger_sound_hit_water();
     }
   });
 
@@ -51,8 +53,10 @@ $(document).ready(function() {
     markHit(result, 1, x, y);
     if (result) {
       newLog("Der Schuss deines Gegners hat dich getroffen.");
+      //trigger_sound_hit_ship();
     } else {
       newLog("Der Schuss deines Gegners hat verfehlt.");
+      //trigger_sound_hit_water();
     }
   });
 
