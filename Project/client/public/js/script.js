@@ -3,6 +3,7 @@ const MISS = false;
 
 //bereit zu Spielen
 var nameGesetzt = false;
+var gameOver = false;
 
 var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
@@ -89,14 +90,14 @@ $(document).ready(function() {
     $('#tg').css('border-color', 'green');
     document.getElementById('body').style.backgroundColor = 'green';
     newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
-    alert("Game Over!\n" + "Du hast gewonnen! Dein Score: " + highscore);
+    gameOver = true;
   });
 
   socket.on('lost', highscore => {
     $('#tg').css('border-color', 'red');
     document.getElementById('body').style.backgroundColor = 'red';
     newLog("Du hast verloren! Der Score deines Gegners: " + highscore + "\n");
-    alert("Game Over!\n" + "Du hast verloren! Der Score deines Gegners: " + highscore);
+    gameOver = true;
   });
 
   socket.on('refreshName', name => {
@@ -107,12 +108,13 @@ $(document).ready(function() {
   socket.on('enemyDisconnect', () => {
     document.getElementById('body').style.backgroundColor = 'grey';
     newLog("Dein Gegner hat das Spiel verlassen.\n");
-    alert("Game Over!\n" + "Dein Gegner hat das Spiel verlassen.");
+    gameOver = true;
   });
 
   socket.on('connect_error', () => {
     newLog("Verbindung zum Server verloren.");
     document.getElementById('body').style.backgroundColor = 'grey';
+    gameOver = true;
     $('#modal-4').modal('show');
   });
 
@@ -203,7 +205,7 @@ function setText() {
 
 //Schieße auf ein Feld
 function shootSquare(id) {
-  if (nameGesetzt) { //Prüfe erst ob der Name gesetzt wurde
+  if (nameGesetzt && !gameOver) { //Prüfe erst ob der Name gesetzt wurde
     var x = id.split("", 3)[1];
     var y = id.split("", 3)[2];
 
