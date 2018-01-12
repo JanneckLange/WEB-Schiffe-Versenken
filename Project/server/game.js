@@ -175,8 +175,9 @@ module.exports = class Game {
           this._refreshNames();
         }
       });
-    } else {
-      console.log("p1C: " + this.p1C + ", p2C: " + this.p2C);
+    } else { //dritter Spieler verbindet
+      console.log("p3C connect.... p1C: " + this.p1C + ", p2C: " + this.p2C);
+      socket.emit('msg', "Es läuft bereits ein Spiel, versuche es später noch einmal.");
     }
   }
 
