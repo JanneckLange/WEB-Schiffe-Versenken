@@ -6,12 +6,32 @@
   font-size: 30px;
 }
 
+.div-score {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+  width: 200px;
+}
+
+#title-highscore {
+  padding-left: 3px;
+}
+
 #table-highscore {
   font-size: 16px;
 }
 
 #playerNames {
   font-size: 2em;
+}
+
+body {
+  background-image: url("../icons/bg.jpg");
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 table {
@@ -68,6 +88,7 @@ div.hitWater {
   font-size: 1.2em;
   height: 100px;
   overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /*AUDIO*/
@@ -87,6 +108,7 @@ div.hitWater {
   border-color: black;
   border-style: solid;
   padding: 0.5em;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /*AUDIO ENDE*/

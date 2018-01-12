@@ -54,10 +54,10 @@ $(document).ready(function() {
     markHit(result, 1, x, y);
     if (result) {
       newLog("Der Schuss deines Gegners hat dich getroffen.");
-      //trigger_sound_hit_ship();
+      trigger_sound_hit_ship();
     } else {
       newLog("Der Schuss deines Gegners hat verfehlt.");
-      //trigger_sound_hit_water();
+      trigger_sound_hit_water();
     }
   });
 
