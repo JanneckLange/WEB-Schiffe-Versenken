@@ -41,3 +41,14 @@ io.on('connection', socket => {
 http.listen(config.server.port, config.server.host, () => {
   console.log('Live at Port ' + config.server.port);
 });
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://' + config.server.host + ':' + config.server.port + '/api/');
+xhr.responseType = 'json';
+xhr.onload = function () {
+    var data = xhr.response;
+    if (data !== null) {
+        console.log(data); // Parsed JSON object
+    }
+};
+xhr.send(null);
