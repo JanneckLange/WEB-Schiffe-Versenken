@@ -101,7 +101,7 @@ $(document).ready(function() {
   });
 
   socket.on('refreshName', name => {
-    newLog("Dein Gegnder hat seinen Namen gewählt, er heißt: " + name + "\n");
+    newLog("Dein Gegner hat seinen Namen gewählt, er heißt: " + name + "\n");
     document.getElementById("outputp2").innerHTML = name;
   });
 
@@ -124,7 +124,7 @@ $(document).ready(function() {
 function connect_error_button() {
   location.reload();
 }
-//Scrollfesnter nach unten scrollen
+//Scrollfenster nach unten scrollen
 function schrollLogWindowDown() {
   var textarea = document.getElementById('log');
   textarea.scrollTop = textarea.scrollHeight;

@@ -4,10 +4,12 @@
     "\\ownTest[Ben]",
     "\\ownTest[Ben]\\server",
     "\\Project",
+    "\\Project\\bootstrap-3.3.5-dist",
+    "\\Project\\bootstrap-3.3.5-dist\\js",
     "\\Uebung",
     "\\Uebung\\Aufgabe02",
     "\\Uebung\\Aufgabe03"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\ownTest[Ben]\\server\\server.js",
   "PreviewInSolutionExplorer": false
 }
