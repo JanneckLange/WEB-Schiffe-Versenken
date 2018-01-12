@@ -236,7 +236,6 @@ module.exports = class Game {
                     this.player2.increaseScore();
                 }
                 if (opponent.field[y][x] == 1) { //Treffer
-                    Highscore.updateScore(40, currentPlayer.name);
                     playerSocket.emit('fireResult', true);
                     opponentSocket.emit('fireResultEnemy', x, y, true);
                     opponent.field[y][x] = 2;
@@ -245,9 +244,9 @@ module.exports = class Game {
                         console.log("Schiff down");
                         playerSocket.emit('shipDown', true, x, y);
                         if (_checkWin(opponent.field)) {
-                            playerSocket.emit('won', currentPlayer.score); // -------------------------------------------------
+                            playerSocket.emit('won', currentPlayer.score); 
                             opponentSocket.emit('lost', currentPlayer.score);
-                            Highscore.updateScore(currentPlayer.score, currentPlayer.name);
+                            Highscore.updateScore(currentPlayer.score, currentPlayer.name); // Gewinner-Score an Highscore updaten
                         }
                     }
 
