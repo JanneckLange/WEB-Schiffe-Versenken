@@ -21,75 +21,87 @@ module.exports = class Game {
       var result = true;
       var ind = Number(x) + 1;
       console.log("ind" + ind);
+
       for (var i = 0; i < 5; i++) {
-        console.log("wh1");
-        if (field[y][ind] == 0) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[y][ind] == 3) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[y][ind] == 1) {
-          console.log("if1");
-          result = false;
-        } else {
-          ind++;
+        if (ind >= 0 && ind <= 9) {
+          console.log("wh1");
+          if (field[y][ind] == 0) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[y][ind] == 3) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[y][ind] == 1) {
+            console.log("if1");
+            result = false;
+          } else {
+            ind++;
+          }
         }
       }
+
       var ind = Number(x) - 1;
       for (var i = 0; i < 5; i++) {
-        console.log("wh2");
-        if (field[y][ind] == 0) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[y][ind] == 3) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[y][ind] == 1) {
-          console.log("if2");
-          result = false;
-        } else {
-          ind--;
+        if (ind >= 0 && ind <= 9) {
+          console.log("wh2");
+          if (field[y][ind] == 0) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[y][ind] == 3) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[y][ind] == 1) {
+            console.log("if2");
+            result = false;
+          } else {
+            ind--;
+          }
         }
       }
+
       var ind = Number(y) + 1;
       for (var i = 0; i < 5; i++) {
-        console.log("wh3");
-        if (field[ind][x] == 0) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[ind][x] == 3) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[ind][x] == 1) {
-          console.log("id3");
-          result = false;
-        } else {
-          ind++;
+        if (ind >= 0 && ind <= 9) {
+          console.log("wh3");
+          if (field[ind][x] == 0) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[ind][x] == 3) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[ind][x] == 1) {
+            console.log("id3");
+            result = false;
+          } else {
+            ind++;
+          }
         }
       }
+
       var ind = Number(y) - 1;
       for (var i = 0; i < 5; i++) {
-        console.log("wh4");
-        if (field[ind][x] == 0) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[ind][x] == 3) {
-          console.log("if00");
-          i = 5;
-        }
-        if (field[ind][x] == 1) {
-          console.log("if4");
-          result = false;
-        } else {
-          ind--;
+        if (ind >= 0 && ind <= 9) {
+          console.log("wh4");
+          if (field[ind][x] == 0) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[ind][x] == 3) {
+            console.log("if00");
+            i = 5;
+          }
+          if (field[ind][x] == 1) {
+            console.log("if4");
+            result = false;
+          } else {
+            ind--;
+          }
         }
       }
       /*console.log("r =" + result);
@@ -149,6 +161,9 @@ module.exports = class Game {
       }
       console.log("_checkWin return " + result);
       return result;
+
+
+
     }; //_checkDown
 
     console.log('user connected');
