@@ -6,7 +6,9 @@ const UBOOT_LENGTH = 2;
 const HORIZONTAL = 0;
 const VERTICAL = 1;
 
-
+/**
+ * Erstellt ein zufälliges Spielfeld und gibt es zurück.
+ */
 function randomPlayGround() {
   var ships = [generateShip(SCHLACHTSCHIFF_LENGTH), generateShip(KREUZER_LENGTH), generateShip(KREUZER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(ZERSTOERER_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH), generateShip(UBOOT_LENGTH)];
   var playground = [
@@ -34,6 +36,10 @@ function randomPlayGround() {
   return playground;
 }
 
+/**
+ * Generiert ein Schiff und gibt es zurück.
+ * @param {any} shipLength ist die übergebene Schiffslänge
+ */
 function generateShip(shipLength) {
   var ship = {
     startX: 0,
@@ -44,6 +50,10 @@ function generateShip(shipLength) {
   return ship;
 }
 
+/**
+ * 
+ * @param {any} ship
+ */
 function placeShipRandom(ship) {
   ship.dir = randomNumber(0, 1);
   switch (ship.dir) {
@@ -88,7 +98,11 @@ function placeShipRandom(ship) {
   return ship;
 }
 
-//prüfe ob das schiff auf dem Spielfeld platziert werden kann
+/**
+ * Prüfe, ob das schiff auf dem Spielfeld platziert werden kann
+ * @param {any} playground
+ * @param {any} ship
+ */
 function checkShipPos(playground, ship) {
   switch (ship.dir) {
     case HORIZONTAL:
@@ -161,8 +175,11 @@ function checkShipPos(playground, ship) {
   return true;
 }
 
-
-
+/**
+ * 
+ * @param {any} playground
+ * @param {any} ship
+ */
 function placeShip(playground, ship) {
   switch (ship.dir) {
     case HORIZONTAL:
@@ -178,6 +195,11 @@ function placeShip(playground, ship) {
   return playground;
 }
 
+/**
+ * 
+ * @param {any} min
+ * @param {any} max
+ */
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

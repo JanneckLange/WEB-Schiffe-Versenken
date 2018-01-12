@@ -1,114 +1,114 @@
 #output, #title-main, #title-settings, #title-highscore, #title-modal, #text-pl1, #text-pl2, #table-highscore, #playerNames {
-  font-family: 'Indie Flower', cursive;
+    font-family: 'Indie Flower', cursive;
 }
 
 #output {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .div-score {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px;
-  border-color: black;
-  border-style: solid;
-  width: 200px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    width: 200px;
 }
 
 #title-highscore {
-  padding-left: 3px;
+    padding-left: 3px;
 }
 
 #table-highscore {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 #playerNames {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 body {
-  background-image: url("../icons/bg.jpg");
-  background-color: #ffffff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    background-image: url("../icons/bg.jpg");
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 table {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .tg {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
-.tg td, .tg th {
-  font-family: 'Indie Flower', sans-serif;
-  font-weight: bold;
-  font-size: 16px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: white;
-  overflow: hidden;
-}
+    .tg td, .tg th {
+        font-family: 'Indie Flower', sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: white;
+        overflow: hidden;
+    }
 
-.tg td {
-  padding-left: 15px;
-}
+    .tg td {
+        padding-left: 15px;
+    }
 
 td.ownTableToShotAt:hover {
-  background-color: #00537a;
+    background-color: #00537a;
 }
 
 .tg th {
-  padding-left: 15px;
+    padding-left: 15px;
 }
 
 div.hitShip, div.hitWater {
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
 }
 
 div.hitShip {
-  background-color: #ff0000
+    background-color: #ff0000
 }
 
 div.hitWater {
-  background-color: #3a3a3a
+    background-color: #3a3a3a
 }
 
 #log {
-  border: 2px;
-  border-color: black;
-  border-style: solid;
-  margin: 15px;
-  text-align: center;
-  font-size: 1.2em;
-  height: 100px;
-  overflow-y: scroll;
-  background: rgba(255, 255, 255, 0.5);
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    margin: 15px;
+    text-align: center;
+    font-size: 1.2em;
+    height: 100px;
+    overflow-y: scroll;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /*AUDIO*/
 
 #controll_title {
-  font-size: 1.2em;
-  font-family: fantasy;
+    font-size: 1.2em;
+    font-family: fantasy;
 }
 
 #ind-music_controll_range, #ind-sound_controll_range {
-  font-family: fantasy;
+    font-family: fantasy;
 }
 
 .music_controll {
-  width: 200px;
-  border: 1px;
-  border-color: black;
-  border-style: solid;
-  padding: 0.5em;
-  background: rgba(255, 255, 255, 0.5);
+    width: 200px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    padding: 0.5em;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 /*AUDIO ENDE*/

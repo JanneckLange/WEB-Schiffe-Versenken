@@ -1,305 +1,300 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 
 <head>
-  <!-- TITLE-->
-  <title>Schiffe-Versenken</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="WebRanger">
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <meta http-equiv=”language” content=”de” />
+    <!-- TITLE-->
+    <title>Schiffe-Versenken</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="WebRanger">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta http-equiv=”language” content=”de” />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-  <!-- Google-Font-->
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <!-- Google-Font-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
-  <!--Generated Favicon-->
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <!--Generated Favicon-->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
 
 
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js"></script>
-  <script src="js/score.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <script src="js/score.js"></script>
 
 
 </head>
 
 <body id="body">
 
-  <!-- HEADER -->
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-md-10">
-        <h1 id="title-main">Schiffe versenken</h1>
-      </div>
-      <!-- NOTE: Footer Inhalt -->
-      <div class="col-md-2">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN-PART -->
-  <div class="container">
-
-    <div class="row">
-
-      <!-- SIDEBAR -->
-      <div class="col-md-2">
-
+    <!-- HEADER -->
+    <div class="jumbotron">
         <div class="row">
-          <div class="div-score">
-            <h3 id="title-highscore">Highscore</h3>
-            <table id="table-highscore" class="table  table-hover">
-              <tr>
-                <th> Name </th>
-                <th>Punkte</th>
-              </tr>
-              <tr>
-                <td id="pl1"> 1. {Player 1}</td>
-                <td id="po1">{points}</td>
-              </tr>
-              <tr>
-                <td id="pl2">2. {Player 2} </td>
-                <td id="po2">{points}</td>
-              </tr>
-              <tr>
-                <td id="pl3">3. {Player 3}</td>
-                <td id="po3">{points}</td>
-              </tr>
-              <tr>
-                <td id="pl4">4. {Player 4}</td>
-                <td id="po4">{points}</td>
-              </tr>
-              <tr>
-                <td id="pl5">5. {Player 5}</td>
-                <td id="po5">{points}</td>
-              </tr>
-            </table>
-          </div>
-
-        </div>
-        <br>
-        <div class="row">
-          <div class="music_controll">
-            <center>
-              <span id="controll_title">Musik</span>
-
-              <hr>
-
-              <audio id="audiofile_music" autoplay preload="auto" loop>
-              <source src="files/song1.mp3" />
-            </audio>
-
-              <input id="music_controll_range" type="range" min="0" max="1" value="0.3" step="0.05">
-              <label id="ind-music_controll_range" for="music_controll_range">3</label>
-
-              <hr>
-
-              <button id="music_controll_mute_button" class="btn btn-primary" type="button" onclick="music_controll_playButton()" name="button">Pause</button>
-            </center>
-
-            <hr style="border:solid grey 1px;">
-
-            <center>
-              <span id="controll_title">Sound</span>
-
-              <hr>
-              <audio id="audiofile_sound_hit_water" preload="metadata">
-                <source src="files/hit_water.wav" />
-              </audio>
-
-              <audio id="audiofile_sound_hit_ship" preload="metadata">
-                <source src="files/hit_ship.wav" />
-              </audio>
-
-              <audio id="audiofile_sound_ship_down" preload="metadata">
-                <source src="files/ship_down.mp3" />
-              </audio>
-
-              <input id="sound_controll_range" type="range" min="0" max="1" value="0.3" step="0.05">
-              <label id="ind-sound_controll_range" for="sound_controll_range">3</label>
-              <!--
-              <hr>
-
-              <button id="sound_controll_mute_button" class="btn btn-primary" type="button" onclick="sound_controll_muteButton()" name="button">Mute</button>
-            -->
-            </center>
-
-            <script src="js/audio.js"></script>
-          </div>
-          <br>
-
-        </div>
-
-      </div>
-
-      <!-- SPIELBEREICH -->
-      <div class="col-md-10">
-        <div class="row">
-          <!-- FIXME: Bei einigen Fenstergrößen werden die Namen nicht vernünftig angezeigt -->
-          <center>
-            <table id="playerNames">
-              <tr>
-                <td>
-                  <p style="float:right" id="outputp1">{Spieler1}</p>
-                </td>
-                <td>
-                  <p>&nbsp; gegen &nbsp;</p>
-                </td>
-                <td>
-                  <p style="float:left" id="outputp2">{Spieler2}</p>
-                </td>
-              </tr>
-            </table>
-          </center>
-
-        </div>
-
-
-        <div class="row">
-          <!-- NOTE: id´s : [1 | 2 : Spielerseite 1 oder 2 ; 00 = A01 | 01 = A02 ; ... ; 55 = F06 ; ... ; 99 = K10 -->
-          <div class="col-md-6" id="hierTabelle1">
-            <!--Spielfeld 1-->
-          </div>
-          <div class="col-md-6" id="hierTabelle2">
-            <!--Spielfeld 2-->
-          </div>
-        </div>
-
-        <!--Ingame "Konsole"-->
-        <div class="row">
-          <p id="log"></p>
-        </div>
-      </div>
-
-    </div>
-    <br> <br> <br> <br>
-  </div>
-
-
-  <!-- MODAL Namen -->
-  <div class="modal fade" id="modal-1">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-
-        <!-- HEADER -->
-        <div class="modal-header">
-          <h3 id="title-modal" class="modal-title">Spielername</h3>
-        </div>
-
-        <!-- BODY -->
-        <div class="modal-body">
-          <form id="players_form">
-            <div class="form-group" id="formGrpSpieler1">
-              <label id="text-pl1" for="spieler1">Spieler</label>
-              <input type="text" name="spieler1" id="input1" placeholder="Spielername" required pattern="[A-Za-z0-9]{3,15}" />
-              <small class="form-text">3-15 Buchstaben</small>
+            <div class="col-md-10">
+                <h1 id="title-main">Schiffe versenken</h1>
             </div>
-            <div class="form-group" id="formGrpSpieler3">
-              <button type="submit" class="btn btn-default" name="button" onclick="setText()">Änderungen speichern</button>
+            <!-- NOTE: Footer Inhalt -->
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
             </div>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- MODAL END-->
 
-  <!-- MODAL About -->
-  <div class="modal fade" id="modal-2">
-    <div class="modal-dialog ">
-      <div class="modal-content">
+    <!-- MAIN-PART -->
+    <div class="container">
 
-        <!-- HEADER -->
-        <div class="modal-header">
-          <h3 id="title-modal" class="modal-title">ABOUT</h3>
+        <div class="row">
+
+            <!-- SIDEBAR -->
+            <div class="col-md-2">
+
+                <div class="row">
+                    <div class="div-score">
+                        <h3 id="title-highscore">Highscore</h3>
+                        <table id="table-highscore" class="table  table-hover">
+                            <tr>
+                                <th> Name </th>
+                                <th>Punkte</th>
+                            </tr>
+                            <tr>
+                                <td id="pl1"> 1. {Player 1}</td>
+                                <td id="po1">{points}</td>
+                            </tr>
+                            <tr>
+                                <td id="pl2">2. {Player 2} </td>
+                                <td id="po2">{points}</td>
+                            </tr>
+                            <tr>
+                                <td id="pl3">3. {Player 3}</td>
+                                <td id="po3">{points}</td>
+                            </tr>
+                            <tr>
+                                <td id="pl4">4. {Player 4}</td>
+                                <td id="po4">{points}</td>
+                            </tr>
+                            <tr>
+                                <td id="pl5">5. {Player 5}</td>
+                                <td id="po5">{points}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="music_controll">
+                        <center>
+                            <span id="controll_title">Musik</span>
+
+                            <hr>
+
+                            <audio id="audiofile_music" autoplay preload="auto" loop>
+                                <source src="files/song1.mp3" />
+                            </audio>
+
+                            <input id="music_controll_range" type="range" min="0" max="1" value="0.3" step="0.05">
+                            <label id="ind-music_controll_range" for="music_controll_range">3</label>
+
+                            <hr>
+
+                            <button id="music_controll_mute_button" class="btn btn-primary" type="button" onclick="music_controll_playButton()" name="button">Pause</button>
+                        </center>
+
+                        <hr style="border:solid grey 1px;">
+
+                        <center>
+                            <span id="controll_title">Sound</span>
+
+                            <hr>
+                            <audio id="audiofile_sound_hit_water" preload="metadata">
+                                <source src="files/hit_water.wav" />
+                            </audio>
+
+                            <audio id="audiofile_sound_hit_ship" preload="metadata">
+                                <source src="files/hit_ship.wav" />
+                            </audio>
+
+                            <audio id="audiofile_sound_ship_down" preload="metadata">
+                                <source src="files/ship_down.mp3" />
+                            </audio>
+
+                            <input id="sound_controll_range" type="range" min="0" max="1" value="0.3" step="0.05">
+                            <label id="ind-sound_controll_range" for="sound_controll_range">3</label>
+                            <!--
+                              <hr>
+
+                              <button id="sound_controll_mute_button" class="btn btn-primary" type="button" onclick="sound_controll_muteButton()" name="button">Mute</button>
+                            -->
+                        </center>
+
+                        <script src="js/audio.js"></script>
+                    </div>
+                    <br>
+
+                </div>
+
+            </div>
+
+            <!-- SPIELBEREICH -->
+            <div class="col-md-10">
+                <div class="row">
+                    <!-- FIXME: Bei einigen Fenstergrößen werden die Namen nicht vernünftig angezeigt -->
+                    <center>
+                        <table id="playerNames">
+                            <tr>
+                                <td>
+                                    <p style="float:right" id="outputp1">{Spieler1}</p>
+                                </td>
+                                <td>
+                                    <p>&nbsp; gegen &nbsp;</p>
+                                </td>
+                                <td>
+                                    <p style="float:left" id="outputp2">{Spieler2}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                </div>
+
+
+                <div class="row">
+                    <!-- NOTE: id´s : [1 | 2 : Spielerseite 1 oder 2 ; 00 = A01 | 01 = A02 ; ... ; 55 = F06 ; ... ; 99 = K10 -->
+                    <div class="col-md-6" id="hierTabelle1">
+                        <!--Spielfeld 1-->
+                    </div>
+                    <div class="col-md-6" id="hierTabelle2">
+                        <!--Spielfeld 2-->
+                    </div>
+                </div>
+
+                <!--Ingame "Konsole"-->
+                <div class="row">
+                    <p id="log"></p>
+                </div>
+            </div>
+
         </div>
-
-        <!-- BODY -->
-        <div class="modal-body">
-          <h2>Schiffe versenken</h2>
-          <h3>Entwickler</h3>
-          <ul>
-            <li>
-              Benjamin Schönke
-            </li>
-            <li>
-              Maximilian Stockbauer
-            </li>
-            <li>
-              Janneck Lange
-            </li>
-          </ul>
-          <p>Dieses Projekt wurde im Rahmen der Vorlesung WEB (2017/2018) im Studiengang 3IB entwickelt.</p>
-          <p>Alle Rechte am Quellcode liegen bei den Entwicklern, eine vervielfältigung ist ohne Erlaubnis nicht gestattet.</p>
-
-
-        </div>
-      </div>
+        <br> <br> <br> <br>
     </div>
-  </div>
-  <!-- MODAL END-->
 
-  <!-- MODAL GitHub -->
-  <div class="modal fade" id="modal-3">
-    <div class="modal-dialog ">
-      <div class="modal-content">
 
-        <!-- HEADER -->
-        <div class="modal-header">
-          <h3 id="title-modal" class="modal-title">GitHub</h3>
+    <!-- MODAL Namen -->
+    <div class="modal fade" id="modal-1">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">Spielername</h3>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+                    <form id="players_form">
+                        <div class="form-group" id="formGrpSpieler1">
+                            <label id="text-pl1" for="spieler1">Spieler</label>
+                            <input type="text" name="spieler1" id="input1" placeholder="Spielername" required pattern="[A-Za-z0-9]{3,15}" />
+                            <small class="form-text">3-15 Buchstaben</small>
+                        </div>
+                        <div class="form-group" id="formGrpSpieler3">
+                            <button type="submit" class="btn btn-default" name="button" onclick="setText()">Änderungen speichern</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <!-- BODY -->
-        <div class="modal-body">
-          <p>Dieses Projekt liegt im vollen Umfang auf GitHub:</p>
-          <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers">WebRanger-Repo</a> </p>
-
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- MODAL END-->
-  <!-- MODAL Verbindung  -->
-  <div class="modal fade" id="modal-4">
-    <div class="modal-dialog ">
-      <div class="modal-content">
+    <!-- MODAL END-->
+    <!-- MODAL About -->
+    <div class="modal fade" id="modal-2">
+        <div class="modal-dialog ">
+            <div class="modal-content">
 
-        <!-- HEADER -->
-        <div class="modal-header">
-          <h3 id="title-modal" class="modal-title">Verbindung verloren</h3>
-        </div>
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">ABOUT</h3>
+                </div>
 
-        <!-- BODY -->
-        <div class="modal-body">
-          <p>Die Verbindung zum Server ist unterbrochen.</p>
-          <button type="button" onclick="connect_error_button()" name="button">Verstanden</button>
+                <!-- BODY -->
+                <div class="modal-body">
+                    <h2>Schiffe versenken</h2>
+                    <h3>Entwickler</h3>
+                    <ul>
+                        <li>
+                            Benjamin Schönke
+                        </li>
+                        <li>
+                            Maximilian Stockbauer
+                        </li>
+                        <li>
+                            Janneck Lange
+                        </li>
+                    </ul>
+                    <p>Dieses Projekt wurde im Rahmen der Vorlesung WEB (2017/2018) im Studiengang 3IB entwickelt.</p>
+                    <p>Alle Rechte am Quellcode liegen bei den Entwicklern, eine vervielfältigung ist ohne Erlaubnis nicht gestattet.</p>
+
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- MODAL END-->
+    <!-- MODAL END-->
+    <!-- MODAL GitHub -->
+    <div class="modal fade" id="modal-3">
+        <div class="modal-dialog ">
+            <div class="modal-content">
 
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">GitHub</h3>
+                </div>
 
-  <!-- Latest compiled and minified JavaScript -->
+                <!-- BODY -->
+                <div class="modal-body">
+                    <p>Dieses Projekt liegt im vollen Umfang auf GitHub:</p>
+                    <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers">WebRanger-Repo</a> </p>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL END-->
+    <!-- MODAL Verbindung  -->
+    <div class="modal fade" id="modal-4">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">Verbindung verloren</h3>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+                    <p>Die Verbindung zum Server ist unterbrochen.</p>
+                    <button type="button" onclick="connect_error_button()" name="button">Verstanden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL END-->
+    <!-- Latest compiled and minified JavaScript -->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
 </body>
