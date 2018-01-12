@@ -64,6 +64,7 @@ $(document).ready(function() {
   socket.on('shipDown', (shipDownResult, x, y) => {
     if (shipDownResult) {
       newLog("Du hast ein Schiff versenkt.\n");
+      trigger_sound_ship_down();
       markShipAsDown(x, y);
     } else {
       //newLog("Schiff noch nicht versenkt.");
@@ -77,6 +78,7 @@ $(document).ready(function() {
 
   socket.on('playerTurn', isYourTurn => {
     if (isYourTurn) {
+      trigger_sound_your_turn();
       $('#2Label').css('color', 'red');
       $('#1Label').css('color', 'black');
       newLog("Du bist am Zug.");
