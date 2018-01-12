@@ -58,7 +58,7 @@ $(document).ready(function() {
 
   socket.on('shipDown', (shipDownResult, x, y) => {
     if (shipDownResult) {
-      newLog("Du hast ein Schiff versenkt.");
+      newLog("Du hast ein Schiff versenkt.\n");
       markShipAsDown(x, y);
     } else {
       //newLog("Schiff noch nicht versenkt.");
@@ -222,10 +222,10 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
   //document.getElementById("2" + x + "" + y).style.background = backgroundColorShip;
   var ind = x;
 
-  if (opponet.field[y][x] == 2) {
+  if (enemyField[y][x] == 2) {
 
     while (true) {
-      if (opponet.field[y][ind] == 2) {
+      if (enemyField[y][ind] == 2) {
         document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
         ind++;
       } else {
@@ -234,7 +234,7 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
     }
     var ind = x;
     while (true) {
-      if (opponet.field[y][ind] == 2) {
+      if (enemyField[y][ind] == 2) {
         document.getElementById("2" + ind + "" + y).style.background = backgroundColorShip;
         ind++;
       } else {
@@ -243,7 +243,7 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
     }
     var ind = y;
     while (true) {
-      if (opponet.field[y][ind] == 2) {
+      if (enemyField[y][ind] == 2) {
         document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
         ind++;
       } else {
@@ -252,7 +252,7 @@ function markShipAsDown(x, y) { // TODO: (Max) hier implemtieren
     }
     var ind = y;
     while (true) {
-      if (opponet.field[y][ind] == 2) {
+      if (enemyField[y][ind] == 2) {
         document.getElementById("2" + x + "" + ind).style.background = backgroundColorShip;
         ind++;
       } else {
