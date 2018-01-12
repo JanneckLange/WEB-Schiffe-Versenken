@@ -21,14 +21,13 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectory, config.game.public));
 });
 
-router.get('/api/v1/highscore', (req, res) => {
-  let currentHighscore = new Highscore();
-  if (currentHighscore.readHighscore(highscorePath)) {
+router.get('/api/highscore', (req, res) => {
+    var scores = Highscore.readHighscore(highscorePath);
     res.setHeader('Content-Type', 'application/json');
-    res.send(currentHighscore.scoresJSON);
-  } else {
-    res.status(500).send('Failed to read the highscore');
-  }
+    res.send(scores);
+  
+    //res.status(500).send('Failed to read the highscore');
+  
 });
 
 app.use(servestatic(publicDirectory));

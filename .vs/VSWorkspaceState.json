@@ -4,12 +4,13 @@
     "\\ownTest[Ben]",
     "\\ownTest[Ben]\\server",
     "\\Project",
-    "\\Project\\bootstrap-3.3.5-dist",
-    "\\Project\\bootstrap-3.3.5-dist\\js",
-    "\\Uebung",
-    "\\Uebung\\Aufgabe02",
-    "\\Uebung\\Aufgabe03"
+    "\\Project\\client",
+    "\\Project\\client\\public",
+    "\\Project\\client\\public\\css",
+    "\\Project\\client\\public\\js",
+    "\\Project\\server",
+    "\\Uebung"
   ],
-  "SelectedNode": "\\ownTest[Ben]\\server\\server.js",
+  "SelectedNode": "\\Project\\server",
   "PreviewInSolutionExplorer": false
 }

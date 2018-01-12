@@ -14,6 +14,7 @@ function getScore() {
     xhttp.onload = () => {
         var data = xhttp.response;
         if (data !== null) {
+            console.log(data);
             var array = getData(data);
             printData(array);
         }
@@ -29,6 +30,9 @@ function getScore() {
  * @param {any} text
  */
 function getData(text) {
+    //alert(" " + text[0]._name)
+    //alert(" " + text[1]._name)
+
     var j = 0;
     var array = [];
     var nameToInsert = 0;
@@ -39,8 +43,9 @@ function getData(text) {
     var arrayPos = 0;
     var arrayPos2 = 0;
 
+    //Prüfe wie viele Elemente vorhanden sind
     try {
-        while (text.highscore[j].name != 'undefined') {
+        while (text[j]._name != 'undefined') {
             j++;
         }
     } catch (e) {
@@ -48,15 +53,15 @@ function getData(text) {
     }
 
     for (var i = 0; i < j; i++) {
-        if (text.highscore[i].name != null) {
-            array[arrayPos] = text.highscore[i].points + " " + text.highscore[i].name;
+        if (text[i]._name != null) {
+            array[arrayPos] = text[i]._score + " " + text[i]._name;
             arrayPos++;
         }
     }
 
     for (var k = 0; k < j; k++) {
-        if (text.highscore[k].name != null) {
-            pointsA[arrayPos2] = parseInt(text.highscore[k].points);
+        if (text[k]._name != null) {
+            pointsA[arrayPos2] = parseInt(text[k]._score);
             arrayPos2++;
             pointsASize++;
         }
@@ -68,13 +73,13 @@ function getData(text) {
 
 
     for (var g = 0; g < j; g++) {
-        if (text.highscore[g].name != null) {
+        if (text[g]._name != null) {
 
             for (var m = 0; m < j; m++) {
-                if (pointsA[g] == text.highscore[m].points) {
+                if (pointsA[g] == text[m]._score) {
 
                     for (var n = 0; n < pointsASize; n++) {
-                        if (String(pointsA[n]).includes(text.highscore[m].name)) {
+                        if (String(pointsA[n]).includes(text[m]._name)) {
                             nameInPA = true;
                         }
                     }
@@ -86,7 +91,7 @@ function getData(text) {
 
             }
             if (!nameInPA) {
-                pointsA2[arrayPos2] = pointsA[g] + " " + text.highscore[nameToInsert].name;
+                pointsA2[arrayPos2] = pointsA[g] + " " + text[nameToInsert]._name;
                 arrayPos2++;
             }
             nameInPa = false;

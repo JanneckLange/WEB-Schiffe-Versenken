@@ -1,5 +1,6 @@
 const Player = require(__dirname + '/player');
 const Game = require(__dirname + '/game');
+const Highscore = require(__dirname + '/highscore');
 
 module.exports = class Game {
 
@@ -235,6 +236,7 @@ module.exports = class Game {
                     this.player2.increaseScore();
                 }
                 if (opponent.field[y][x] == 1) { //Treffer
+                    Highscore.updateScore(40, currentPlayer.name);
                     playerSocket.emit('fireResult', true);
                     opponentSocket.emit('fireResultEnemy', x, y, true);
                     opponent.field[y][x] = 2;
@@ -245,6 +247,7 @@ module.exports = class Game {
                         if (_checkWin(opponent.field)) {
                             playerSocket.emit('won', currentPlayer.score); // -------------------------------------------------
                             opponentSocket.emit('lost', currentPlayer.score);
+                            Highscore.updateScore(currentPlayer.score, currentPlayer.name);
                         }
                     }
 
