@@ -118,6 +118,10 @@ $(document).ready(function() {
     $('#modal-4').modal('show');
   });
 
+  socket.on('msg', msg => {
+    newLog(msg);
+  });
+
   $('#modal-1').modal('show');
 });
 
