@@ -22,12 +22,13 @@ router.get('/', (req, res) => {
 });
 
 router.get('/api/highscore', (req, res) => {
-    var scores = Highscore.readHighscore(highscorePath);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(scores);
-  
-    //res.status(500).send('Failed to read the highscore');
-  
+  var scores = Highscore.readHighscore(highscorePath);
+  res.setHeader('Content-Type', 'application/json');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.send(scores);
+
+  //res.status(500).send('Failed to read the highscore');
+
 });
 
 app.use(servestatic(publicDirectory));
