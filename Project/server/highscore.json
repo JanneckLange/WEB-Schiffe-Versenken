@@ -1,1 +1,22 @@
-[{"_name":"Ben","_score":32},{"_name":"Janneck","_score":30},{"_name":"Alex","_score":51}]
+[{
+  "_name": "Alex",
+  "_score": 51
+}, {
+  "_name": "Ben",
+  "_score": 52
+}, {
+  "_name": "Janneck",
+  "_score": 53
+}, {
+  "_name": "Janneck",
+  "_score": 45
+}, {
+  "_name": "Ben",
+  "_score": 57
+}, {
+  "_name": "Janneck",
+  "_score": 48
+}, {
+  "_name": "Janneck",
+  "_score": 56
+}]
