@@ -7,14 +7,19 @@ module.exports = class Game {
    *
    */
   constructor() {
+    //Verbindung zum Spieler
     this.player1Socket;
     this.player2Socket;
 
-    this.p1C = false;
-    this.p2C = false;
+    this._gameOver = true;
 
+    //Daten des Spielers
     this.player1;
     this.player2;
+  }
+
+  set gameOver(gameOver) {
+    this._gameOver = gameOver;
   }
 
   /**
@@ -111,20 +116,31 @@ module.exports = class Game {
       console.log("_checkWin return " + result);
       return result;
     }; // _checkDown
+    var _gameOver = function(playerSocket, opponentSocket, currentPlayer, opponent, Game) {
+      Game.gameOver = true;
+      playerSocket.emit('won', currentPlayer.score);
+      opponentSocket.emit('lost', currentPlayer.score, opponent.field);
+      console.log("win: " + currentPlayer.name + ", score: " + currentPlayer.score);
+      Highscore.updateScore(currentPlayer.score, currentPlayer.name); // Gewinner-Score an Highscore updaten
+      console.log("Socket: " + Game.player1Socket);
+      Game.player1Socket = undefined;
+      Game.player2Socket = undefined;
+      console.log("GameOver, Spiel zurückgesetzt.");
+      console.log("______________________________________________________________________");
+    }
 
     console.log('user connected');
 
-    if (!this.p1C) { // erster Spieler verbindet
+    if (!this.player1Socket) { // erster Spieler verbindet
       console.log('Player 1 connected');
       this.player1Socket = socket;
-      this.p1C = true;
+
       this.player1 = new Player('player 1');
 
       this.player1Socket.on('disconnect', () => {
         console.log('Player1 hat das Spiel verlassen');
         this.player1Socket = undefined;
-        this.p1C = false;
-        if (this.p2C) {
+        if (this.player2Socket) {
           this.player2Socket.emit('enemyDisconnect');
         }
       });
@@ -136,21 +152,21 @@ module.exports = class Game {
         }
       });
 
-    } else if (!this.p2C) { //zweiter Spieler verbindet
+    } else if (!this.player2Socket) { //zweiter Spieler verbindet
       console.log('Player 2 connected');
       this.player2Socket = socket;
-      this.p2C = true;
+
       this.player2 = new Player('player 2');
 
       this._makeGamePlayable();
-      this._makeFirePossible(this.player1, _checkDown, _checkWin);
-      this._makeFirePossible(this.player2, _checkDown, _checkWin);
+      this._makeFirePossible(this.player1, _checkDown, _checkWin, _gameOver);
+      this._makeFirePossible(this.player2, _checkDown, _checkWin, _gameOver);
 
       this.player2Socket.on('disconnect', () => {
         console.log('Player2 hat das Spiel verlassen');
         this.player2Socket = undefined;
-        this.p2C = false;
-        if (this.p1C) {
+
+        if (this.player1Socket) {
           this.player1Socket.emit('enemyDisconnect');
         }
       });
@@ -162,7 +178,7 @@ module.exports = class Game {
         }
       });
     } else { // dritter Spieler verbindet
-      console.log("p3C connect.... p1C: " + this.p1C + ", p2C: " + this.p2C);
+      console.log("p3C connect.... ");
       socket.emit('msg', "Es läuft bereits ein Spiel, versuche es später noch einmal.");
     }
   }
@@ -185,7 +201,7 @@ module.exports = class Game {
    * @param {any} _checkDown
    * @param {any} _checkWin
    */
-  _makeFirePossible(currentPlayer, _checkDown, _checkWin) {
+  _makeFirePossible(currentPlayer, _checkDown, _checkWin, _gameOver) {
 
     var playerSocket;
     var opponentSocket;
@@ -205,13 +221,14 @@ module.exports = class Game {
     }
     playerSocket.on('fire', (x, y) => {
       console.log("Fire detected: x:" + x + " y:" + y);
-      if (currentPlayer.id === this.turn) {
+      if (currentPlayer.id === this.turn && !this.gameOver) {
         if (currentPlayer.id === this.player1.id) {
           this.player1.increaseScore();
         } else {
           this.player2.increaseScore();
         }
         if (opponent.field[y][x] == 1) { //Treffer
+
           playerSocket.emit('fireResult', true);
           opponentSocket.emit('fireResultEnemy', x, y, true);
           opponent.field[y][x] = 2;
@@ -220,10 +237,7 @@ module.exports = class Game {
             console.log("Schiff down");
             playerSocket.emit('shipDown', true, x, y);
             if (_checkWin(opponent.field)) {
-              playerSocket.emit('won', currentPlayer.score);
-              opponentSocket.emit('lost', currentPlayer.score, opponent.field);
-              console.log("win: " + currentPlayer.name + ", score: " + currentPlayer.score);
-              Highscore.updateScore(currentPlayer.score, currentPlayer.name); // Gewinner-Score an Highscore updaten
+              _gameOver(playerSocket, opponentSocket, currentPlayer, opponent, this);
             }
           }
 
@@ -238,6 +252,8 @@ module.exports = class Game {
       }
     });
   }
+
+
 
   /**
    * Test / Controlling (gebe Spielfeld auf die Konsole)
@@ -261,6 +277,7 @@ module.exports = class Game {
    * Benachrichtige Spieler (Zug, Schiffe) und wähle Startspieler aus
    */
   _makeGamePlayable() {
+    this.gameOver = false;
     this.player1Socket.emit('myShips', this.player1.field);
     this.player2Socket.emit('myShips', this.player2.field);
     switch (Math.floor(Math.random() * (1 - 0 + 1)) + 0) {
