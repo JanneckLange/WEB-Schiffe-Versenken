@@ -35,6 +35,7 @@ app.use(servestatic(publicDirectory));
 
 app.use('/', router);
 
+// iosocket
 io.on('connection', socket => {
 	game.startGame(socket);
 });
