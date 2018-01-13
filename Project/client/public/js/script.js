@@ -1,11 +1,12 @@
 const HIT = true;
 const MISS = false;
 
-
 //bereit zu Spielen
 var nameGesetzt = false;
 var gameOver = false;
 
+var ownScore = 0;
+var enemyScore = 0;
 var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
 
@@ -42,6 +43,7 @@ $(document).ready(function() {
 
 
   socket.on('fireResult', result => {
+    updateScore(++ownScore, 2);
     markHit(result, 2, lastFireX, lastFireY);
     if (result) {
       newLog("Dein Schuss hat getroffen, du bist nocheinmal dran.");
@@ -53,6 +55,7 @@ $(document).ready(function() {
   });
 
   socket.on('fireResultEnemy', (x, y, result) => {
+    updateScore(++enemyScore, 1);
     markHit(result, 1, x, y);
     if (result) {
       newLog("Der Schuss deines Gegners hat dich getroffen.");
@@ -75,7 +78,7 @@ $(document).ready(function() {
 
   socket.on('myShips', playground => {
     ownField = playground;
-    printShips(playground);
+    printShips(playground, 1);
   });
 
   socket.on('playerTurn', isYourTurn => {
@@ -97,11 +100,12 @@ $(document).ready(function() {
     gameOver = true;
   });
 
-  socket.on('lost', highscore => {
+  socket.on('lost', (highscore, playground) => {
     $('#tg').css('border-color', 'red');
     document.getElementById('body').style.backgroundColor = 'red';
     newLog("Du hast verloren! Der Score deines Gegners: " + highscore + "\n");
     gameOver = true;
+    printShips(playground, 2);
   });
 
   socket.on('refreshName', name => {
@@ -138,6 +142,17 @@ function connect_error_button() {
   location.reload();
 }
 
+function updateScore(score, player) {
+  var text = "Score: " + score;
+  var scoreField;
+  if (player == 1) {
+    scoreField = document.getElementById("score1");
+  } else {
+    scoreField = document.getElementById("score2");
+  }
+  scoreField.innerHTML = text;
+}
+
 /**
  * Scrollfenster nach unten scrollen
  */
@@ -169,14 +184,24 @@ function createTable(table) {
 
       if (i == 0 && j == 0) { //oben
         currentCell = document.createElement("td");
-        currentCell.setAttribute("colspan", 10);
+        currentCell.setAttribute("colspan", 6);
+        currentText = document.createTextNode("");
+        var newP = document.createElement("p");
         if (table == 1) {
-          currentText = document.createTextNode("Dein Spielfeld");
+          newP.appendChild(document.createTextNode("Dein Spielfeld"));
         } else {
-          currentText = document.createTextNode("Gegnerisches Spielfeld");
+          newP.appendChild(document.createTextNode("Gegnerisches Spielfeld"));
         }
-
+        currentCell.appendChild(newP);
         currentCell.id = table + "Label";
+      } else if (i == 0 && j == 6) {
+        currentCell = document.createElement("td");
+        currentCell.setAttribute("colspan", 4);
+        var newP = document.createElement("p");
+        newP.appendChild(document.createTextNode("Score: 0"));
+        newP.id = "score" + table;
+        currentCell.appendChild(newP);
+
       } else if (i == 0) {
 
         //durch colspan bereits fertig -> nichts machen
@@ -323,11 +348,11 @@ function markShipAsDown(x, y) {
 }
 
 //Setze eigene Schiffe (nur grafisch) auf dem Spielfeld
-function printShips(playground) {
+function printShips(playground, player) {
   for (y = 0; y < 10; y++) {
     for (x = 0; x < 10; x++) {
       if (playground[y][x]) {
-        document.getElementById('1' + x + y).style.backgroundColor = '#000000';
+        document.getElementById(player + "" + x + "" + y).style.backgroundColor = '#000000';
       }
     }
   }
