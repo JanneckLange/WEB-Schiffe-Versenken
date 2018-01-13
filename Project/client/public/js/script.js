@@ -1,5 +1,6 @@
 const HIT = true;
 const MISS = false;
+const test
 
 //bereit zu Spielen
 var nameGesetzt = false;
@@ -9,6 +10,7 @@ var backgroundColorWater = "#0071a5";
 var backgroundColorShip = "#000000";
 
 var socket;
+var socket2;
 var lastFireX;
 var lastFireY;
 
