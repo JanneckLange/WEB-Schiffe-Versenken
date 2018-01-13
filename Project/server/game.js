@@ -119,7 +119,7 @@ module.exports = class Game {
     var _gameOver = function(playerSocket, opponentSocket, currentPlayer, opponent, Game) {
       Game.gameOver = true;
       playerSocket.emit('won', currentPlayer.score);
-      opponentSocket.emit('lost', currentPlayer.score, opponent.field);
+	  opponentSocket.emit('lost', currentPlayer.score, currentPlayer.field);
       console.log("win: " + currentPlayer.name + ", score: " + currentPlayer.score);
       Highscore.updateScore(currentPlayer.score, currentPlayer.name); // Gewinner-Score an Highscore updaten
       console.log("Socket: " + Game.player1Socket);
