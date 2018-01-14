@@ -113,6 +113,11 @@ $(document).ready(function () {
 		printShips(playground, 2);
 	});
 
+	socket.on('ownShipDown', () => {
+		trigger_sound_ship_down();
+		newLog("Eins Deiner Schiffe wurde versenkt!\n");
+	})
+
 	socket.on('refreshName', name => {
 		newLog("Dein Gegner hat seinen Namen gewählt, er heißt: " + name + "\n");
 		document.getElementById("outputp2").innerHTML = name;
@@ -378,7 +383,7 @@ function markShipAsDown(x, y) {
 function printShips(playground, player) {
 	for (y = 0; y < 10; y++) {
 		for (x = 0; x < 10; x++) {
-			if (playground[y][x] == 1) {
+			if (playground[y][x] == 1 || playground[y][x] == 2) {
 				document.getElementById(player + "" + x + "" + y).style.backgroundColor = '#000000';
 			}
 		}

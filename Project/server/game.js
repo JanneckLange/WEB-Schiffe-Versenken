@@ -243,6 +243,7 @@ module.exports = class Game {
 					if (_checkDown(x, y, opponent.field)) {
 						console.log("Schiff down");
 						playerSocket.emit('shipDown', true, x, y);
+						opponentSocket.emit('ownShipDown');
 						if (_checkWin(opponent.field)) {
 							_gameOver(playerSocket, opponentSocket, currentPlayer, opponent, this);
 						}
