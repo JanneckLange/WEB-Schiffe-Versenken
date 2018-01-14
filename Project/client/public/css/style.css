@@ -6,6 +6,10 @@
   font-size: 30px;
 }
 
+button {
+    margin: 2px;
+}
+
 .div-score {
   background: rgba(255, 255, 255, 0.5);
   border: 1px;
