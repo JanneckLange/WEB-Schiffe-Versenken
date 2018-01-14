@@ -10,7 +10,7 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 | 🎨 | `:art:` | Verbesserung von **Format/Struktur** des Codes |
 | 📰 | `:newspaper:` | Erstellen einer **neuen Datei** |
 | 📝 | `:pencil:` | **kleine Änderungen** am Code oder Text |
-| :racehorse: | `:racehorse:` | Verbesserung der **performance** |
+| 🐎 | `:racehorse:` | Verbesserung der **performance** |
 | 📚 | `:books:` | Schreiben von **Kommentar** |
 | 🐛 | `:bug:` | Melden eines **bug**, with `@FIXME` Comment Tag |
 | 🚑 | `:ambulance:` | Beheben eines **bug** |
