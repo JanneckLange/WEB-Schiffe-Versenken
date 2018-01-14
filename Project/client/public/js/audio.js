@@ -6,7 +6,21 @@ document.getElementById("music_control_range").addEventListener("mouseup", funct
 document.getElementById("music_control_range").addEventListener("keyup", function () {
 	music_control_volume_control();
 });
-document.getElementById("audiofile_music").volume = 0.3;
+
+var music_song1 = document.getElementById("audiofile_music_song1");
+var music_before_fight = document.getElementById("audiofile_music_before_fight");
+var music_lost = document.getElementById("audiofile_music_lost");
+var music_win = document.getElementById("audiofile_music_win");
+var music_one_ship_left = document.getElementById("audiofile_music_one_ship_left");
+
+var played_music = music_before_fight;
+
+// Voreingestellte Lautstärke für die Musik
+music_song1.volume = 0.5;
+music_before_fight.volume = 0.3;
+music_lost.volume = 0.3;
+music_win.volume = 0.3;
+music_one_ship_left = 0.3;
 
 /**
  * Musik: Lautstärkeregler
@@ -22,14 +36,14 @@ function music_control_volume_control() {
  * Musik: Wiedergabe
  */
 function music_control_play() {
-	document.getElementById("audiofile_music").play();
+	played_music.play();
 }
 
 /**
  * Musik: Pause
  */
 function music_control_pause() {
-	document.getElementById("audiofile_music").pause();
+	played_music.pause();
 }
 
 /**
@@ -37,7 +51,7 @@ function music_control_pause() {
  * @param {any} value übergebene Lautstärke
  */
 function music_control_volume(value) {
-	document.getElementById("audiofile_music").volume = value;
+	played_music.volume = value;
 }
 
 var pause = false;
@@ -46,7 +60,7 @@ var pause = false;
  * Musik: Wiedergabe- und Pauseknopf
  */
 function music_control_playButton() {
-	var elem = document.getElementById("music_control_mute_button");
+	var elem = played_music;
 	if (pause) {
 		elem.firstChild.data = "Pause";
 		music_control_play();
@@ -56,6 +70,71 @@ function music_control_playButton() {
 		music_control_pause();
 		pause = true;
 	}
+}
+
+/**
+ * Trigger: Musik: Spiel läuft
+ */
+function trigger_music_song1() {
+	play_music(music_song1);
+}
+
+///**
+// * Trigger: Musik: Spiel läuft noch nicht
+// */
+//function trigger_music_before_fight() {
+//	play_music(music_win);
+//}
+
+/**
+ * Trigger: Musik: Nur noch ein Schiff vorhanden
+ */
+function trigger_music_one_ship_left() {
+	play_music(music_one_ship_left);
+}
+
+/**
+ * Trigger: Musik: Spiel verloren
+ */
+function trigger_music_lost() {
+	play_music(music_lost);
+}
+
+/**
+ * Trigger: Musik: Spiel gewonnen
+ */
+function trigger_music_win() {
+	play_music(music_win);
+}
+
+/**
+ * Spielt die übergebene Musik und stoppt die anderen Titel
+ * @param {any} song
+ */
+function play_music(song) {
+	if (song != music_before_fight){
+		stop_music(music_before_fight);
+	}
+	if (song != music_lost) {
+		stop_music(music_lost);
+	}
+	if (song != music_song1) {
+		stop_music(music_song1);
+	}
+	if (song != music_win) {
+		stop_music(music_win);
+	}
+	song.play();
+	played_music = song;
+}
+
+/**
+ * Stoppt die Musik und setzt sie zurück
+ * @param {any} song
+ */
+function stop_music(song) {
+	song.pause();
+	song.currentTime = 0;
 }
 
 //Sound

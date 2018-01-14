@@ -41,6 +41,9 @@ $(document).ready(function () {
 	newLog("Warte auf Gegenspieler.");
 	//document.getElementById("log").innerHTML = "Warte auf Gegenspieler";
 
+	socket.on('gameReady', () => {
+		trigger_music_song1();
+	});
 
 	socket.on('fireResult', result => {
 		updateScore(++ownScore, 2);
@@ -96,6 +99,7 @@ $(document).ready(function () {
 	socket.on('won', highscore => {
 		$('#tg').css('border-color', 'green');
 		document.getElementById('body').style.backgroundColor = 'green';
+		trigger_music_win();
 		newLog("Du hast gewonnen! Dein Score: " + highscore + "\n");
 		gameOver = true;
 	});
@@ -103,6 +107,7 @@ $(document).ready(function () {
 	socket.on('lost', (highscore, playground) => {
 		$('#tg').css('border-color', 'red');
 		document.getElementById('body').style.backgroundColor = 'red';
+		trigger_music_lost();
 		newLog("Du hast verloren! Der Score deines Gegners: " + highscore + "\n");
 		gameOver = true;
 		printShips(playground, 2);

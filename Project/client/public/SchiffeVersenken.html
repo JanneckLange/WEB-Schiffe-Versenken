@@ -101,8 +101,20 @@
 
                             <hr>
 
-                            <audio id="audiofile_music" autoplay preload="auto" loop>
-                                <source src="files/song1.mp3" />
+                            <audio id="audiofile_music_song1" preload="auto" loop>
+                                <source src="files/music_song1.mp3" />
+                            </audio>
+                            <audio id="audiofile_music_before_fight" autoplay preload="auto" loop>
+                                <source src="files/music_before_fight.mp3" />
+                            </audio>
+                            <audio id="audiofile_music_lost" preload="auto" loop>
+                                <source src="files/music_lost.mp3" />
+                            </audio>
+                            <audio id="audiofile_music_win" preload="auto" loop>
+                                <source src="files/music_win.mp3" />
+                            </audio>
+                            <audio id="audiofile_music_one_ship_left" preload="auto" loop>
+                                <source src="files/music_one_ship_left.mp3" />
                             </audio>
 
                             <input id="music_control_range" type="range" min="0" max="1" value="0.3" step="0.05">
@@ -119,19 +131,19 @@
                             <span id="control_title">Sound</span>
 
                             <hr>
-                            <audio id="audiofile_sound_hit_water" preload="metadata">
-                                <source src="files/hit_water.wav" />
+                            <audio id="audiofile_sound_hit_water" preload="auto">
+                                <source src="files/sfx_hit_water.wav" />
                             </audio>
 
-                            <audio id="audiofile_sound_hit_ship" preload="metadata">
-                                <source src="files/hit_ship.wav" />
+                            <audio id="audiofile_sound_hit_ship" preload="auto">
+                                <source src="files/sfx_hit_ship.wav" />
                             </audio>
 
-                            <audio id="audiofile_sound_ship_down" preload="metadata">
-                                <source src="files/ship_down.wav" />
+                            <audio id="audiofile_sound_ship_down" preload="auto">
+                                <source src="files/sfx_ship_down.wav" />
                             </audio>
-                            <audio id="audiofile_sound_your_turn" preload="metadata">
-                                <source src="files/your_turn.wav" />
+                            <audio id="audiofile_sound_your_turn" preload="auto">
+                                <source src="files/sfx_your_turn.wav" />
                             </audio>
 
                             <input id="sound_control_range" type="range" min="0" max="1" value="0.3" step="0.05">
