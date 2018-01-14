@@ -128,7 +128,7 @@ module.exports = class Game {
 			Game.player2Socket = undefined;
 			console.log("GameOver, Spiel zurückgesetzt.");
 			console.log("______________________________________________________________________");
-		}
+		};
 
 		console.log('user connected');
 

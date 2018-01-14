@@ -1,6 +1,5 @@
 const fs = require('fs');
 const highscorePath = __dirname + '/highscore.json';
-const highscoreLength = 5;
 
 /**
  * Liest den aktuellen Highscore aus der Datei und gibt diesen als Array zurück.
