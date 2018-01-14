@@ -7,7 +7,7 @@
 }
 
 button {
-    margin: 2px;
+  margin: 2px;
 }
 
 .div-score {
@@ -15,7 +15,7 @@ button {
   border: 1px;
   border-color: black;
   border-style: solid;
-  width: 200px;
+  width: 100%;
 }
 
 #title-highscore {
@@ -107,7 +107,7 @@ div.hitWater {
 }
 
 .music_control {
-  width: 200px;
+  width: 100%;
   border: 1px;
   border-color: black;
   border-style: solid;
