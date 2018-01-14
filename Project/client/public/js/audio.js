@@ -105,6 +105,7 @@ function trigger_music_lost() {
  */
 function trigger_music_win() {
 	play_music(music_win);
+	trigger_sound_win();
 }
 
 /**
@@ -150,11 +151,13 @@ var sound_hit_water = document.getElementById("audiofile_sound_hit_water");
 var sound_hit_ship = document.getElementById("audiofile_sound_hit_ship");
 var sound_ship_down = document.getElementById("audiofile_sound_ship_down");
 var sound_your_turn = document.getElementById("audiofile_sound_your_turn");
+var sound_win = document.getElementById("audiofile_sound_win");
 // Voreingestellte Lautstärke für die Soundeffekte
 sound_hit_water.volume = 0.3;
 sound_hit_ship.volume = 0.3;
 sound_ship_down.volume = 0.3;
 sound_your_turn.volume = 0.3;
+sound_win.volume = 0.3;
 
 var mute = false;
 
@@ -192,6 +195,7 @@ function sound_control_play() {
 	sound_hit_ship.mute = false;
 	sound_ship_down.mute = false;
 	sound_your_turn.mute = false;
+	sound_win.mute = false;
 }
 
 /**
@@ -202,6 +206,7 @@ function sound_control_pause() {
 	sound_hit_ship.mute = true;
 	sound_ship_down.mute = true;
 	sound_your_turn.mute = true;
+	sound_win.mute = true;
 }
 
 /**
@@ -213,6 +218,7 @@ function sound_control_volume(value) {
 	sound_hit_ship.volume = value;
 	sound_ship_down.volume = value;
 	sound_your_turn.volume = value;
+	sound_win.volume = value;
 }
 
 /**
@@ -241,4 +247,11 @@ function trigger_sound_ship_down() {
  */
 function trigger_sound_your_turn() {
 	sound_your_turn.play();
+}
+
+/**
+ * Soundeffekt: Applause
+ */
+function trigger_sound_win() {
+	sound_win.play();
 }

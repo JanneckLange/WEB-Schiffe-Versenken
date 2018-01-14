@@ -47,6 +47,8 @@
             </div>
             <!-- NOTE: Footer Inhalt -->
             <div class="col-md-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-6">Neues Spiel</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-5">Spielanleitung</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
             </div>
@@ -144,6 +146,9 @@
                             </audio>
                             <audio id="audiofile_sound_your_turn" preload="auto">
                                 <source src="files/sfx_your_turn.wav" />
+                            </audio>
+                            <audio id="audiofile_sound_win" preload="auto">
+                                <source src="files/sfx_win.wav" />
                             </audio>
 
                             <input id="sound_control_range" type="range" min="0" max="1" value="0.3" step="0.05">
@@ -256,6 +261,7 @@
                     </ul>
                     <p>Dieses Projekt wurde im Rahmen der Vorlesung WEB (2017/2018) im Studiengang 3IB entwickelt.</p>
                     <p>Alle Rechte am Quellcode liegen bei den Entwicklern, eine vervielfältigung ist ohne Erlaubnis nicht gestattet.</p>
+                    <p>ACHTUNG! Es wird unter Umständen urheberrechtliche Musik verwendet. Alle Rechte liegen bei dessen Eigentümern.</p>
 
 
                 </div>
@@ -296,7 +302,68 @@
                 <!-- BODY -->
                 <div class="modal-body">
                     <p>Die Verbindung zum Server ist unterbrochen.</p>
-                    <button type="button" onclick="connect_error_button()" name="button">Verstanden</button>
+                    <button type="button" onclick="new_game_button()" name="button">Verstanden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL END-->
+    <!-- MODAL Spielanleitung -->
+    <div class="modal fade" id="modal-5">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">Spielanleitung</h3>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+                    <h2>Schiffe versenken</h2>
+                    <h3>Spielanleitung</h3>
+                    <h4>Spielziel</h4>
+                    <p>Jeder Spieler verfügt über ein Schlachtschiff (5 Kästchen), zwei Kreuzer (4 Kästchen), drei Zerstörer (3 Kästchen) und vier U-Boote (2 Kästchen). Diese gilt es beim Gegner so schnell wie möglich zu finden und zu zerstören. Wer zuerst alle gegnerischen Schiffe versenkt hat, hat gewonnen!</p>
+                    <h4>Spielfelder</h4>
+                    <p>Das Spiel ist in zwei mal 10x10 Spielfelder aufgeteilt. Das erste Spielfeld ist Ihr eigenes mit Ihren eigenen Schiffen, die bereits zufällig platziert wurden. Das zweite Spielfeld ist das Ihres Gegners.</p>
+                    <p>Generell gilt, dass sich mehrere Schiffe nicht (außer an den Ecken) berühren dürfen. Achten Sie bei Ihrer Taktik daruaf!</p>
+                    <p>Sobald sich Ihr Gegenspieler verbunden hat und sie am Zug sind, sollten Sie das Feuer auf ihn eröffnen! Klicken Sie dazu auf ein gegnerisches Feld.</p>
+                    <h4>Markierungen</h4>
+                    <ul>
+                        <li>
+                            Blaues Feld: Wasser
+                        </li>
+                        <li>
+                            Blaues Feld mit schwarzem Punkte: Ein Schuss, der daneben ging!
+                        </li>
+                        <li>
+                            Blaues Feld mit rotem Punkt: Das war ein Volltreffer!
+                        </li>
+                        <li>
+                            Schwarze Felder, welche zusammenhängen: Ein versenktes Schiff.
+                        </li>
+                    </ul>
+                    <h4>Schussreihenfolge</h4>
+                    <p>Im Log unten wird Ihnen angezeigt, wer gerade am Zug ist. Die Spieler wechseln sich beim Schießen ab. Wer ein Schiff getroffen bzw. versenkt hat, darf noch mal schießen!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL END-->
+    <!-- MODAL Verbindung  -->
+    <div class="modal fade" id="modal-6">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+
+                <!-- HEADER -->
+                <div class="modal-header">
+                    <h3 id="title-modal" class="modal-title">Neues Spiel</h3>
+                </div>
+
+                <!-- BODY -->
+                <div class="modal-body">
+                    <p>Möchten Sie wirklich ein neues Spiel starten?</p>
+                    <button type="button" onclick="new_game_button()" name="button">Ja</button>
                 </div>
             </div>
         </div>

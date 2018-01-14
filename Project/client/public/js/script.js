@@ -143,7 +143,7 @@ $(document).ready(function () {
 /**
  * Lädt die Seite neu, wenn Modal bestätigt wurde
  */
-function connect_error_button() {
+function new_game_button() {
 	location.reload();
 }
 
