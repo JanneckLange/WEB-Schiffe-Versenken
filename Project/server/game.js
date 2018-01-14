@@ -3,9 +3,6 @@ const Highscore = require(__dirname + '/highscore');
 
 module.exports = class Game {
 
-	/**
-	 *
-	 */
 	constructor() {
 		//Verbindung zum Spieler
 		this.player1Socket;
@@ -18,13 +15,12 @@ module.exports = class Game {
 		this.player2;
 	}
 
-
 	set gameOver(gameOver) {
 		this._gameOver = gameOver;
 	}
 
 	/**
-	 *
+	 * Startet das Spiel, sobald eine Verbindung zum Server aufgebaut wurde.
 	 * @param {any} socket
 	 */
 	startGame(socket) {
@@ -163,8 +159,6 @@ module.exports = class Game {
 			this._makeFirePossible(this.player1, _checkDown, _checkWin, _gameOver);
 			this._makeFirePossible(this.player2, _checkDown, _checkWin, _gameOver);
 
-
-
 			this.player2Socket.on('disconnect', () => {
 				console.log('Player2 hat das Spiel verlassen');
 				this.player2Socket = undefined;
@@ -191,7 +185,7 @@ module.exports = class Game {
 	}
 
 	/**
-	 * Benachrichtige aktuellen Spieler
+	 * Benachrichtige aktuellen Spieler, wer dran ist
 	 */
 	_emitTurn() {
 		if (this.turn == this.player1.id) {
@@ -203,7 +197,7 @@ module.exports = class Game {
 		}
 	}
 	/**
-	 *
+	 * 
 	 * @param {any} currentPlayer
 	 * @param {any} _checkDown
 	 * @param {any} _checkWin

@@ -51,7 +51,7 @@ function generateShip(shipLength) {
 }
 
 /**
- * 
+ * Platziert das übergebene Schiff zufällig
  * @param {any} ship
  */
 function placeShipRandom(ship) {
@@ -99,9 +99,9 @@ function placeShipRandom(ship) {
 }
 
 /**
- * Prüfe, ob das schiff auf dem Spielfeld platziert werden kann
- * @param {any} playground
- * @param {any} ship
+ * Prüfe, ob das Schiff auf dem Spielfeld platziert werden kann
+ * @param {any} playground Spielfeld
+ * @param {any} ship Schiff
  */
 function checkShipPos(playground, ship) {
 	switch (ship.dir) {
@@ -176,9 +176,9 @@ function checkShipPos(playground, ship) {
 }
 
 /**
- * 
- * @param {any} playground
- * @param {any} ship
+ * Platziert das Schiff auf dem Spielfeld
+ * @param {any} playground Spielfeld
+ * @param {any} ship Schiff
  */
 function placeShip(playground, ship) {
 	switch (ship.dir) {
@@ -196,7 +196,7 @@ function placeShip(playground, ship) {
 }
 
 /**
- * 
+ * Generiert eine zufällige Nummer zwischen min und max
  * @param {any} min
  * @param {any} max
  */
