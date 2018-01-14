@@ -378,7 +378,7 @@ function markShipAsDown(x, y) {
 function printShips(playground, player) {
 	for (y = 0; y < 10; y++) {
 		for (x = 0; x < 10; x++) {
-			if (playground[y][x]==1) {
+			if (playground[y][x] == 1) {
 				document.getElementById(player + "" + x + "" + y).style.backgroundColor = '#000000';
 			}
 		}

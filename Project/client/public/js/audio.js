@@ -225,6 +225,8 @@ function sound_control_volume(value) {
  * Soundeffekt: Schuss ins Wasser
  */
 function trigger_sound_hit_water() {
+	sound_hit_water.pause();
+	sound_hit_water.currentTime = 0;
 	sound_hit_water.play();
 }
 
@@ -232,6 +234,8 @@ function trigger_sound_hit_water() {
  * Soundeffekt: Schiffstreffer
  */
 function trigger_sound_hit_ship() {
+	sound_hit_ship.pause();
+	sound_hit_ship.currentTime = 0;
 	sound_hit_ship.play();
 }
 
@@ -239,6 +243,8 @@ function trigger_sound_hit_ship() {
  * Soundeffekt: Schiff versenkt
  */
 function trigger_sound_ship_down() {
+	sound_ship_down.pause();
+	sound_ship_down.currentTime = 0;
 	sound_ship_down.play();
 }
 
@@ -246,6 +252,8 @@ function trigger_sound_ship_down() {
  * Soundeffekt: Signal, dass man dran ist
  */
 function trigger_sound_your_turn() {
+	sound_your_turn.pause();
+	sound_your_turn.currentTime = 0;
 	sound_your_turn.play();
 }
 
