@@ -1,3 +1,25 @@
+# Spielanleitung
+
+## Spielziel
+
+    Jeder Spieler verfügt über ein Schlachtschiff (5 Kästchen), zwei Kreuzer (4 Kästchen), drei Zerstörer (3 Kästchen) und vier U-Boote (2 Kästchen). Diese gilt es beim Gegner so schnell wie möglich zu finden und zu zerstören. Wer zuerst alle gegnerischen
+    Schiffe versenkt hat, hat gewonnen!
+
+## Spielfelder
+Das Spiel ist in zwei mal 10x10 Spielfelder aufgeteilt. Das erste Spielfeld ist Ihr eigenes mit Ihren eigenen Schiffen, die bereits zufällig platziert wurden. Das zweite Spielfeld ist das Ihres Gegners.
+Generell gilt, dass sich mehrere Schiffe nicht (außer an den Ecken) berühren dürfen. Achten Sie bei Ihrer Taktik darauf!
+Sobald sich Ihr Gegenspieler verbunden hat und Sie am Zug sind, sollten Sie das Feuer auf ihn eröffnen! Klicken Sie dazu auf ein gegnerisches Feld.
+
+## Markierungen
+
+        - Blaues Feld: Wasser
+        - Blaues Feld mit schwarzem Punkt: Ein Schuss, der daneben ging!
+        - Blaues Feld mit rotem Punkt: Das war ein Volltreffer!
+        - Schwarzes Feld auf gegnerischem Spielfeld: Ein versenktes Schiff.
+
+## Schussreihenfolge
+Im Log unten wird Ihnen angezeigt, wer gerade am Zug ist. Die Spieler wechseln sich beim Schießen ab. Wer ein Schiff getroffen bzw. versenkt hat, darf noch mal schießen!
+
 # How to start the Server
 
 ## Was du brauchst:
