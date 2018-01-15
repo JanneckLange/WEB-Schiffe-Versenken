@@ -28,7 +28,6 @@ router.get('/api/highscore', (req, res) => { //Version nicht mit angegeben
   res.send(scores);
 
   //res.status(500).send('Failed to read the highscore');
-
 });
 
 app.use(servestatic(publicDirectory));
