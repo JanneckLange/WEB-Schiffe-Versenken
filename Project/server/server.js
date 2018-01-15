@@ -18,7 +18,7 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res) => {
-  res.sendFile(path.join(publicDirectory, config.game.public));
+  res.sendFile(path.join(publicDirectory, config.client.startPage));
 });
 
 router.get('/api/highscore', (req, res) => { //Version nicht mit angegeben
@@ -36,7 +36,7 @@ app.use('/', router);
 
 // iosocket
 io.on('connection', socket => {
-  Lobby.startLobby(socket);
+  lobby.startLobby(socket);
 });
 
 http.listen(config.server.port, config.server.host, () => {

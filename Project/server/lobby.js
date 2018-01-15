@@ -4,9 +4,15 @@ module.exports = class Lobby {
 
   }
 
+
+
   /**
    * Startet das Spiel, sobald eine Verbindung zum Server aufgebaut wurde.
    * @param {any} socket
    */
-  startLobby(socket) {}
+  startLobby(socket) {
+
+
+
+  }
 }

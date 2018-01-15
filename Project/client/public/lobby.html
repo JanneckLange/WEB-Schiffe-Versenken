@@ -110,11 +110,21 @@
       </div>
       <div class="col-md-8 col-md-offset-1">
         <div class="game">
-          <div class="gameList">
-            Keine Spiele gefunden
+          <div class="gameList" id="gameListHere">
+            <table border="1px;" id="gameListTable">
+              <tr>
+                <th width="120px">Spielname</th>
+                <th width="100px">Spieleranzahl</th>
+                <th width="100px">Beitreten</th>
+              </tr>
+              <tr>
+                <td height="40px" colspan="3">Keine Spiele gefunden</td>
+              </tr>
+            </table>
+
           </div>
           <br>
-          <button type="button" class="btn btn-primary" name="button">Aktuallisieren</button>
+          <button type="button" class="btn btn-primary" onclick="refreshRunningGames_emit()" name="button">Aktuallisieren</button>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newGame">Neues Spiel Starten</button>
 
         </div>

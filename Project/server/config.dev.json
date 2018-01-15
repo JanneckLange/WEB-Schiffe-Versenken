@@ -1,9 +1,9 @@
 {
-    "server" : {
-        "host" : "localhost",
-        "port" : "3000"
-    },
-    "game":{
-      "public":"SchiffeVersenken.html"
-    }
+  "server": {
+    "host": "localhost",
+    "port": "3000"
+  },
+  "client": {
+    "startPage": "lobby.html"
+  }
 }
