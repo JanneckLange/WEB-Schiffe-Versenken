@@ -108,7 +108,7 @@ function getData(text) {
  */
 function printData(array, size) {
   for (let i = 0; i < array.length && i < size; i++) {
-    document.getElementById("pl" + i).textContent = "" + (i + 1) + ". " + array[i].split(" ")[1];
-    document.getElementById("po" + i).textContent = array[i].split(" ")[0];
+    document.getElementById("pl" + (i + 1)).textContent = "" + (i + 1) + ". " + array[i].split(" ")[1];
+    document.getElementById("po" + (i + 1)).textContent = array[i].split(" ")[0];
   }
 }

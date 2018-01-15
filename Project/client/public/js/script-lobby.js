@@ -1,4 +1,5 @@
 var socket;
+var arrayOfGames;
 
 
 $(document).ready(function() {
@@ -6,15 +7,17 @@ $(document).ready(function() {
 
   //Empfamge game objekt um dem Spiel beizutreten
   socket.on('yourGame', () => {
-
+    window.open('/1');
   });
 
   //Empfange array der aktuell laufenden Spiele
   socket.on('refreshRunningGames', games => {
+    console.log("Aktuallisiert");
+    arrayOfGames = games;
     refreshRunningGames(games);
   });
 
-
+  refreshRunningGames_emit();
   getScore(10);
 });
 
@@ -24,6 +27,8 @@ $(document).ready(function() {
 function refreshRunningGames_emit() {
   socket.emit('refreshRunningGames');
 }
+
+
 
 /**
  * Erstelle Tabelle in die die Games eingetragen werden
@@ -40,6 +45,9 @@ function refreshRunningGames(games) {
   var myHeadColumn1 = document.createElement("th");
   var myHeadColumn2 = document.createElement("th");
   var myHeadColumn3 = document.createElement("th");
+  myHeadColumn1.setAttribute("width", 120);
+  myHeadColumn2.setAttribute("width", 100);
+  myHeadColumn3.setAttribute("width", 100);
   myHeadColumn1.appendChild(document.createTextNode("Spielname"));
   myHeadColumn2.appendChild(document.createTextNode("Spieleranzahl"));
   myHeadColumn3.appendChild(document.createTextNode("Beitreten"));
@@ -57,15 +65,19 @@ function refreshRunningGames(games) {
       myCell.setAttribute("height", 40);
       switch (column) {
         case 0:
-          myCell.appendChild(document.createTextNode("Spielname"));
-          myCell.setAttribute("width", 120);
+          myCell.appendChild(document.createTextNode(games[row]._name));
           break;
         case 1:
-          myCell.appendChild(document.createTextNode("1/2"));
-          myCell.setAttribute("width", 100);
+          if (games[row].player1Socket) {
+            myCell.appendChild(document.createTextNode("1/2"));
+          } else if (games[row].player2Socket) {
+            myCell.appendChild(document.createTextNode("2/2"));
+          } else {
+            myCell.appendChild(document.createTextNode("0/2"));
+          }
+
           break;
         case 2:
-          myCell.setAttribute("width", 100);
 
           //Button
           var gameButton = document.createElement("input");
@@ -96,4 +108,12 @@ function refreshRunningGames(games) {
  */
 function joinGame(index) {
 
+  var game = arrayOfGames[index];
+  console.log(game._name);
+  socket.emit('join', game._name);
+}
+
+function createNewGame() {
+  var gameName = document.getElementById("gameNameInput").value; // TODO: GameName input
+  socket.emit('newGame', gameName);
 }

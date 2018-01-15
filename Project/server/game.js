@@ -3,10 +3,12 @@ const Highscore = require(__dirname + '/highscore');
 
 module.exports = class Game {
 
-  constructor() {
+  constructor(name) {
     //Verbindung zum Spieler
     this.player1Socket;
     this.player2Socket;
+
+    this._name = name;
 
     this._gameOver = true;
 
@@ -17,6 +19,9 @@ module.exports = class Game {
 
   set gameOver(gameOver) {
     this._gameOver = gameOver;
+  }
+  get name() {
+    return this._name;
   }
 
   /**
@@ -131,6 +136,8 @@ module.exports = class Game {
     if (!this.player1Socket) { // erster Spieler verbindet
       console.log('Player 1 connected');
       this.player1Socket = socket;
+      this.player1Socket.emit('title', this._name);
+      socket.emit('msg', "Tada.");
 
       this.player1 = new Player('player 1');
 

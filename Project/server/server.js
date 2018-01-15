@@ -2,6 +2,10 @@ const Highscore = require(__dirname + '/highscore');
 const highscorePath = __dirname + '/highscore.json';
 const Lobby = require(__dirname + '/lobby');
 const lobby = new Lobby();
+
+//const Game = require(__dirname + '/game');
+//const game = new Game();
+
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -21,6 +25,10 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(publicDirectory, config.client.startPage));
 });
 
+router.get('/1', (req, res) => {
+  res.sendFile(path.join(publicDirectory, 'SchiffeVersenken.html'));
+});
+
 router.get('/api/highscore', (req, res) => { //Version nicht mit angegeben
   var scores = Highscore.readHighscore(highscorePath);
   res.setHeader('Content-Type', 'application/json');
@@ -36,6 +44,7 @@ app.use('/', router);
 
 // iosocket
 io.on('connection', socket => {
+  //game.startGame(socket);
   lobby.startLobby(socket);
 });
 

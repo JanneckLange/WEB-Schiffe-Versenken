@@ -45,6 +45,10 @@ $(document).ready(function() {
     trigger_music_song1();
   });
 
+  socket.on('title', (title) => {
+    document.getElementById('gameTitle').setText = title;
+  });
+
   socket.on('fireResult', result => {
     updateScore(++ownScore, 2);
     markHit(result, 2, lastFireX, lastFireY);

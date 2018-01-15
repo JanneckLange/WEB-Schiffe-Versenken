@@ -133,7 +133,7 @@
   </div>
 
 
-  <!-- MODAL About -->
+  <!-- MODAL New Game -->
   <div class="modal fade" id="modal-newGame">
     <div class="modal-dialog ">
       <div class="modal-content">
@@ -146,27 +146,32 @@
 
         <!-- BODY -->
         <div class="modal-body">
-          Möchten Sie jetzt ein neues Spiel erstellen?<br><br>
-          <button type="button" class="btn btn-primary" name="button">Spiel erstellen</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newGame" name="button">Abbrechen</button>
+          Geben Sie einen Namen für das Spiel ein:
+          <form>
+            <input id="gameNameInput" type="text" autofocus required "> <br><br>
+            <button type="submit " class="btn btn-primary " onclick="createNewGame() ">Spiel erstellen</button>
+            <button type="button " class="btn btn-primary " data-toggle="modal " data-target="#modal-newGame " name="button ">Abbrechen</button>
+
+          </form>
+
         </div>
       </div>
     </div>
   </div>
   <!-- MODAL END-->
   <!-- MODAL About -->
-  <div class="modal fade" id="modal-2">
+  <div class="modal fade " id="modal-2 ">
     <div class="modal-dialog ">
-      <div class="modal-content">
+      <div class="modal-content ">
 
         <!-- HEADER -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">ABOUT</h3>
+        <div class="modal-header ">
+          <button type="button " class="close " data-dismiss="modal ">&times;</button>
+          <h3 id="title-modal " class="modal-title ">ABOUT</h3>
         </div>
 
         <!-- BODY -->
-        <div class="modal-body">
+        <div class="modal-body ">
           <h2>Schiffe versenken</h2>
           <h3>Entwickler</h3>
           <ul>
@@ -191,20 +196,20 @@
   </div>
   <!-- MODAL END-->
   <!-- MODAL GitHub -->
-  <div class="modal fade" id="modal-3">
+  <div class="modal fade " id="modal-3 ">
     <div class="modal-dialog ">
-      <div class="modal-content">
+      <div class="modal-content ">
 
         <!-- HEADER -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">GitHub</h3>
+        <div class="modal-header ">
+          <button type="button " class="close " data-dismiss="modal ">&times;</button>
+          <h3 id="title-modal " class="modal-title ">GitHub</h3>
         </div>
 
         <!-- BODY -->
-        <div class="modal-body">
+        <div class="modal-body ">
           <p>Dieses Projekt liegt im vollen Umfang auf GitHub:</p>
-          <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers">WebRanger-Repo</a> </p>
+          <p> <a href="https://github.com/1628574/WEB-WS17-WebRangers ">WebRanger-Repo</a> </p>
 
         </div>
       </div>
@@ -212,18 +217,18 @@
   </div>
   <!-- MODAL END-->
   <!-- MODAL Spielanleitung -->
-  <div class="modal fade" id="modal-5">
+  <div class="modal fade " id="modal-5 ">
     <div class="modal-dialog ">
-      <div class="modal-content">
+      <div class="modal-content ">
 
         <!-- HEADER -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">Spielanleitung</h3>
+        <div class="modal-header ">
+          <button type="button " class="close " data-dismiss="modal ">&times;</button>
+          <h3 id="title-modal " class="modal-title ">Spielanleitung</h3>
         </div>
 
         <!-- BODY -->
-        <div class="modal-body">
+        <div class="modal-body ">
           <h2>Schiffe versenken</h2>
           <h3>Spielanleitung</h3>
           <h4>Spielziel</h4>
@@ -259,7 +264,7 @@
   <!-- MODAL END-->
 
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js "></script>
 </body>
 
 </html>
