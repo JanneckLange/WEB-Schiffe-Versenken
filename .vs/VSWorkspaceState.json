@@ -1,16 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ownTest[Ben]",
-    "\\ownTest[Ben]\\server",
     "\\Project",
     "\\Project\\client",
     "\\Project\\client\\public",
+    "\\Project\\client\\public\\css",
     "\\Project\\client\\public\\files",
     "\\Project\\client\\public\\js",
-    "\\Project\\server",
-    "\\Uebung"
+    "\\Project\\server"
   ],
-  "SelectedNode": "\\Project\\client\\public\\js\\script.js",
+  "SelectedNode": "\\Project\\client\\public\\js\\score.js",
   "PreviewInSolutionExplorer": false
 }
