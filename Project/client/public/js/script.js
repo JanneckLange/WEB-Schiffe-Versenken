@@ -142,7 +142,7 @@ $(document).ready(function() {
 
   $('#modal-1').modal('show');
 
-  getScore();
+  getScore(5);
 });
 
 /**

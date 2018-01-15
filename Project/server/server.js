@@ -1,7 +1,7 @@
 const Highscore = require(__dirname + '/highscore');
 const highscorePath = __dirname + '/highscore.json';
-const Game = require(__dirname + '/game');
-const game = new Game();
+const Lobby = require(__dirname + '/lobby');
+const lobby = new Lobby();
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -36,7 +36,7 @@ app.use('/', router);
 
 // iosocket
 io.on('connection', socket => {
-  game.startGame(socket);
+  Lobby.startLobby(socket);
 });
 
 http.listen(config.server.port, config.server.host, () => {

@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
-<html lang="de">
+<html>
 
 <head>
-  <!-- TITLE-->
-  <title>Schiffe-Versenken</title>
+  <meta charset="utf-8">
+  <title>Schiffe Versenken Lobby</title>
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -31,40 +31,33 @@
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/script.js"></script>
-  <script src="js/score.js"></script>
 
+  <link rel="stylesheet" href="css/style-lobby.css">
+  <script src="js/script-lobby.js"></script>
+  <script src="js/score.js"></script>
 
 </head>
 
-<body id="body">
-
-  <!-- HEADER -->
+<body>
   <div class="jumbotron">
     <div class="row">
       <div class="col-md-8">
         <h1 id="title-main">Schiffe versenken</h1>
+        <h2>Lobby</h2>
       </div>
-      <!-- NOTE: Footer Inhalt -->
       <div class="col-md-4">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-6">Neues Spiel</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-5">Spielanleitung</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-5">Spielanleitung</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-2">About</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-3">GitHub</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN-PART -->
   <div class="container">
-
     <div class="row">
-
-      <!-- SIDEBAR -->
-      <div id="sidebar" class="col-md-2">
-
-
+      <div class="col-md-3 ">
         <div class="div-score">
           <h3 id="title-highscore">Highscore</h3>
           <table id="table-highscore" class="table  table-hover">
@@ -92,145 +85,60 @@
               <td id="pl5">5. {Player 5}</td>
               <td id="po5">{points}</td>
             </tr>
+            <tr>
+              <td id="pl6">6. {Player 6}</td>
+              <td id="po6">{points}</td>
+            </tr>
+            <tr>
+              <td id="pl7">7. {Player 7}</td>
+              <td id="po7">{points}</td>
+            </tr>
+            <tr>
+              <td id="pl8">8. {Player 8}</td>
+              <td id="po8">{points}</td>
+            </tr>
+            <tr>
+              <td id="pl9">9. {Player 9}</td>
+              <td id="po9">{points}</td>
+            </tr>
+            <tr>
+              <td id="pl10">10. {Player 10}</td>
+              <td id="po10">{points}</td>
+            </tr>
           </table>
-
-
-        </div>
-        <br>
-
-        <div class="music_control">
-          <center>
-            <span id="control_title">Musik</span>
-
-            <hr>
-
-            <audio id="audiofile_music_song1" preload="auto" loop>
-                                <source src="files/music_song1.mp3" />
-                            </audio>
-            <audio id="audiofile_music_before_fight" autoplay preload="auto" loop>
-                                <source src="files/music_before_fight.mp3" />
-                            </audio>
-            <audio id="audiofile_music_lost" preload="auto">
-                                <source src="files/music_lost.mp3" />
-                            </audio>
-            <audio id="audiofile_music_win" preload="auto">
-                                <source src="files/music_win.mp3" />
-                            </audio>
-            <audio id="audiofile_music_one_ship_left" preload="auto" loop>
-                                <source src="files/music_one_ship_left.mp3" />
-                            </audio>
-
-            <input id="music_control_range" type="range" min="0" max="1" value="0.3" step="0.05">
-            <label id="ind-music_control_range" for="music_control_range">3</label>
-
-            <hr>
-
-            <button id="music_control_mute_button" class="btn btn-primary" type="button" onclick="music_control_playButton()" name="button">Pause</button>
-          </center>
-
-          <hr style="border:solid grey 1px;">
-
-          <center>
-            <span id="control_title">Sound</span>
-
-            <hr>
-            <audio id="audiofile_sound_hit_water" preload="auto">
-                                <source src="files/sfx_hit_water.wav" />
-                            </audio>
-
-            <audio id="audiofile_sound_hit_ship" preload="auto">
-                                <source src="files/sfx_hit_ship.wav" />
-                            </audio>
-
-            <audio id="audiofile_sound_ship_down" preload="auto">
-                                <source src="files/sfx_ship_down.wav" />
-                            </audio>
-            <audio id="audiofile_sound_your_turn" preload="auto">
-                                <source src="files/sfx_your_turn.wav" />
-                            </audio>
-            <audio id="audiofile_sound_win" preload="auto">
-                                <source src="files/sfx_win.wav" />
-                            </audio>
-
-            <input id="sound_control_range" type="range" min="0" max="1" value="0.3" step="0.05">
-            <label id="ind-sound_control_range" for="sound_control_range">3</label>
-
-          </center>
-
-          <script src="js/audio.js"></script>
-        </div>
-        <br>
-
-
-
-      </div>
-
-      <!-- SPIELBEREICH -->
-      <div class="col-md-10">
-        <div class="row">
-          <center>
-            <table id="playerNames">
-              <tr>
-                <td>
-                  <p style="float:right" id="outputp1">{Spieler1}</p>
-                </td>
-                <td>
-                  <p>&nbsp; gegen &nbsp;</p>
-                </td>
-                <td>
-                  <p style="float:left" id="outputp2">{Spieler2}</p>
-                </td>
-              </tr>
-            </table>
-          </center>
-
-        </div>
-
-
-        <div class="row">
-          <!-- NOTE: id´s : [1 | 2 : Spielerseite 1 oder 2 ; 00 = A01 | 01 = A02 ; ... ; 55 = F06 ; ... ; 99 = K10 -->
-          <div class="col-md-6" id="hierTabelle1">
-            <!--Spielfeld 1-->
-          </div>
-          <div class="col-md-6" id="hierTabelle2">
-            <!--Spielfeld 2-->
-          </div>
-        </div>
-
-        <!--Ingame "Konsole"-->
-        <div class="row">
-          <p id="log"></p>
         </div>
       </div>
+      <div class="col-md-8 col-md-offset-1">
+        <div class="game">
+          <div class="gameList">
+            Keine Spiele gefunden
+          </div>
+          <br>
+          <button type="button" class="btn btn-primary" name="button">Aktuallisieren</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newGame">Neues Spiel Starten</button>
 
+        </div>
+      </div>
     </div>
-    <br> <br> <br> <br>
   </div>
 
 
-  <!-- MODAL Namen -->
-  <div class="modal fade" id="modal-1">
+  <!-- MODAL About -->
+  <div class="modal fade" id="modal-newGame">
     <div class="modal-dialog ">
       <div class="modal-content">
 
         <!-- HEADER -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">Spielername</h3>
+          <h3 id="title-modal" class="modal-title">Neues Spiel erstellen</h3>
         </div>
 
         <!-- BODY -->
         <div class="modal-body">
-          <form id="players_form">
-            <div class="form-group" id="formGrpSpieler1">
-              <label id="text-pl1" for="spieler1">Spieler</label>
-              <input type="text" name="spieler1" id="input1" placeholder="Spielername" required pattern="[A-Za-z0-9]{3,15}" />
-              <small class="form-text">3-15 Buchstaben</small>
-            </div>
-            <div class="form-group" id="formGrpSpieler3">
-              <button type="submit" class="btn btn-default" name="button" onclick="setText()">Änderungen speichern</button>
-            </div>
-          </form>
+          Möchten Sie jetzt ein neues Spiel erstellen?<br><br>
+          <button type="button" class="btn btn-primary" name="button">Spiel erstellen</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-newGame" name="button">Abbrechen</button>
         </div>
       </div>
     </div>
@@ -293,26 +201,6 @@
     </div>
   </div>
   <!-- MODAL END-->
-  <!-- MODAL Verbindung  -->
-  <div class="modal fade" id="modal-4">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-
-        <!-- HEADER -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">Verbindung verloren</h3>
-        </div>
-
-        <!-- BODY -->
-        <div class="modal-body">
-          <p>Die Verbindung zum Server ist unterbrochen.</p>
-          <button type="button" onclick="new_game_button()" name="button">Verstanden</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- MODAL END-->
   <!-- MODAL Spielanleitung -->
   <div class="modal fade" id="modal-5">
     <div class="modal-dialog ">
@@ -359,31 +247,9 @@
     </div>
   </div>
   <!-- MODAL END-->
-  <!-- MODAL Verbindung  -->
-  <div class="modal fade" id="modal-6">
-    <div class="modal-dialog ">
-      <div class="modal-content">
 
-        <!-- HEADER -->
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h3 id="title-modal" class="modal-title">Neues Spiel</h3>
-        </div>
-
-        <!-- BODY -->
-        <div class="modal-body">
-          <p>Möchten Sie wirklich ein neues Spiel starten?</p>
-          <button type="button" onclick="new_game_button()" name="button">Ja</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- MODAL END-->
-  <!-- Latest compiled and minified JavaScript -->
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
 </body>
 
 </html>
