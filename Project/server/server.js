@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/api/highscore', (req, res) => { //Version nicht mit angegeben
-  var scores = Highscore.readHighscore(highscorePath);
+  let scores = Highscore.readHighscore(highscorePath);
   res.setHeader('Content-Type', 'application/json');
   res.header("Access-Control-Allow-Origin", "*");
   res.send(scores);
