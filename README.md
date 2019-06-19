@@ -33,7 +33,7 @@ Repository für WEB im WS17 der Gruppe Web-Rangers von Benjamin Schönke, Max St
 | :snowflake: | `:snowflake:` | changing **Configuration**, Usually together with :penguin: or :ribbon: or :rocket: |
 | :bank: | `:bank:` | **Generic Database** specific (Migrations, Scripts, Extensions, ...) |
 | :handshake: | `:handshake:` | **Merge files** |
-| 💬 | :: | Erstellen einer **Übersetzung**
+| 💬 | :speech_balloon: | Erstellen einer **Übersetzung**
 
 
 
